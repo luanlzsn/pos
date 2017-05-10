@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import YYCategories
 
 class Common: NSObject {
     
@@ -75,7 +76,7 @@ class Common: NSObject {
     // MARK: - 校验邮箱
     class func isValidateEmail(email: String) -> Bool {
         do {
-            let pattern = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+            let pattern = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-_]+\\.[A-Za-z]{2,4}"
             let regex: NSRegularExpression = try NSRegularExpression(pattern: pattern, options: .caseInsensitive)
             let matches = regex.numberOfMatches(in: email, options: [.reportProgress], range: NSMakeRange(0, email.characters.count))
             return matches > 0
@@ -175,26 +176,51 @@ class Common: NSObject {
     
 }
 
-private var key: Void?
-
-extension CALayer {
-    var borderColorFromUIColor: UIColor {
+extension UIView {
+    @IBInspectable
+    var cornerRadius: CGFloat {
         get {
-            return objc_getAssociatedObject(self, &key) as! UIColor
+            return layer.cornerRadius
         }
-        set(newValue) {
-            objc_setAssociatedObject(self, &key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            borderColor = newValue.cgColor
+        set {
+            layer.masksToBounds = true
+            layer.cornerRadius = newValue
         }
     }
     
-    var shadowColorFromUIColor: UIColor {
+    @IBInspectable
+    var borderWidth: CGFloat {
         get {
-            return objc_getAssociatedObject(self, &key) as! UIColor
+            return layer.borderWidth
         }
-        set(newValue) {
-            objc_setAssociatedObject(self, &key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            shadowColor = newValue.cgColor
+        set {
+            layer.borderWidth = newValue
+        }
+    }
+    
+    @IBInspectable
+    var borderColor: UIColor {
+        get {
+            return self.borderColor
+        }
+        set {
+            layer.borderColor = newValue.cgColor
+        }
+    }
+}
+
+extension UITextField {
+    @IBInspectable
+    var leftImage: UIImage {
+        get {
+            return self.leftImage
+        }
+        set {
+            let imgView = UIImageView(image: newValue)
+            imgView.contentMode = .right
+            imgView.frame = CGRect(x: 0, y: 0, width: newValue.size.width + 8, height: height)
+            leftView = imgView
+            leftViewMode = .always
         }
     }
 }
