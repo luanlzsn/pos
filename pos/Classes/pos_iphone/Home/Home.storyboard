@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="u8u-Tw-bFx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--首页-->
+        <scene sceneID="bx5-Wd-pRp">
+            <objects>
+                <viewController title="首页" id="IKW-ED-eR5" customClass="HomeController" customModule="pos_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZaV-XQ-z3f"/>
+                        <viewControllerLayoutGuide type="bottom" id="tUA-kc-Efh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XfW-VO-YPz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="首页" id="fj6-WS-t7C"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YvN-B9-vJe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1144.8" y="114.69265367316342"/>
+        </scene>
+        <!--首页-->
+        <scene sceneID="IaT-CJ-MjZ">
+            <objects>
+                <navigationController title="首页" automaticallyAdjustsScrollViewInsets="NO" id="u8u-Tw-bFx" customClass="AntNavController" customModule="pos_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VRx-sc-brq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="IKW-ED-eR5" kind="relationship" relationship="rootViewController" id="TzR-nb-46E"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MmA-ow-ayB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="205.59999999999999" y="114.69265367316342"/>
+        </scene>
+    </scenes>
+</document>

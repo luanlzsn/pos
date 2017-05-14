@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  pos
+//  pos_iphone
 //
-//  Created by luan on 2017/5/5.
+//  Created by luan on 2017/5/14.
 //  Copyright © 2017年 luan. All rights reserved.
 //
 
@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.shared.statusBarStyle = .lightContent
         UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().barTintColor = UIColor.init(rgb: 0xC30E23)
+        UINavigationBar.appearance().barTintColor = UIColor.init(rgb: 0xe60a16)
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         
         IQKeyboardManager.sharedManager().enable = true
@@ -41,7 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-        AntManage.checkBaseRequestAddress()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

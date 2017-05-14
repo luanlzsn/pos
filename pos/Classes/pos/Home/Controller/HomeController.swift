@@ -13,7 +13,6 @@ class HomeController: AntController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.isNavigationBarHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

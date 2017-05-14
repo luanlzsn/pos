@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gmL-fC-AU7">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--搜索-->
+        <scene sceneID="A27-HZ-fMZ">
+            <objects>
+                <viewController title="搜索" id="BOt-yU-W37" customClass="SearchController" customModule="pos_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uDW-mm-gaM"/>
+                        <viewControllerLayoutGuide type="bottom" id="ye4-2b-2kF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wkS-qr-mqJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="搜索" id="crU-Gw-cqH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wg8-6g-7NL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1228" y="85.907046476761622"/>
+        </scene>
+        <!--搜索-->
+        <scene sceneID="1ET-Ek-QUA">
+            <objects>
+                <navigationController title="搜索" automaticallyAdjustsScrollViewInsets="NO" id="gmL-fC-AU7" customClass="AntNavController" customModule="pos_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Esg-Dx-RZQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BOt-yU-W37" kind="relationship" relationship="rootViewController" id="N12-wB-G9a"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2GW-OX-B4L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="288.80000000000001" y="85.907046476761622"/>
+        </scene>
+    </scenes>
+</document>
