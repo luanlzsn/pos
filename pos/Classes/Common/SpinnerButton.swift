@@ -25,11 +25,11 @@ class SpinnerButton: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews();
         
-        titleLabel?.centerY = self.height / 2;
-        titleLabel?.left = 15;
-        
-        imageView?.centerY = self.height / 2;
-        imageView?.right = 15;
+//        titleLabel?.centerY = self.height / 2;
+//        titleLabel?.left = 15;
+//        
+//        imageView?.centerY = self.height / 2;
+//        imageView?.right = 15;
     }
     
     override init(frame: CGRect) {
