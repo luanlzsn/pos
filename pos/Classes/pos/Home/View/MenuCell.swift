@@ -11,9 +11,16 @@ import UIKit
 class MenuCell: UICollectionViewCell {
     
     @IBOutlet weak var menuBtn: UIButton!
+    var confirmMenu: ConfirmBlock?
+    
+    deinit {
+        confirmMenu = nil
+    }
     
     @IBAction func menuClick(_ sender: UIButton) {
-        
+        if confirmMenu != nil {
+            confirmMenu!(sender)
+        }
     }
     
 }

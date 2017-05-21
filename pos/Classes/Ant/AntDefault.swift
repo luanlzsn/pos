@@ -43,6 +43,6 @@ struct Platform {
     }()
 }
 
-typealias ConfirmBlock = (_ value: Any) ->Void
-typealias CancelBlock = () ->Void
+typealias ConfirmBlock = (_ value: Any) ->()
+typealias CancelBlock = () ->()
 

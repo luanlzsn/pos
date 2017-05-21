@@ -13,6 +13,7 @@ class AntModel: NSObject {
 
 }
 
+// MARK: 用户信息
 class UserModel: AntModel {
     var userId = 0
     var email = ""//邮箱/账号
@@ -29,7 +30,7 @@ class UserModel: AntModel {
     }
 }
 
-//订单信息
+// MARK: 订单信息
 class OrderModel : AntModel {
     var orderId = 0//订单id
     var created = ""//创建时间
@@ -66,5 +67,80 @@ class OrderModel : AntModel {
     override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
         return ["orderId":"id"]
     }
+}
+
+class ExtraModel: AntModel {
+    var extraId = 0
+    var category_id = 0
+    var price = ""
+    var name = ""
     
+    override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
+        return ["extraId":"id"]
+    }
+}
+
+// MARK: 已点菜单信息
+class OrderItemModel : AntModel {
+    var orderItemId = 0//id
+    var all_extras = ""//所有额外
+    var category_id = 0//类别ID
+    var comb_id = 0
+    var created = ""//创建时间
+    var extras_amount = 0.0;//附加金额
+    var is_done = ""//N是否完成
+    var is_kitchen = ""//厨房
+    var is_print = ""//打印
+    var is_takeout = ""//是否外卖
+    var item_id = 0//项目ID
+    var name_en = ""//英文名
+    var name_xh = ""//中文名
+    var order_id = 0//订单id
+    var price = ""//价格
+    var qty = 0//数量
+    var selected_extras = [ExtraModel]()//
+    var tax = 0.0//税
+    var tax_amount = ""//税额
+    var special_instruction = ""//特殊说明
+    
+    override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
+        return ["orderItemId":"id"]
+    }
+    
+    override static func mj_objectClassInArray() -> [AnyHashable : Any]! {
+        return ["selected_extras":ExtraModel.classForCoder()]
+    }
+}
+
+// MARK: 菜单分类信息
+class CategoryModel: AntModel {
+    var categoryId = 0//id
+    var en = ""//英文
+    var zh = ""//中文
+    var status = ""//状态
+    var printer = ""//打印机
+    
+    override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
+        return ["categoryId":"id"]
+    }
+}
+
+// MARK: 菜信息
+class CousineModel: AntModel {
+    var cousineId = 0
+    var en = ""//英文
+    var zh = ""//中文
+    var price = ""//价格
+    var status = ""//状态
+    var image = ""//图片
+    var casier_id = 0
+    var category_id = 0//菜单类别ID
+    var comb_num = 0
+    var is_tax = ""//是否有税
+    var popular = 0
+    var restaurant_id = 0//餐厅的ID
+    
+    override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
+        return ["cousineId":"id"]
+    }
 }

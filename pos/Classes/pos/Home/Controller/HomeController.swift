@@ -24,6 +24,7 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
         super.viewDidLoad()
         
         navigationController?.isNavigationBarHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(homeClick), name: NSNotification.Name(rawValue: "ChangeTableSuccsee"), object: nil)
         collection.register(UINib(nibName: "HomeCell", bundle: Bundle.main), forCellWithReuseIdentifier: "HomeCell")
         takeoutCollection.register(UINib(nibName: "HomeCell", bundle: Bundle.main), forCellWithReuseIdentifier: "HomeCell")
         deliveryCollection.register(UINib(nibName: "HomeCell", bundle: Bundle.main), forCellWithReuseIdentifier: "HomeCell")
@@ -46,7 +47,10 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
 
     // MARK: 主页
     @IBAction func homeClick() {
-        
+        getTableNos()
+        getTablesInfoWithType(type: "D")
+        getTablesInfoWithType(type: "T")
+        getTablesInfoWithType(type: "W")
     }
     
     // MARK: 管理员
@@ -139,6 +143,49 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
         }, failureResult: {})
     }
     
+    // MARK: 变空桌
+    func makeAvaliable(tableDic: [String : Any]) {
+        let alert = UIAlertController(title: nil, message: NSLocalizedString("请输入密码", comment: ""), preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.isSecureTextEntry = true
+        }
+        weak var weakSelf = self
+        alert.addAction(UIAlertAction(title: NSLocalizedString("确定", comment: ""), style: .default, handler: { (_) in
+            let textField = alert.textFields?.first!
+            if (textField!.text! as NSString).md5() == AntManage.userModel?.password {
+                let order = tableDic["OrderModel"] as! OrderModel
+                AntManage.postRequest(path: "orderHandler/makeavailable", params: ["order_no":order.order_no, "access_token":AntManage.userModel!.token], successResult: { (_) in
+                    AntManage.showDelayToast(message: NSLocalizedString("成功清空本桌", comment: ""))
+                    let type = tableDic["TableType"] as! String
+                    let tableNo = tableDic["TableNo"] as! Int
+                    if type == "D" {
+                        weakSelf?.dineDic.removeValue(forKey: NSNumber(integerLiteral: tableNo))
+                        weakSelf?.collection.reloadData()
+                    } else if type == "T" {
+                        weakSelf?.takeoutDic.removeValue(forKey: NSNumber(integerLiteral: tableNo))
+                        weakSelf?.takeoutCollection.reloadData()
+                    } else {
+                        weakSelf?.deliveryDic.removeValue(forKey: NSNumber(integerLiteral: tableNo))
+                        weakSelf?.deliveryCollection.reloadData()
+                    }
+                }, failureResult: {})
+            } else {
+                AntManage.showDelayToast(message: NSLocalizedString("密码错误", comment: ""))
+            }
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: ""), style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: 菜单点击
+    func checkMenu(menu: String, tableDic: [String : Any]) {
+        if menu == NSLocalizedString("订单", comment: "") {
+            performSegue(withIdentifier: "Order", sender: tableDic)
+        } else if menu == NSLocalizedString("变空桌", comment: "") {
+            perform(#selector(makeAvaliable(tableDic:)), with: tableDic, afterDelay: 0.01)
+        }
+    }
+    
     // MARK: 跳转
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Menu" {
@@ -147,6 +194,15 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
             menu.tableType = (sender as! [String : Any])["TableType"] as! String
             menu.tableNo = (sender as! [String : Any])["TableNo"] as! Int
             menu.home = self
+            weak var weakSelf = self
+            menu.confirmMenu = { (menuStr) -> () in
+                AntLog(message: menuStr)
+                weakSelf?.checkMenu(menu: menuStr as! String, tableDic: sender as! [String : Any])
+            }
+        } else if segue.identifier == "Order" {
+            let order: OrderController = segue.destination as! OrderController
+            order.tableType = (sender as! [String : Any])["TableType"] as! String
+            order.tableNo = (sender as! [String : Any])["TableNo"] as! Int
         }
     }
     

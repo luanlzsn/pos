@@ -115,7 +115,7 @@ class Common: NSObject {
     }
     
     //MARK: - md5加密
-    class func md5String(str:String) -> String{
+    class func md5String(str:String) -> String {
         let cStr = str.cString(using: String.Encoding.utf8);
         let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: 16)
         CC_MD5(cStr!,(CC_LONG)(strlen(cStr!)), buffer)
@@ -125,6 +125,12 @@ class Common: NSObject {
         }
         free(buffer)
         return md5String as String
+    }
+    
+    // MARK: 根据属性对对象数组进行排序
+    class func sortArray(array: [Any], descriptor: String, ascending: Bool) -> [Any] {
+        let sortDescriptor = NSSortDescriptor.init(key: descriptor, ascending: ascending)
+        return (array as NSArray).sortedArray(using: [sortDescriptor])
     }
     
     //MARK: - 需要登录之后才能执行的操作判断是否可以操作，返回YES可以继续操作，否则自动跳转到登录
