@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -20,18 +20,29 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="堂食 01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5x-9c-JCb">
                         <rect key="frame" x="5" y="8" width="90" height="19.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="H0x-IW-zRw"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vlh-tK-ctD">
-                        <rect key="frame" x="5" y="27.5" width="90" height="17"/>
+                        <rect key="frame" x="5" y="29.5" width="90" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6E-g1-7VY">
+                        <rect key="frame" x="30" y="47" width="40" height="0.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="Mv5-4D-hjZ"/>
+                            <constraint firstAttribute="height" constant="0.5" id="NOu-2s-Mb8"/>
+                        </constraints>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="laT-DS-Utm">
-                        <rect key="frame" x="5" y="44.5" width="90" height="17"/>
+                        <rect key="frame" x="5" y="48.5" width="90" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -42,13 +53,15 @@
             <constraints>
                 <constraint firstItem="O5x-9c-JCb" firstAttribute="centerX" secondItem="TNf-Zv-JNJ" secondAttribute="centerX" id="Bib-Ok-5X5"/>
                 <constraint firstItem="laT-DS-Utm" firstAttribute="centerX" secondItem="TNf-Zv-JNJ" secondAttribute="centerX" id="HNO-K7-lNr"/>
+                <constraint firstItem="S6E-g1-7VY" firstAttribute="centerX" secondItem="TNf-Zv-JNJ" secondAttribute="centerX" id="NTH-dt-Tmn"/>
                 <constraint firstItem="O5x-9c-JCb" firstAttribute="top" secondItem="TNf-Zv-JNJ" secondAttribute="topMargin" id="UrC-9N-jP1"/>
                 <constraint firstItem="Vlh-tK-ctD" firstAttribute="width" secondItem="O5x-9c-JCb" secondAttribute="width" id="Xgk-2Z-i44"/>
                 <constraint firstItem="O5x-9c-JCb" firstAttribute="width" secondItem="TNf-Zv-JNJ" secondAttribute="width" constant="-10" id="kiw-EE-RHd"/>
                 <constraint firstItem="laT-DS-Utm" firstAttribute="width" secondItem="Vlh-tK-ctD" secondAttribute="width" id="lEI-Sg-Uf4"/>
                 <constraint firstItem="Vlh-tK-ctD" firstAttribute="centerX" secondItem="TNf-Zv-JNJ" secondAttribute="centerX" id="lZG-EU-wQc"/>
-                <constraint firstItem="laT-DS-Utm" firstAttribute="top" secondItem="Vlh-tK-ctD" secondAttribute="bottom" id="nLZ-kw-iRC"/>
-                <constraint firstItem="Vlh-tK-ctD" firstAttribute="top" secondItem="O5x-9c-JCb" secondAttribute="bottom" id="vlf-ON-3H9"/>
+                <constraint firstItem="laT-DS-Utm" firstAttribute="top" secondItem="Vlh-tK-ctD" secondAttribute="bottom" constant="2" id="nLZ-kw-iRC"/>
+                <constraint firstItem="Vlh-tK-ctD" firstAttribute="top" secondItem="O5x-9c-JCb" secondAttribute="bottom" constant="2" id="vlf-ON-3H9"/>
+                <constraint firstItem="S6E-g1-7VY" firstAttribute="top" secondItem="Vlh-tK-ctD" secondAttribute="bottom" constant="0.5" id="wtQ-lH-nMS"/>
             </constraints>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -56,6 +69,8 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="lineView" destination="S6E-g1-7VY" id="u9S-m8-q8y"/>
+                <outlet property="lineWidth" destination="Mv5-4D-hjZ" id="GPu-hY-zKm"/>
                 <outlet property="moneyLabel" destination="Vlh-tK-ctD" id="wDr-sl-Dga"/>
                 <outlet property="numberLabel" destination="O5x-9c-JCb" id="tNh-n9-Okr"/>
                 <outlet property="timeLabel" destination="laT-DS-Utm" id="IcN-wV-kRT"/>

@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
         AntManage.checkBaseRequestAddress()
         
+        LanguageManager.setupCurrentLanguage()
+        
         return true
     }
 

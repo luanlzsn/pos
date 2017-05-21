@@ -55,8 +55,21 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
     }
     
     // MARK: 语言
-    @IBAction func languageClick() {
-        
+    @IBAction func languageClick(_ sender: SpinnerButton) {
+        weak var weakSelf = self
+        sender.show(view: view, array: ["English","中文"]) { (languageStr) in
+            if languageStr != LanguageManager.currentLanguageString() {
+                LanguageManager.saveLanguage(languageString: languageStr)
+                weakSelf?.reloadRootViewController()
+            }
+        }
+    }
+    
+    // MARK: 重载视图
+    func reloadRootViewController() {
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        delegate.window?.rootViewController = storyboard.instantiateInitialViewController()
     }
     
     // MARK: 签入
@@ -71,7 +84,13 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
     
     // MARK: 登出
     @IBAction func logoutClick() {
-        
+        AntManage.userModel = nil
+        AntManage.isLogin = false
+        UserDefaults.standard.removeObject(forKey: kUserName)
+        UserDefaults.standard.removeObject(forKey: kPassWord)
+        UserDefaults.standard.synchronize()
+        let login = UIStoryboard(name: "Login", bundle: Bundle.main).instantiateInitialViewController()!
+        present(login, animated: true, completion: nil)
     }
     
     // MARK: 获取餐桌数量
@@ -120,7 +139,18 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
         }, failureResult: {})
     }
     
-    //MARK: - UICollectionViewDelegateFlowLayout
+    // MARK: 跳转
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Menu" {
+            let menu: MenuController = segue.destination as! MenuController
+            menu.model = (sender as! [String : Any])["OrderModel"] as? OrderModel
+            menu.tableType = (sender as! [String : Any])["TableType"] as! String
+            menu.tableNo = (sender as! [String : Any])["TableNo"] as! Int
+            menu.home = self
+        }
+    }
+    
+    // MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == collection {
             return CGSize(width: 100, height: 80)
@@ -143,18 +173,20 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : HomeCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCell", for: indexPath) as! HomeCell
         let model: OrderModel?
+        cell.lineView.isHidden = false
         if collectionView == collection {
             cell.numberLabel.text = NSLocalizedString("堂食", comment: "") + " \(indexPath.row + 1)"
             model = dineDic[NSNumber(integerLiteral: indexPath.row + 1)]
+            cell.lineView.isHidden = true
         } else if collectionView == takeoutCollection {
-            cell.numberLabel.text = NSLocalizedString("Out", comment: "") + " \(indexPath.row + 1)"
+            cell.numberLabel.text = NSLocalizedString("外卖", comment: "") + " \(indexPath.row + 1)"
             model = takeoutDic[NSNumber(integerLiteral: indexPath.row + 1)]
         } else {
-            cell.numberLabel.text = NSLocalizedString("Deliv", comment: "") + " \(indexPath.row + 1)"
+            cell.numberLabel.text = NSLocalizedString("送餐", comment: "") + " \(indexPath.row + 1)"
             model = deliveryDic[NSNumber(integerLiteral: indexPath.row + 1)]
         }
         if model != nil {
-            cell.contentView.backgroundColor = UIColor.init(rgb: 0xFF8400)
+            cell.contentView.backgroundColor = (model!.table_status == "R" ? UIColor.init(rgb: 0xB15BFF) : UIColor.init(rgb: 0xFF8400))
             if collectionView == collection {
                 cell.moneyLabel.text = "$" + String(format: "%.2f", model!.total)
             } else {
@@ -166,11 +198,28 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
             cell.moneyLabel.text = ""
             cell.timeLabel.text = ""
         }
+        cell.lineWidth.constant = (cell.moneyLabel.text! as NSString).width(for: cell.moneyLabel.font)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let model: OrderModel?
+        let tableType: String!
+        if collectionView == collection {
+            model = dineDic[NSNumber(integerLiteral: indexPath.row + 1)]
+            tableType = "D"
+        } else if collectionView == takeoutCollection {
+            model = takeoutDic[NSNumber(integerLiteral: indexPath.row + 1)]
+            tableType = "T"
+        } else {
+            model = deliveryDic[NSNumber(integerLiteral: indexPath.row + 1)]
+            tableType = "W"
+        }
+        if model != nil {
+            performSegue(withIdentifier: "Menu", sender: ["OrderModel":model!,"TableType":tableType,"TableNo":indexPath.row + 1])
+        } else {
+            performSegue(withIdentifier: "Menu", sender: ["TableType":tableType,"TableNo":indexPath.row + 1])
+        }
     }
     
     override func didReceiveMemoryWarning() {

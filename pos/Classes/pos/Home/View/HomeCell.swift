@@ -13,6 +13,8 @@ class HomeCell: UICollectionViewCell {
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var moneyLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var lineView: UIView!
+    @IBOutlet weak var lineWidth: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()

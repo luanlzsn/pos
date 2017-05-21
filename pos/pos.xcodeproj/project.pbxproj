@@ -11,6 +11,8 @@
 		6B2EDB271EBCA7380051C1A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B2EDB251EBCA7380051C1A7 /* Main.storyboard */; };
 		6B2EDB291EBCA7380051C1A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B2EDB281EBCA7380051C1A7 /* Assets.xcassets */; };
 		6B2EDB2C1EBCA7380051C1A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B2EDB2A1EBCA7380051C1A7 /* LaunchScreen.storyboard */; };
+		6B6DFE551ED00DDC00415B38 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6DFE541ED00DDC00415B38 /* MenuController.swift */; };
+		6B6DFE571ED0125500415B38 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6DFE561ED0125500415B38 /* MenuCell.swift */; };
 		6B886EA51EC3470300497F85 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B886EA41EC3470300497F85 /* AFNetworking.framework */; };
 		6B8DB17E1EBF1BBF005C9A63 /* IQKeyboardManagerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B8DB17D1EBF1BBF005C9A63 /* IQKeyboardManagerSwift.framework */; };
 		6B8DB1801EBF1BC2005C9A63 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B8DB17F1EBF1BC2005C9A63 /* MBProgressHUD.framework */; };
@@ -69,6 +71,8 @@
 		6B2EDB281EBCA7380051C1A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6B2EDB2B1EBCA7380051C1A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6B2EDB2D1EBCA7380051C1A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6B6DFE541ED00DDC00415B38 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		6B6DFE561ED0125500415B38 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		6B886EA41EC3470300497F85 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = Carthage/Build/iOS/AFNetworking.framework; sourceTree = "<group>"; };
 		6B8DB17B1EBF1BBA005C9A63 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		6B8DB17D1EBF1BBF005C9A63 /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IQKeyboardManagerSwift.framework; path = Carthage/Build/iOS/IQKeyboardManagerSwift.framework; sourceTree = "<group>"; };
@@ -235,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				6B9540F61EC820C800CCFF95 /* HomeController.swift */,
+				6B6DFE541ED00DDC00415B38 /* MenuController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -352,6 +357,7 @@
 			children = (
 				6BD6DD4D1EC9ECA900652204 /* HomeCell.swift */,
 				6BD6DD4E1EC9ECA900652204 /* HomeCell.xib */,
+				6B6DFE561ED0125500415B38 /* MenuCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -535,9 +541,11 @@
 				6B9541081EC820C800CCFF95 /* HomeController.swift in Sources */,
 				6BD6DD4F1EC9ECA900652204 /* HomeCell.swift in Sources */,
 				6B9541001EC820C800CCFF95 /* AntNavController.swift in Sources */,
+				6B6DFE551ED00DDC00415B38 /* MenuController.swift in Sources */,
 				6B9541011EC820C800CCFF95 /* AntSingleton.swift in Sources */,
 				6B9541021EC820C800CCFF95 /* Common.swift in Sources */,
 				6B9541031EC820C800CCFF95 /* LanguageManager.swift in Sources */,
+				6B6DFE571ED0125500415B38 /* MenuCell.swift in Sources */,
 				6B9541061EC820C800CCFF95 /* NSBundle+Language.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
