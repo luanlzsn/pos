@@ -55,7 +55,12 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
     }
     
     @IBAction func logoutClick() {
-        
+        AntManage.userModel = nil
+        AntManage.isLogin = false
+        UserDefaults.standard.removeObject(forKey: kUserName)
+        UserDefaults.standard.removeObject(forKey: kPassWord)
+        UserDefaults.standard.synchronize()
+        navigationController?.popViewController(animated: true)
     }
 
     @IBAction func checkSelectClick(_ sender: UIButton) {
@@ -64,7 +69,11 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
     
     // MARK: 添加折扣
     @IBAction func addDiscountClick(_ sender: UIButton) {
-        
+        if orderModel != nil {
+            
+        } else {
+            
+        }
     }
     
     // MARK: 折扣应用
@@ -189,6 +198,46 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             return cell
         } else {
             let cell: OrderPriceCell = tableView.dequeueReusableCell(withIdentifier: "OrderPriceCell", for: indexPath) as! OrderPriceCell
+            var isDiscount = false
+            if orderModel != nil, orderModel!.discount_value != 0 {
+                isDiscount = true
+            }
+            cell.cancelBtn.isHidden = true
+            cell.priceRight.constant = 2.0
+            if indexPath.row == 0 {
+                cell.titleLabel.text = NSLocalizedString("小计", comment: "")
+                if orderModel != nil {
+                    cell.priceLabel.text = "$" + String(format: "%.2f", orderModel!.subtotal)
+                } else {
+                    cell.priceLabel.text = "$0.00"
+                }
+            } else if indexPath.row == 1 + (isDiscount ? 1 : 0) {
+                if orderModel != nil {
+                    cell.titleLabel.text = NSLocalizedString("税", comment: "") + "\(orderModel!.tax)%"
+                    cell.priceLabel.text = "$" + String(format: "%.2f", orderModel!.tax_amount)
+                } else {
+                    cell.titleLabel.text = NSLocalizedString("税", comment: "") + "0%"
+                    cell.priceLabel.text = "$0.00"
+                }
+            } else if indexPath.row == 2 + (isDiscount ? 1 : 0) {
+                cell.titleLabel.text = NSLocalizedString("合计", comment: "")
+                if orderModel != nil {
+                    cell.priceLabel.text = "$" + String(format: "%.2f", orderModel!.total)
+                } else {
+                    cell.priceLabel.text = "$0.00"
+                }
+            } else {
+                cell.titleLabel.text = NSLocalizedString("折扣", comment: "")
+                if orderModel!.fix_discount != 0 {
+                    cell.priceLabel.text = "$" + String(format: "%.2f", orderModel!.discount_value)
+                } else if orderModel!.percent_discount != 0 {
+                    cell.priceLabel.text = "$" + String(format: "%.2f", orderModel!.discount_value) + "(\(orderModel!.percent_discount)%)"
+                } else {
+                    cell.priceLabel.text = "$" + String(format: "%.2f", orderModel!.discount_value) + "(\(orderModel!.promocode))"
+                }
+                cell.cancelBtn.isHidden = false
+                cell.priceRight.constant = 40
+            }
             return cell
         }
     }
