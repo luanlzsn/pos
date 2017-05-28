@@ -71,6 +71,11 @@ class AntSingleton: NSObject {
                         successResult(data)
                     }
                 } else {
+                    if let error = data["data"] as? [String : Any] {
+                        if let message = error["message"] as? String {
+                            showDelayToast(message: message)
+                        }
+                    }
                     failureResult()
                 }
             } else {

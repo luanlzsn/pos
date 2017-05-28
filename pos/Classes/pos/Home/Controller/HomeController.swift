@@ -143,8 +143,8 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
         }, failureResult: {})
     }
     
-    // MARK: 变空桌
-    func makeAvaliable(tableDic: [String : Any]) {
+    // MARK: 变空桌提示
+    func makeAvaliableAlert(tableDic: [String : Any]) {
         let alert = UIAlertController(title: nil, message: NSLocalizedString("请输入密码", comment: ""), preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.isSecureTextEntry = true
@@ -152,29 +152,39 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
         weak var weakSelf = self
         alert.addAction(UIAlertAction(title: NSLocalizedString("确定", comment: ""), style: .default, handler: { (_) in
             let textField = alert.textFields?.first!
-            if (textField!.text! as NSString).md5() == AntManage.userModel?.password {
-                let order = tableDic["OrderModel"] as! OrderModel
-                AntManage.postRequest(path: "orderHandler/makeavailable", params: ["order_no":order.order_no, "access_token":AntManage.userModel!.token], successResult: { (_) in
-                    AntManage.showDelayToast(message: NSLocalizedString("成功清空本桌", comment: ""))
-                    let type = tableDic["TableType"] as! String
-                    let tableNo = tableDic["TableNo"] as! Int
-                    if type == "D" {
-                        weakSelf?.dineDic.removeValue(forKey: NSNumber(integerLiteral: tableNo))
-                        weakSelf?.collection.reloadData()
-                    } else if type == "T" {
-                        weakSelf?.takeoutDic.removeValue(forKey: NSNumber(integerLiteral: tableNo))
-                        weakSelf?.takeoutCollection.reloadData()
-                    } else {
-                        weakSelf?.deliveryDic.removeValue(forKey: NSNumber(integerLiteral: tableNo))
-                        weakSelf?.deliveryCollection.reloadData()
-                    }
-                }, failureResult: {})
-            } else {
-                AntManage.showDelayToast(message: NSLocalizedString("密码错误", comment: ""))
-            }
+            weakSelf?.checkAdminPassword(password: textField!.text!, tableDic: tableDic)
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: ""), style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: 校验管理员密码
+    func checkAdminPassword(password: String, tableDic: [String : Any]) {
+        weak var weakSelf = self
+        AntManage.postRequest(path: "access/isAdminPassword", params: ["access_token":AntManage.userModel!.token, "password":password], successResult: { (response) in
+            weakSelf?.makeAvaliable(tableDic: tableDic)
+        }, failureResult: {})
+    }
+    
+    // MARK: 变空桌
+    func makeAvaliable(tableDic: [String : Any]) {
+        weak var weakSelf = self
+        let order = tableDic["OrderModel"] as! OrderModel
+        AntManage.postRequest(path: "orderHandler/makeavailable", params: ["order_no":order.order_no, "access_token":AntManage.userModel!.token], successResult: { (_) in
+            AntManage.showDelayToast(message: NSLocalizedString("成功清空本桌", comment: ""))
+            let type = tableDic["TableType"] as! String
+            let tableNo = tableDic["TableNo"] as! Int
+            if type == "D" {
+                weakSelf?.dineDic.removeValue(forKey: NSNumber(integerLiteral: tableNo))
+                weakSelf?.collection.reloadData()
+            } else if type == "T" {
+                weakSelf?.takeoutDic.removeValue(forKey: NSNumber(integerLiteral: tableNo))
+                weakSelf?.takeoutCollection.reloadData()
+            } else {
+                weakSelf?.deliveryDic.removeValue(forKey: NSNumber(integerLiteral: tableNo))
+                weakSelf?.deliveryCollection.reloadData()
+            }
+        }, failureResult: {})
     }
     
     // MARK: 菜单点击
@@ -182,7 +192,7 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
         if menu == NSLocalizedString("订单", comment: "") {
             performSegue(withIdentifier: "Order", sender: tableDic)
         } else if menu == NSLocalizedString("变空桌", comment: "") {
-            perform(#selector(makeAvaliable(tableDic:)), with: tableDic, afterDelay: 0.01)
+            perform(#selector(makeAvaliableAlert(tableDic:)), with: tableDic, afterDelay: 0.01)
         }
     }
     
