@@ -10,7 +10,7 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-let kRequestTimeOut = 10.0
+let kRequestTimeOut = 20.0
 let AntManage = AntSingleton.sharedInstance
 
 class AntSingleton: NSObject {
@@ -75,6 +75,8 @@ class AntSingleton: NSObject {
                         if let message = error["message"] as? String {
                             showDelayToast(message: message)
                         }
+                    } else if let message = data["message"] as? String {
+                        showDelayToast(message: message)
                     }
                     failureResult()
                 }

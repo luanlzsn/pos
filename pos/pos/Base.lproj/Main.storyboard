@@ -613,10 +613,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OrderAlreadyFoodCell" rowHeight="55" id="2bX-6j-Uc9" customClass="OrderAlreadyFoodCell" customModule="pos" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55" width="313" height="55"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="313.5" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2bX-6j-Uc9" id="lCe-1p-6MF">
-                                            <rect key="frame" x="0.0" y="0.0" width="313" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="313.5" height="54.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="菜名" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tnf-db-BDN">
@@ -920,10 +920,10 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OrderPriceCell" rowHeight="44" id="DLC-nd-BiL" customClass="OrderPriceCell" customModule="pos" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="150" width="313" height="44"/>
+                                        <rect key="frame" x="0.0" y="150.5" width="313.5" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DLC-nd-BiL" id="kH0-s8-CEK">
-                                            <rect key="frame" x="0.0" y="0.0" width="313" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="313.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小计" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlN-uH-eC7">
@@ -1057,6 +1057,7 @@
                         <outlet property="fixDiscount" destination="XKF-qd-p5I" id="hgW-NT-SgO"/>
                         <outlet property="foodCollection" destination="QeI-VL-30O" id="dsl-hT-UsF"/>
                         <outlet property="foodLayout" destination="aUK-gw-6B2" id="zYY-mj-Ohe"/>
+                        <outlet property="functionView" destination="od5-Qk-9XX" id="dQm-U0-003"/>
                         <outlet property="menuCollection" destination="qKL-DG-HC7" id="Lvw-ld-ftY"/>
                         <outlet property="orderNum" destination="cpj-4j-COd" id="cTA-iP-xVV"/>
                         <outlet property="percDiscount" destination="5CK-dv-5XY" id="7D8-9l-EDY"/>

@@ -24,6 +24,8 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
     @IBOutlet weak var fixDiscount: UITextField!//固定折扣
     @IBOutlet weak var percDiscount: UITextField!//百分比折扣
     @IBOutlet weak var promoCode: UITextField!//优惠码
+    @IBOutlet weak var functionView: UIView!
+    let functionBtnColorArray: [UInt32] = [0x5BC0DE,0xD9534F,0xF0AD4E,0x5BC0DE,0x5BC0DE,0xF0AD4E,0x5BC0DE,0x337AB7,0x5CB85C,0x5BC0DE]
     
     var tableNo = 0//餐桌号
     var tableType = ""//餐桌类别
@@ -64,7 +66,45 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
     }
 
     @IBAction func checkSelectClick(_ sender: UIButton) {
-        
+        switch sender.tag {
+        case 0:
+            selectFoodArray.removeAll()
+            selectFoodArray += orderItemArray
+            break
+        case 1:
+            selectFoodArray.removeAll()
+            for model in orderItemArray {
+                if model.is_print == "N" {
+                    selectFoodArray.append(model)
+                }
+            }
+            break
+        case 2:
+            selectFoodArray.removeAll()
+            for model in orderItemArray {
+                if model.is_print == "Y" {
+                    selectFoodArray.append(model)
+                }
+            }
+            break
+        case 3:
+            var array = [OrderItemModel]()
+            for model in orderItemArray {
+                if !selectFoodArray.contains(model) {
+                    array.append(model)
+                }
+            }
+            selectFoodArray.removeAll()
+            selectFoodArray += array
+            break
+        case 4:
+            selectFoodArray.removeAll()
+            break
+        default: break
+            
+        }
+        alreadyTableView.reloadData()
+        checkFunctionButtonStatus()
     }
     
     // MARK: 添加折扣
@@ -82,15 +122,87 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
     }
     
     @IBAction func functionClick(_ sender: UIButton) {
-        
+        if selectFoodArray.count == 0 {
+            if !(sender.tag == 70 || sender.tag == 80 || sender.tag == 90) {
+                AntManage.showDelayToast(message: NSLocalizedString("没有选择菜", comment: ""))
+                return
+            }
+        }
+        switch sender.tag {
+        case 10:
+            break
+        case 20:
+            removeItem()
+            break
+        case 30:
+            updateNumber()
+            break
+        case 40:
+            takeout()
+            break
+        case 50:
+            urgeItem()
+            break
+        case 60:
+            updatePrice()
+            break
+        case 70:
+            addPhone()
+            break
+        case 80:
+            tokitchen()
+            break
+        case 90:
+            break
+        case 100:
+            break
+        default:
+            break
+        }
     }
     
+    // MARK: 更改功能按钮的状态
+    func checkFunctionButtonStatus() {
+        var isKitchenCount = 0
+        for model in selectFoodArray {
+            if model.is_print == "Y" {
+                isKitchenCount += 1
+            }
+        }
+        let tagArray: [Int]!
+        if isKitchenCount > 0 {
+            AntManage.showDelayToast(message: NSLocalizedString("已选项中包含已送厨菜品，若要修改已送厨菜品，请删除后重新添加。", comment: ""))
+            if isKitchenCount == selectFoodArray.count {
+                tagArray = [2,5,6]
+            } else {
+                tagArray = [2,6]
+            }
+        } else {
+            tagArray = [1,2,3,4,6,7,8,9,10]
+        }
+        for tag in 1...10 {
+            let button: UIButton = functionView.viewWithTag(tag * 10) as! UIButton
+            if tagArray.contains(tag) {
+                button.isEnabled = true
+                button.backgroundColor = UIColor.init(rgb: functionBtnColorArray[tag - 1])
+            } else {
+                button.isEnabled = false
+                button.backgroundColor = UIColor.init(rgb: 0xC0C3C3)
+            }
+        }
+    }
+    
+    // MARK: 获取订单信息
     func getOrderInfo() {
         weak var weakSelf = self
         AntManage.postRequest(path: "tables/getOrderInfoByTable", params: ["table":tableNo, "type":tableType, "access_token":AntManage.userModel!.token], successResult: { (response) in
             weakSelf?.orderModel = OrderModel.mj_object(withKeyValues: response["Order"])
             weakSelf?.orderItemArray = OrderItemModel.mj_objectArray(withKeyValuesArray: response["OrderItem"]) as! [OrderItemModel]
-            weakSelf?.orderNum.text = NSLocalizedString("订单号", comment: "") + weakSelf!.orderModel!.order_no + "," + NSLocalizedString("桌号", comment: "") + "\(weakSelf!.tableNo)"
+            var orderNumStr = NSLocalizedString("订单号", comment: "") + weakSelf!.orderModel!.order_no + "," + NSLocalizedString("桌号", comment: "") + "\(weakSelf!.tableNo)"
+            if !(weakSelf?.orderModel?.phone.isEmpty)! {
+                orderNumStr += "," + NSLocalizedString("电话", comment: "") + ":\(weakSelf!.orderModel!.phone)"
+            }
+            weakSelf?.orderNum.text = orderNumStr
             if weakSelf?.orderModel?.discount_value == 0 {
                 weakSelf?.addDiscountBtn.isHidden = false
                 weakSelf?.billTableHeight.constant = 172.0
@@ -98,11 +210,16 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
                 weakSelf?.addDiscountBtn.isHidden = true
                 weakSelf?.billTableHeight.constant = 216.0
             }
+            weakSelf?.selectFoodArray.removeAll()
             weakSelf?.alreadyTableView.reloadData()
             weakSelf?.billTableView.reloadData()
-        }, failureResult: {})
+            weakSelf?.checkFunctionButtonStatus()
+        }, failureResult: {
+            weakSelf?.navigationController?.popViewController(animated: true)
+        })
     }
     
+    // MARK: 获取菜单类别信息
     func getAllCousineCategories() {
         weak var weakSelf = self
         AntManage.postRequest(path: "tables/getAllCousineCategories", params: ["status":"", "access_token":AntManage.userModel!.token], successResult: { (response) in
@@ -118,6 +235,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
         }, failureResult: {})
     }
     
+    // MARK: 获取子菜单信息
     func getCousinesByCategoryId() {
         if cousinesDic.keys.contains(selectMenu.categoryId) {
             foodCollection.reloadData()
@@ -135,6 +253,127 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
                 weakSelf?.foodCollection.reloadData()
             }, failureResult: {})
         }
+    }
+    
+    // MARK: 删除已点菜
+    func removeItem() {
+        var kitchenItemIdList = ""
+        var itemIdList = ""
+        for item in selectFoodArray {
+            if item.is_print == "Y" {
+                kitchenItemIdList += "\(item.item_id),"
+            } else {
+                itemIdList += "\(item.item_id),"
+            }
+        }
+        weak var weakSelf = self
+        if !kitchenItemIdList.isEmpty {
+            kitchenItemIdList.remove(at: kitchenItemIdList.index(before: kitchenItemIdList.endIndex))
+            AntManage.postRequest(path: "print/printKitchenRemoveItem", params: ["restaurant_id":AntManage.userModel!.restaurant_id, "order_id":orderModel!.orderId, "item_id_list":kitchenItemIdList, "access_token":AntManage.userModel!.token], successResult: { (_) in
+                weakSelf?.getOrderInfo()
+            }, failureResult: {})
+        }
+        if !itemIdList.isEmpty {
+            itemIdList.remove(at: itemIdList.index(before: itemIdList.endIndex))
+            AntManage.postRequest(path: "orderHandler/removeItem", params: ["cashier_id":AntManage.userModel!.cashier_id, "order_no":orderModel!.order_no, "item_id_list":itemIdList, "access_token":AntManage.userModel!.token], successResult: { (_) in
+                weakSelf?.getOrderInfo()
+            }, failureResult: {})
+        }
+    }
+    
+    // MARK: 改数量
+    func updateNumber() {
+        weak var weakSelf = self
+        let alert = UIAlertController(title: NSLocalizedString("改数量", comment: ""), message: NSLocalizedString("新数量", comment: ""), preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.keyboardType = .numberPad
+        }
+        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: ""), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("保存", comment: ""), style: .default, handler: { (_) in
+            let textField = alert.textFields?.first!
+            var itemIdList = ""
+            for item in weakSelf!.selectFoodArray {
+                itemIdList += "\(item.item_id),"
+            }
+            itemIdList.remove(at: itemIdList.index(before: itemIdList.endIndex))
+            AntManage.postRequest(path: "orderHandler/changeQuantity", params: ["item_id_list":itemIdList, "type":weakSelf!.orderModel!.order_type, "table":weakSelf!.orderModel!.table_no, "order_no":weakSelf!.orderModel!.order_no, "quantity":textField!.text!, "access_token":AntManage.userModel!.token], successResult: { (_) in
+                weakSelf?.getOrderInfo()
+            }, failureResult: {})
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: 外卖
+    func takeout() {
+        weak var weakSelf = self
+        var itemIdList = ""
+        for item in selectFoodArray {
+            itemIdList += "\(item.item_id),"
+        }
+        itemIdList.remove(at: itemIdList.index(before: itemIdList.endIndex))
+        AntManage.postRequest(path: "print/printKitchenUrgeItem", params: ["item_id_list":itemIdList, "type":weakSelf!.orderModel!.order_type, "table":weakSelf!.orderModel!.table_no, "access_token":AntManage.userModel!.token], successResult: { (_) in
+            weakSelf?.getOrderInfo()
+        }, failureResult: {})
+    }
+    
+    // MARK: 催菜
+    func urgeItem() {
+        var kitchenItemIdList = ""
+        for item in selectFoodArray {
+            kitchenItemIdList += "\(item.item_id),"
+        }
+        kitchenItemIdList.remove(at: kitchenItemIdList.index(before: kitchenItemIdList.endIndex))
+        AntManage.postRequest(path: "print/printKitchenUrgeItem", params: ["item_id_list":kitchenItemIdList, "order_id":orderModel!.orderId, "restaurant_id":AntManage.userModel!.restaurant_id, "access_token":AntManage.userModel!.token], successResult: { (_) in
+            AntManage.showDelayToast(message: NSLocalizedString("厨房已收到您的催菜提醒", comment: ""))
+        }, failureResult: {})
+    }
+    
+    // MARK: 改价格
+    func updatePrice() {
+        weak var weakSelf = self
+        let alert = UIAlertController(title: NSLocalizedString("改价格", comment: ""), message: NSLocalizedString("新价格", comment: ""), preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "eg. 0.00"
+            textField.keyboardType = .numberPad
+        }
+        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: ""), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("保存", comment: ""), style: .default, handler: { (_) in
+            let textField = alert.textFields?.first!
+            var itemIdList = ""
+            for item in weakSelf!.selectFoodArray {
+                itemIdList += "\(item.item_id),"
+            }
+            itemIdList.remove(at: itemIdList.index(before: itemIdList.endIndex))
+            AntManage.postRequest(path: "orderHandler/changePrice", params: ["item_id_list":itemIdList, "type":weakSelf!.orderModel!.order_type, "table":weakSelf!.orderModel!.table_no, "order_no":weakSelf!.orderModel!.order_no, "price":textField!.text!, "access_token":AntManage.userModel!.token], successResult: { (_) in
+                weakSelf?.getOrderInfo()
+            }, failureResult: {})
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: 加号码
+    func addPhone() {
+        weak var weakSelf = self
+        let alert = UIAlertController(title: NSLocalizedString("加号码", comment: ""), message: NSLocalizedString("号码", comment: ""), preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.keyboardType = .numberPad
+        }
+        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: ""), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("保存", comment: ""), style: .default, handler: { (_) in
+            let textField = alert.textFields?.first!
+            AntManage.postRequest(path: "orderHandler/editphone", params: ["restaurant_id":AntManage.userModel!.restaurant_id, "order_no":weakSelf!.orderModel!.order_no, "phone":textField!.text!, "access_token":AntManage.userModel!.token], successResult: { (_) in
+                weakSelf?.getOrderInfo()
+            }, failureResult: {})
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: 送厨
+    func tokitchen() {
+        weak var weakSelf = self
+        AntManage.postRequest(path: "print/printTokitchen", params: ["restaurant_id":AntManage.userModel!.restaurant_id, "order_id":orderModel!.orderId, "access_token":AntManage.userModel!.token], successResult: { (_) in
+            weakSelf?.getOrderInfo()
+        }, failureResult: {})
     }
     
     // MARK: UITableViewDelegate,UITableViewDataSource
@@ -244,6 +483,16 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if tableView == alreadyTableView {
+            let model = orderItemArray[indexPath.row]
+            if selectFoodArray.contains(model) {
+                selectFoodArray.remove(at: selectFoodArray.index(of: model)!)
+            } else {
+                selectFoodArray.append(model)
+            }
+            tableView.reloadRow(at: indexPath, with: .none)
+            checkFunctionButtonStatus()
+        }
     }
     
     // MARK: OrderFoodLayout_Delegate
@@ -290,6 +539,20 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             cell.name.text = "\(model.en)\n\(model.zh)"
             cell.price.text = "$\(model.price)"
             return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == menuCollection {
+            selectMenu = categoryArray[indexPath.row]
+            collectionView.reloadData()
+            getCousinesByCategoryId()
+        } else {
+            let model = cousinesDic[selectMenu.categoryId]![indexPath.row]
+            weak var weakSelf = self
+            AntManage.postRequest(path: "orderHandler/addItem", params: ["item_id":model.cousineId, "table":orderModel!.table_no, "type":orderModel!.order_type, "cashier_id":AntManage.userModel!.cashier_id, "access_token":AntManage.userModel!.token], successResult: { (response) in
+                weakSelf?.getOrderInfo()
+            }, failureResult: {})
         }
     }
     

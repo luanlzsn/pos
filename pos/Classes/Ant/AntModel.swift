@@ -59,10 +59,11 @@ class OrderModel : AntModel {
     var reorder_no = false//
     var subtotal = 0.0//小计
     var tax = 0//税
-    var tax_amount = 0//税额
+    var tax_amount = 0.0//税额
     var total = 0.0//总计
     var tip = 0.0
     var tip_paid_by = ""
+    var phone = ""//电话
     
     override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
         return ["orderId":"id"]

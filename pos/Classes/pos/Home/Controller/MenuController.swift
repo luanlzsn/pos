@@ -48,7 +48,7 @@ class MenuController: AntController,UICollectionViewDelegate,UICollectionViewDat
             menuTitleArray += [NSLocalizedString("订单", comment: ""),NSLocalizedString("换桌", comment: ""),NSLocalizedString("付款", comment: ""),NSLocalizedString("清空", comment: "")]
         }
         if model != nil {
-            menuTitleArray.append(NSLocalizedString("Receipt", comment: ""))
+            menuTitleArray.append(NSLocalizedString("打印收据", comment: ""))
         }
         if menuTitleArray.count % 2 == 1 {
             menuTitleArray.append("")
