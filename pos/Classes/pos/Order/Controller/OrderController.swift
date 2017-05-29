@@ -130,6 +130,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
         }
         switch sender.tag {
         case 10:
+            performSegue(withIdentifier: "Taste", sender: nil)
             break
         case 20:
             removeItem()
@@ -155,6 +156,11 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
         case 90:
             break
         case 100:
+            if selectFoodArray.count > 1 {
+                AntManage.showDelayToast(message: NSLocalizedString("请只选择一个菜", comment: ""))
+            } else {
+                performSegue(withIdentifier: "Taste", sender: nil)
+            }
             break
         default:
             break
@@ -356,6 +362,35 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
         AntManage.postRequest(path: "print/printTokitchen", params: ["restaurant_id":AntManage.userModel!.restaurant_id, "order_id":orderModel!.orderId, "access_token":AntManage.userModel!.token], successResult: { (_) in
             weakSelf?.getOrderInfo()
         }, failureResult: {})
+    }
+    
+    // MARK: 批量加口味、换口味
+    func addExtras(extraIdList: [Int], special: String) {
+        weak var weakSelf = self
+        if selectFoodArray.count == 1 {
+            AntManage.postRequest(path: "orderHandler/addExtras", params: ["item_id":selectFoodArray.first!.orderItemId, "extra_id_list":extraIdList, "type":orderModel!.order_type, "table":orderModel!.table_no, "special":special, "cashier_id":AntManage.userModel!.cashier_id, "access_token":AntManage.userModel!.token], successResult: { (_) in
+                weakSelf?.getOrderInfo()
+            }, failureResult: {})
+        } else {
+            var item_id_list = [Int]()
+            for model in selectFoodArray {
+                item_id_list.append(model.orderItemId)
+            }
+            AntManage.postRequest(path: "orderHandler/batchAddExtras", params: ["item_id_list":item_id_list, "extra_id_list":extraIdList, "type":orderModel!.order_type, "table":orderModel!.table_no, "special":special, "cashier_id":AntManage.userModel!.cashier_id, "access_token":AntManage.userModel!.token], successResult: { (_) in
+                weakSelf?.getOrderInfo()
+            }, failureResult: {})
+        }
+    }
+    
+    // MARK: 跳转
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Taste" {
+            let taste: TasteController = segue.destination as! TasteController
+            weak var weakSelf = self
+            taste.selectTaste = {(selectTaste) in
+                weakSelf?.addExtras(extraIdList: (selectTaste as! [String : Any])["ExtraIdList"] as! [Int], special: (selectTaste as! [String : Any])["Special"] as! String)
+            }
+        }
     }
     
     // MARK: UITableViewDelegate,UITableViewDataSource

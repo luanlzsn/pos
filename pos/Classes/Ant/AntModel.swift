@@ -145,3 +145,19 @@ class CousineModel: AntModel {
         return ["cousineId":"id"]
     }
 }
+
+// MARK: 味道信息
+class TasteModel: AntModel {
+    var category_id = 0//类别id
+    var cousine_id = 0//
+    var created = ""//创建时间
+    var tasteId = 0//味道id
+    var name = ""//英文名
+    var name_zh = ""//中文名
+    var price = 0.0//价格
+    var status = ""//状态
+    
+    override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
+        return ["tasteId":"id"]
+    }
+}
