@@ -36,12 +36,10 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
             let login = UIStoryboard(name: "Login", bundle: Bundle.main).instantiateInitialViewController()!
             present(login, animated: true, completion: nil)
         } else {
-            if dineNum == 0 {
-                getTableNos()
-                getTablesInfoWithType(type: "D")
-                getTablesInfoWithType(type: "T")
-                getTablesInfoWithType(type: "W")
-            }
+            getTableNos()
+            getTablesInfoWithType(type: "D")
+            getTablesInfoWithType(type: "T")
+            getTablesInfoWithType(type: "W")
         }
     }
 
@@ -209,12 +207,34 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
         }, failureResult: {})
     }
     
+    // MARK: 打印收据
+    func printPayReceipt(tableDic: [String : Any]) {
+        weak var weakSelf = self
+        let order = tableDic["OrderModel"] as! OrderModel
+        AntManage.postRequest(path: "print/printPayReceipt", params: ["restaurant_id":AntManage.userModel!.restaurant_id, "order_id":order.orderId, "access_token":AntManage.userModel!.token], successResult: { (_) in
+            let type = tableDic["TableType"] as! String
+            weakSelf?.getTablesInfoWithType(type: type)
+        }, failureResult: {})
+    }
+    
     // MARK: 菜单点击
     func checkMenu(menu: String, tableDic: [String : Any]) {
         if menu == NSLocalizedString("订单", comment: "") {
             performSegue(withIdentifier: "Order", sender: tableDic)
+        } else if menu == NSLocalizedString("换桌", comment: "") {
+            
+        } else if menu == NSLocalizedString("付款", comment: "") {
+            performSegue(withIdentifier: "Payment", sender: tableDic)
         } else if menu == NSLocalizedString("变空桌", comment: "") {
             perform(#selector(makeAvaliableAlert(tableDic:)), with: tableDic, afterDelay: 0.01)
+        } else if menu == NSLocalizedString("合单", comment: "") {
+            
+        } else if menu == NSLocalizedString("分单", comment: "") {
+            
+        } else if menu == NSLocalizedString("历史订单", comment: "") {
+            
+        } else if menu == NSLocalizedString("打印收据", comment: "") {
+            printPayReceipt(tableDic: tableDic)
         }
     }
     
@@ -233,8 +253,11 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
             }
         } else if segue.identifier == "Order" {
             let order: OrderController = segue.destination as! OrderController
+            order.isOrder = ((sender as! [String : Any])["OrderModel"] as? OrderModel) != nil
             order.tableType = (sender as! [String : Any])["TableType"] as! String
             order.tableNo = (sender as! [String : Any])["TableNo"] as! Int
+        } else if segue.identifier == "Payment" {
+            
         }
     }
     

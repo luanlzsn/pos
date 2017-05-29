@@ -42,7 +42,7 @@ class OrderModel : AntModel {
     var percent_discount = 0//%的折扣
     var promocode = ""//优惠码
     var discount_value = 0.0//折扣值
-    var after_discount = ""//折扣后
+    var after_discount = 0.0//折扣后
     var cashier_id = 0//收银员ID
     var change = 0.0//找零
     var cooking_status = ""//烹饪状态UNCOOKED

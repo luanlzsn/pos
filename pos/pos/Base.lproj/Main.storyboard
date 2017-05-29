@@ -223,8 +223,8 @@
                                     <constraint firstAttribute="height" constant="20" id="Wrc-hU-hT6"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Printed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2l-RQ-VsD">
-                                <rect key="frame" x="324" y="733" width="47" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已打单" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2l-RQ-VsD">
+                                <rect key="frame" x="324" y="733" width="43" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -287,6 +287,7 @@
                         <outlet property="takeoutCollection" destination="FvL-1T-a6P" id="EvO-xy-0cM"/>
                         <segue destination="Ozc-nB-Pfc" kind="presentation" identifier="Menu" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="94A-GM-cez"/>
                         <segue destination="cAX-RA-lm1" kind="show" identifier="Order" id="Fqn-3k-YVm"/>
+                        <segue destination="qGq-0L-77b" kind="show" identifier="Payment" id="f8O-Ew-9cM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -808,7 +809,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
-                                                <action selector="addDiscountClick:" destination="cAX-RA-lm1" eventType="touchUpInside" id="Skz-6T-yPl"/>
+                                                <action selector="addDiscountClick" destination="cAX-RA-lm1" eventType="touchUpInside" id="hrP-rY-tbz"/>
                                             </connections>
                                         </button>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5c5-l4-m0J">
@@ -835,6 +836,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                    <connections>
+                                                        <action selector="discountChange:" destination="cAX-RA-lm1" eventType="editingChanged" id="Xhh-R5-CNh"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%折扣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pye-cg-l6O">
                                                     <rect key="frame" x="88.5" y="6" width="34" height="14.5"/>
@@ -847,6 +851,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                    <connections>
+                                                        <action selector="discountChange:" destination="cAX-RA-lm1" eventType="editingChanged" id="IPR-ai-2iF"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="优惠码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hS-xt-H9y">
                                                     <rect key="frame" x="162" y="6" width="37" height="14.5"/>
@@ -859,6 +866,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="discountChange:" destination="cAX-RA-lm1" eventType="editingChanged" id="jry-zC-EKI"/>
+                                                    </connections>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwH-Zc-L3Y">
                                                     <rect key="frame" x="235" y="25" width="63.5" height="25"/>
@@ -1064,11 +1074,30 @@
                         <outlet property="promoCode" destination="soM-OB-LlC" id="m5j-vR-oum"/>
                         <outlet property="searchView" destination="T2O-5h-UV6" id="Q9b-FO-HRf"/>
                         <segue destination="OtY-FH-Hl8" kind="presentation" identifier="Taste" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="hLq-Of-5zP"/>
+                        <segue destination="qGq-0L-77b" kind="show" identifier="Payment" id="LTt-ST-wQL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XG0-yb-ZsZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="881.8359375" y="1558.59375"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="HEv-70-ydB">
+            <objects>
+                <viewController id="qGq-0L-77b" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mWA-Yj-XGd"/>
+                        <viewControllerLayoutGuide type="bottom" id="EaY-A8-vCi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OeZ-bE-d0v">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pwb-AU-eiQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1679" y="1559"/>
         </scene>
         <!--Taste Controller-->
         <scene sceneID="JDx-BA-KEg">
@@ -1578,4 +1607,7 @@
         <image name="cancel_red" width="13" height="13"/>
         <image name="logo-home" width="80" height="45"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="LTt-ST-wQL"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -24,8 +24,9 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
     @IBOutlet weak var fixDiscount: UITextField!//固定折扣
     @IBOutlet weak var percDiscount: UITextField!//百分比折扣
     @IBOutlet weak var promoCode: UITextField!//优惠码
-    @IBOutlet weak var functionView: UIView!
+    @IBOutlet weak var functionView: UIView!//功能按钮视图
     let functionBtnColorArray: [UInt32] = [0x5BC0DE,0xD9534F,0xF0AD4E,0x5BC0DE,0x5BC0DE,0xF0AD4E,0x5BC0DE,0x337AB7,0x5CB85C,0x5BC0DE]
+    var isOrder = false//是否存在订单
     
     var tableNo = 0//餐桌号
     var tableType = ""//餐桌类别
@@ -48,14 +49,18 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
         billTableView.separatorInset = UIEdgeInsets.zero
         billTableView.layoutMargins = UIEdgeInsets.zero
         foodLayout.delegate = self
-        getOrderInfo()
+        if isOrder {
+            getOrderInfo()
+        }
         getAllCousineCategories()
     }
     
+    // MARK: 返回主页
     @IBAction func homeClick() {
         navigationController?.popViewController(animated: true)
     }
     
+    // MARK: 登出
     @IBAction func logoutClick() {
         AntManage.userModel = nil
         AntManage.isLogin = false
@@ -108,17 +113,73 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
     }
     
     // MARK: 添加折扣
-    @IBAction func addDiscountClick(_ sender: UIButton) {
+    @IBAction func addDiscountClick() {
         if orderModel != nil {
-            
+            addDiscountBtn.isSelected = !addDiscountBtn.isSelected
+            if addDiscountBtn.isSelected {
+                billHeaderView.height = 95
+                discountView.isHidden = false
+                billTableHeight.constant = 227;
+            } else {
+                billHeaderView.height = 40
+                discountView.isHidden = true
+                billTableHeight.constant = 172;
+            }
+            billTableView.reloadData()
+        }
+    }
+    
+    @IBAction func discountChange(_ sender: UITextField) {
+        if !(sender.text?.isEmpty)! {
+            if sender == fixDiscount {
+                percDiscount.isEnabled = false
+                promoCode.isEnabled = false
+            } else if sender == percDiscount {
+                fixDiscount.isEnabled = false
+                promoCode.isEnabled = false
+            } else {
+                fixDiscount.isEnabled = false
+                percDiscount.isEnabled = false
+            }
         } else {
-            
+            fixDiscount.isEnabled = true
+            percDiscount.isEnabled = true
+            promoCode.isEnabled = true
         }
     }
     
     // MARK: 折扣应用
     @IBAction func discountAppleClick(_ sender: UIButton) {
-        
+        UIApplication.shared.keyWindow?.endEditing(true)
+        var discount = ""
+        var type = ""
+        if !fixDiscount.text!.isEmpty {
+            discount = fixDiscount.text!
+            type = "fix_discount"
+        } else if !percDiscount.text!.isEmpty {
+            discount = percDiscount.text!
+            type = "percent_discount"
+        } else if !promoCode.text!.isEmpty {
+            discount = promoCode.text!
+            type = "promocode"
+        }
+        if !discount.isEmpty {
+            weak var weakSelf = self
+            AntManage.postRequest(path: "discountHandler/addDiscount", params: ["order_no":orderModel!.order_no, "access_token":AntManage.userModel!.token, "discountType":type, "discountValue":discount, "cashier_id":AntManage.userModel!.cashier_id], successResult: { (_) in
+                weakSelf?.addDiscountClick()
+                weakSelf?.getOrderInfo()
+            }, failureResult: {})
+        } else {
+            AntManage.showDelayToast(message: NSLocalizedString("请输入折扣。", comment: ""))
+        }
+    }
+    
+    // MARK: 删除折扣
+    func removeDiscount() {
+        weak var weakSelf = self
+        AntManage.postRequest(path: "discountHandler/removeDiscount", params: ["order_no":orderModel!.order_no, "access_token":AntManage.userModel!.token], successResult: { (_) in
+            weakSelf?.getOrderInfo()
+        }, failureResult: {})
     }
     
     @IBAction func functionClick(_ sender: UIButton) {
@@ -154,6 +215,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             tokitchen()
             break
         case 90:
+            performSegue(withIdentifier: "Payment", sender: nil)
             break
         case 100:
             if selectFoodArray.count > 1 {
@@ -214,7 +276,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
                 weakSelf?.billTableHeight.constant = 172.0
             } else {
                 weakSelf?.addDiscountBtn.isHidden = true
-                weakSelf?.billTableHeight.constant = 216.0
+                weakSelf?.billTableHeight.constant = 260.0
             }
             weakSelf?.selectFoodArray.removeAll()
             weakSelf?.alreadyTableView.reloadData()
@@ -287,7 +349,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             for item in weakSelf!.selectFoodArray {
                 itemIdList.append(item.orderItemId)
             }
-            AntManage.postRequest(path: "orderHandler/changeQuantity", params: ["item_id_list":itemIdList, "type":weakSelf!.orderModel!.order_type, "table":weakSelf!.orderModel!.table_no, "order_no":weakSelf!.orderModel!.order_no, "quantity":textField!.text!, "access_token":AntManage.userModel!.token], successResult: { (_) in
+            AntManage.postRequest(path: "orderHandler/changeQuantity", params: ["item_id_list":itemIdList, "type":weakSelf!.tableType, "table":weakSelf!.tableNo, "order_no":weakSelf!.orderModel!.order_no, "quantity":textField!.text!, "access_token":AntManage.userModel!.token], successResult: { (_) in
                 weakSelf?.getOrderInfo()
             }, failureResult: {})
         }))
@@ -301,7 +363,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
         for item in selectFoodArray {
             itemIdList.append(item.orderItemId)
         }
-        AntManage.postRequest(path: "orderHandler/takeout", params: ["item_id_list":itemIdList, "type":weakSelf!.orderModel!.order_type, "table":weakSelf!.orderModel!.table_no, "access_token":AntManage.userModel!.token], successResult: { (_) in
+        AntManage.postRequest(path: "orderHandler/takeout", params: ["item_id_list":itemIdList, "type":weakSelf!.tableType, "table":weakSelf!.tableNo, "access_token":AntManage.userModel!.token], successResult: { (_) in
             weakSelf?.getOrderInfo()
         }, failureResult: {})
     }
@@ -332,7 +394,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             for item in weakSelf!.selectFoodArray {
                 itemIdList.append(item.orderItemId)
             }
-            AntManage.postRequest(path: "orderHandler/changePrice", params: ["item_id_list":itemIdList, "type":weakSelf!.orderModel!.order_type, "table":weakSelf!.orderModel!.table_no, "order_no":weakSelf!.orderModel!.order_no, "price":textField!.text!, "access_token":AntManage.userModel!.token], successResult: { (_) in
+            AntManage.postRequest(path: "orderHandler/changePrice", params: ["item_id_list":itemIdList, "type":weakSelf!.tableType, "table":weakSelf!.tableNo, "order_no":weakSelf!.orderModel!.order_no, "price":textField!.text!, "access_token":AntManage.userModel!.token], successResult: { (_) in
                 weakSelf?.getOrderInfo()
             }, failureResult: {})
         }))
@@ -368,7 +430,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
     func addExtras(extraIdList: [Int], special: String) {
         weak var weakSelf = self
         if selectFoodArray.count == 1 {
-            AntManage.postRequest(path: "orderHandler/addExtras", params: ["item_id":selectFoodArray.first!.orderItemId, "extra_id_list":extraIdList, "type":orderModel!.order_type, "table":orderModel!.table_no, "special":special, "cashier_id":AntManage.userModel!.cashier_id, "access_token":AntManage.userModel!.token], successResult: { (_) in
+            AntManage.postRequest(path: "orderHandler/addExtras", params: ["item_id":selectFoodArray.first!.orderItemId, "extra_id_list":extraIdList, "type":tableType, "table":tableNo, "special":special, "cashier_id":AntManage.userModel!.cashier_id, "access_token":AntManage.userModel!.token], successResult: { (_) in
                 weakSelf?.getOrderInfo()
             }, failureResult: {})
         } else {
@@ -376,7 +438,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             for model in selectFoodArray {
                 item_id_list.append(model.orderItemId)
             }
-            AntManage.postRequest(path: "orderHandler/batchAddExtras", params: ["item_id_list":item_id_list, "extra_id_list":extraIdList, "type":orderModel!.order_type, "table":orderModel!.table_no, "special":special, "cashier_id":AntManage.userModel!.cashier_id, "access_token":AntManage.userModel!.token], successResult: { (_) in
+            AntManage.postRequest(path: "orderHandler/batchAddExtras", params: ["item_id_list":item_id_list, "extra_id_list":extraIdList, "type":tableType, "table":tableNo, "special":special, "cashier_id":AntManage.userModel!.cashier_id, "access_token":AntManage.userModel!.token], successResult: { (_) in
                 weakSelf?.getOrderInfo()
             }, failureResult: {})
         }
@@ -399,8 +461,8 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             return orderItemArray.count
         } else {
             if orderModel != nil {
-                if orderModel!.discount_value == 0 {
-                    return 4
+                if orderModel!.discount_value != 0 {
+                    return 5
                 } else {
                     return 3
                 }
@@ -460,6 +522,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             }
             cell.cancelBtn.isHidden = true
             cell.priceRight.constant = 2.0
+            cell.removeDiscount = nil
             if indexPath.row == 0 {
                 cell.titleLabel.text = NSLocalizedString("小计", comment: "")
                 if orderModel != nil {
@@ -467,7 +530,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
                 } else {
                     cell.priceLabel.text = "$0.00"
                 }
-            } else if indexPath.row == 1 + (isDiscount ? 1 : 0) {
+            } else if indexPath.row == 1 + (isDiscount ? 2 : 0) {
                 if orderModel != nil {
                     cell.titleLabel.text = NSLocalizedString("税", comment: "") + "\(orderModel!.tax)%"
                     cell.priceLabel.text = "$" + String(format: "%.2f", orderModel!.tax_amount)
@@ -475,14 +538,14 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
                     cell.titleLabel.text = NSLocalizedString("税", comment: "") + "0%"
                     cell.priceLabel.text = "$0.00"
                 }
-            } else if indexPath.row == 2 + (isDiscount ? 1 : 0) {
+            } else if indexPath.row == 2 + (isDiscount ? 2 : 0) {
                 cell.titleLabel.text = NSLocalizedString("合计", comment: "")
                 if orderModel != nil {
                     cell.priceLabel.text = "$" + String(format: "%.2f", orderModel!.total)
                 } else {
                     cell.priceLabel.text = "$0.00"
                 }
-            } else {
+            } else if indexPath.row == 1 {
                 cell.titleLabel.text = NSLocalizedString("折扣", comment: "")
                 if orderModel!.fix_discount != 0 {
                     cell.priceLabel.text = "$" + String(format: "%.2f", orderModel!.discount_value)
@@ -493,6 +556,13 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
                 }
                 cell.cancelBtn.isHidden = false
                 cell.priceRight.constant = 40
+                weak var weakSelf = self
+                cell.removeDiscount = { (_) in
+                    weakSelf?.removeDiscount()
+                }
+            } else {
+                cell.titleLabel.text = NSLocalizedString("折扣价", comment: "")
+                cell.priceLabel.text = "$" + String(format: "%.2f", orderModel!.after_discount)
             }
             return cell
         }
@@ -567,7 +637,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
         } else {
             let model = cousinesDic[selectMenu.categoryId]![indexPath.row]
             weak var weakSelf = self
-            AntManage.postRequest(path: "orderHandler/addItem", params: ["item_id":model.cousineId, "table":orderModel!.table_no, "type":orderModel!.order_type, "cashier_id":AntManage.userModel!.cashier_id, "access_token":AntManage.userModel!.token], successResult: { (response) in
+            AntManage.postRequest(path: "orderHandler/addItem", params: ["item_id":model.cousineId, "table":tableNo, "type":tableType, "cashier_id":AntManage.userModel!.cashier_id, "access_token":AntManage.userModel!.token], successResult: { (response) in
                 weakSelf?.getOrderInfo()
             }, failureResult: {})
         }
