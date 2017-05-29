@@ -78,12 +78,34 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
     
     // MARK: 签入
     @IBAction func checkInClick() {
-        
+        let alert = UIAlertController(title: NSLocalizedString("签入", comment: ""), message: NSLocalizedString("请输入你的id", comment: ""), preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.keyboardType = .numberPad
+        }
+        alert.addAction(UIAlertAction(title: NSLocalizedString("确认", comment: ""), style: .default, handler: { (_) in
+            let textField = alert.textFields?.first!
+            AntManage.postRequest(path: "access/checkin", params: ["access_token":AntManage.userModel!.token, "userid":textField!.text!], successResult: { (_) in
+                AntManage.showDelayToast(message: NSLocalizedString("签入成功", comment: ""))
+            }, failureResult: {})
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: ""), style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: 签出
     @IBAction func checkOutClick() {
-        
+        let alert = UIAlertController(title: NSLocalizedString("签出", comment: ""), message: NSLocalizedString("请输入你的id", comment: ""), preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.keyboardType = .numberPad
+        }
+        alert.addAction(UIAlertAction(title: NSLocalizedString("确认", comment: ""), style: .default, handler: { (_) in
+            let textField = alert.textFields?.first!
+            AntManage.postRequest(path: "access/checkout", params: ["access_token":AntManage.userModel!.token, "userid":textField!.text!], successResult: { (_) in
+                AntManage.showDelayToast(message: NSLocalizedString("签出成功", comment: ""))
+            }, failureResult: {})
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: ""), style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: 登出

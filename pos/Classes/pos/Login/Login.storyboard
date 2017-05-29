@@ -53,7 +53,7 @@
                                     <action selector="loginClick" destination="Mtv-7H-gsz" eventType="touchUpInside" id="EAL-1y-cXs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFa-Rb-0Qx">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFa-Rb-0Qx">
                                 <rect key="frame" x="410" y="518" width="205" height="45"/>
                                 <color key="backgroundColor" red="1" green="0.74117647058823533" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>

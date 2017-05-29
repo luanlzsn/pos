@@ -257,28 +257,14 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
     
     // MARK: 删除已点菜
     func removeItem() {
-        var kitchenItemIdList = ""
-        var itemIdList = ""
+        var itemIdList = [Int]()
         for item in selectFoodArray {
-            if item.is_print == "Y" {
-                kitchenItemIdList += "\(item.item_id),"
-            } else {
-                itemIdList += "\(item.item_id),"
-            }
+            itemIdList.append(item.orderItemId)
         }
         weak var weakSelf = self
-        if !kitchenItemIdList.isEmpty {
-            kitchenItemIdList.remove(at: kitchenItemIdList.index(before: kitchenItemIdList.endIndex))
-            AntManage.postRequest(path: "print/printKitchenRemoveItem", params: ["restaurant_id":AntManage.userModel!.restaurant_id, "order_id":orderModel!.orderId, "item_id_list":kitchenItemIdList, "access_token":AntManage.userModel!.token], successResult: { (_) in
-                weakSelf?.getOrderInfo()
-            }, failureResult: {})
-        }
-        if !itemIdList.isEmpty {
-            itemIdList.remove(at: itemIdList.index(before: itemIdList.endIndex))
-            AntManage.postRequest(path: "orderHandler/removeItem", params: ["cashier_id":AntManage.userModel!.cashier_id, "order_no":orderModel!.order_no, "item_id_list":itemIdList, "access_token":AntManage.userModel!.token], successResult: { (_) in
-                weakSelf?.getOrderInfo()
-            }, failureResult: {})
-        }
+        AntManage.postRequest(path: "orderHandler/removeItem", params: ["cashier_id":AntManage.userModel!.cashier_id, "order_no":orderModel!.order_no, "item_id_list":itemIdList, "access_token":AntManage.userModel!.token], successResult: { (_) in
+            weakSelf?.getOrderInfo()
+        }, failureResult: {})
     }
     
     // MARK: 改数量
@@ -291,11 +277,10 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
         alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: ""), style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: NSLocalizedString("保存", comment: ""), style: .default, handler: { (_) in
             let textField = alert.textFields?.first!
-            var itemIdList = ""
+            var itemIdList = [Int]()
             for item in weakSelf!.selectFoodArray {
-                itemIdList += "\(item.item_id),"
+                itemIdList.append(item.orderItemId)
             }
-            itemIdList.remove(at: itemIdList.index(before: itemIdList.endIndex))
             AntManage.postRequest(path: "orderHandler/changeQuantity", params: ["item_id_list":itemIdList, "type":weakSelf!.orderModel!.order_type, "table":weakSelf!.orderModel!.table_no, "order_no":weakSelf!.orderModel!.order_no, "quantity":textField!.text!, "access_token":AntManage.userModel!.token], successResult: { (_) in
                 weakSelf?.getOrderInfo()
             }, failureResult: {})
@@ -306,23 +291,21 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
     // MARK: 外卖
     func takeout() {
         weak var weakSelf = self
-        var itemIdList = ""
+        var itemIdList = [Int]()
         for item in selectFoodArray {
-            itemIdList += "\(item.item_id),"
+            itemIdList.append(item.orderItemId)
         }
-        itemIdList.remove(at: itemIdList.index(before: itemIdList.endIndex))
-        AntManage.postRequest(path: "print/printKitchenUrgeItem", params: ["item_id_list":itemIdList, "type":weakSelf!.orderModel!.order_type, "table":weakSelf!.orderModel!.table_no, "access_token":AntManage.userModel!.token], successResult: { (_) in
+        AntManage.postRequest(path: "orderHandler/takeout", params: ["item_id_list":itemIdList, "type":weakSelf!.orderModel!.order_type, "table":weakSelf!.orderModel!.table_no, "access_token":AntManage.userModel!.token], successResult: { (_) in
             weakSelf?.getOrderInfo()
         }, failureResult: {})
     }
     
     // MARK: 催菜
     func urgeItem() {
-        var kitchenItemIdList = ""
+        var kitchenItemIdList = [Int]()
         for item in selectFoodArray {
-            kitchenItemIdList += "\(item.item_id),"
+            kitchenItemIdList.append(item.orderItemId)
         }
-        kitchenItemIdList.remove(at: kitchenItemIdList.index(before: kitchenItemIdList.endIndex))
         AntManage.postRequest(path: "print/printKitchenUrgeItem", params: ["item_id_list":kitchenItemIdList, "order_id":orderModel!.orderId, "restaurant_id":AntManage.userModel!.restaurant_id, "access_token":AntManage.userModel!.token], successResult: { (_) in
             AntManage.showDelayToast(message: NSLocalizedString("厨房已收到您的催菜提醒", comment: ""))
         }, failureResult: {})
@@ -339,11 +322,10 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
         alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: ""), style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: NSLocalizedString("保存", comment: ""), style: .default, handler: { (_) in
             let textField = alert.textFields?.first!
-            var itemIdList = ""
+            var itemIdList = [Int]()
             for item in weakSelf!.selectFoodArray {
-                itemIdList += "\(item.item_id),"
+                itemIdList.append(item.orderItemId)
             }
-            itemIdList.remove(at: itemIdList.index(before: itemIdList.endIndex))
             AntManage.postRequest(path: "orderHandler/changePrice", params: ["item_id_list":itemIdList, "type":weakSelf!.orderModel!.order_type, "table":weakSelf!.orderModel!.table_no, "order_no":weakSelf!.orderModel!.order_no, "price":textField!.text!, "access_token":AntManage.userModel!.token], successResult: { (_) in
                 weakSelf?.getOrderInfo()
             }, failureResult: {})
