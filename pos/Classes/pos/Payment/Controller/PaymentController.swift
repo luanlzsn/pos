@@ -71,14 +71,11 @@ class PaymentController: AntController,UITableViewDelegate,UITableViewDataSource
         navigationController?.popToRootViewController(animated: true)
     }
     
-    // MARK: 换桌
-    @IBAction func changeTableClick() {
-        
-    }
-    
     // MARK: 打印收据
     @IBAction func printPayReceiptClick() {
-        
+        AntManage.postRequest(path: "print/printPayReceipt", params: ["restaurant_id":AntManage.userModel!.restaurant_id, "order_id":orderModel!.orderId, "access_token":AntManage.userModel!.token], successResult: { (_) in
+            AntManage.showDelayToast(message: NSLocalizedString("打印收据成功。", comment: ""))
+        }, failureResult: {})
     }
     
     // MARK: 添加折扣
@@ -219,7 +216,7 @@ class PaymentController: AntController,UITableViewDelegate,UITableViewDataSource
         } else {
             type = NSLocalizedString("送餐", comment: "")
         }
-        let orderNumStr = NSLocalizedString("订单号", comment: "") + orderModel!.order_no + "\n" + NSLocalizedString("桌", comment: "") + "[[\(type)]]#\(tableNo)"
+        let orderNumStr = NSLocalizedString("订单号", comment: "") + orderModel!.order_no + "\n" + NSLocalizedString("桌", comment: "") + "[[\(type!)]]#\(tableNo)"
         orderNum.text = orderNumStr
         
         subtotal.text = "$" + String(format: "%.2f", orderModel!.subtotal)
@@ -268,6 +265,33 @@ class PaymentController: AntController,UITableViewDelegate,UITableViewDataSource
             } else {
                 remainingTitle.text = NSLocalizedString("剩余", comment: "")
                 remaining.text = "$" + String(format: "%.2f", orderModel!.total - (card + cash))
+            }
+        }
+    }
+    
+    // MARK: 跳转
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ChangeTable" {
+            let change: ChangeTableController = segue.destination as! ChangeTableController
+            weak var weakSelf = self
+            change.changeTable = { (tableDic) in
+                AntManage.postRequest(path: "orderHandler/moveOrder", params: ["type":(tableDic as! [String : Any])["TableType"]!, "table":(tableDic as! [String : Any])["TableNo"]!, "order_no":weakSelf!.orderModel!.order_no, "access_token":AntManage.userModel!.token], successResult: { (response) in
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ChangeTableSuccsee"), object: nil)
+                    weakSelf?.tableNo = (tableDic as! [String : Any])["TableNo"] as! Int
+                    weakSelf?.tableType = (tableDic as! [String : Any])["TableType"] as! String
+                    let type: String!
+                    if weakSelf?.tableType == "D" {
+                        type = NSLocalizedString("堂食", comment: "")
+                    } else if weakSelf?.tableType == "T" {
+                        type = NSLocalizedString("外卖", comment: "")
+                    } else {
+                        type = NSLocalizedString("送餐", comment: "")
+                    }
+                    let orderNumStr = NSLocalizedString("订单号", comment: "") + weakSelf!.orderModel!.order_no + "\n" + NSLocalizedString("桌", comment: "") + "[[\(type!)]]#\(weakSelf!.tableNo)"
+                    weakSelf?.orderNum.text = orderNumStr
+                }) {
+                    AntManage.showDelayToast(message: NSLocalizedString("换桌失败，请重试！", comment: ""))
+                }
             }
         }
     }

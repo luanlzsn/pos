@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0F45C4EA1EDBD45A006EC1CA /* TasteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F45C4E91EDBD45A006EC1CA /* TasteController.swift */; };
 		0F45C4EC1EDBD531006EC1CA /* TasteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F45C4EB1EDBD531006EC1CA /* TasteCell.swift */; };
+		0F8AD2AA1EDD46F700438AFD /* ChangeTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AD2A91EDD46F700438AFD /* ChangeTableController.swift */; };
 		0FB49A8A1EDBEE7C001BE76A /* PaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB49A891EDBEE7C001BE76A /* PaymentController.swift */; };
 		0FC1A32F1EDC50EC005438A5 /* PaymentOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1A32E1EDC50EC005438A5 /* PaymentOrderCell.swift */; };
 		0FC1A3311EDC619C005438A5 /* CalculatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1A3301EDC619C005438A5 /* CalculatorCell.swift */; };
@@ -80,6 +81,7 @@
 /* Begin PBXFileReference section */
 		0F45C4E91EDBD45A006EC1CA /* TasteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasteController.swift; sourceTree = "<group>"; };
 		0F45C4EB1EDBD531006EC1CA /* TasteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasteCell.swift; sourceTree = "<group>"; };
+		0F8AD2A91EDD46F700438AFD /* ChangeTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTableController.swift; sourceTree = "<group>"; };
 		0FB49A891EDBEE7C001BE76A /* PaymentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentController.swift; sourceTree = "<group>"; };
 		0FC1A32E1EDC50EC005438A5 /* PaymentOrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentOrderCell.swift; sourceTree = "<group>"; };
 		0FC1A3301EDC619C005438A5 /* CalculatorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorCell.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				0FB49A891EDBEE7C001BE76A /* PaymentController.swift */,
+				0F8AD2A91EDD46F700438AFD /* ChangeTableController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 				6B78D6291ED1C14500A1F6BF /* OrderFoodLayout.swift in Sources */,
 				0FC1A3311EDC619C005438A5 /* CalculatorCell.swift in Sources */,
 				6B9541071EC820C800CCFF95 /* SpinnerButton.swift in Sources */,
+				0F8AD2AA1EDD46F700438AFD /* ChangeTableController.swift in Sources */,
 				6B9541081EC820C800CCFF95 /* HomeController.swift in Sources */,
 				6BD6DD4F1EC9ECA900652204 /* HomeCell.swift in Sources */,
 				6B9541001EC820C800CCFF95 /* AntNavController.swift in Sources */,

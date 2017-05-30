@@ -1143,7 +1143,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="45g-sK-kMt">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="45g-sK-kMt">
                                 <rect key="frame" x="15" y="205.5" width="358.5" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="换桌">
@@ -1161,7 +1161,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="changeTableClick" destination="qGq-0L-77b" eventType="touchUpInside" id="hEX-09-yLF"/>
+                                    <segue destination="ekj-Zy-cV1" kind="presentation" identifier="ChangeTable" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="lNT-rQ-tJN"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wU3-Ex-L3B">
@@ -1862,6 +1862,172 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pwb-AU-eiQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1678.7109375" y="1558.59375"/>
+        </scene>
+        <!--Change Table Controller-->
+        <scene sceneID="Zbv-ev-yyj">
+            <objects>
+                <viewController id="ekj-Zy-cV1" customClass="ChangeTableController" customModule="pos" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="37e-RM-1nR"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z4S-AR-WN7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JjL-vd-lce">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W03-6f-xTB">
+                                <rect key="frame" x="380" y="284" width="230" height="200"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blH-jq-kHh">
+                                        <rect key="frame" x="5" y="5" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="TWa-Uy-GgI"/>
+                                            <constraint firstAttribute="width" constant="25" id="sta-zB-BeQ"/>
+                                        </constraints>
+                                        <state key="normal" image="cancel_red"/>
+                                        <connections>
+                                            <action selector="cancelChangeViewClick" destination="Ozc-nB-Pfc" eventType="touchUpInside" id="gA5-j7-E19"/>
+                                            <action selector="cancelClick" destination="ekj-Zy-cV1" eventType="touchUpInside" id="eMi-ID-arr"/>
+                                        </connections>
+                                    </button>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fsa-OD-uwC">
+                                        <rect key="frame" x="10" y="35" width="210" height="165"/>
+                                        <color key="backgroundColor" red="0.82352941180000006" green="0.63137254899999995" blue="0.63137254899999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="1ia-l5-riD">
+                                            <size key="itemSize" width="70" height="35"/>
+                                            <size key="headerReferenceSize" width="50" height="35"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ChangeTableCell" id="0Mq-E5-8K4" customClass="ChangeTableCell" customModule="pos" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="45" width="70" height="35"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rbl-OG-8PW">
+                                                            <rect key="frame" x="0.0" y="0.0" width="70" height="35"/>
+                                                            <color key="backgroundColor" red="0.60392156860000001" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <state key="normal" title="1"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="10"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                    <color key="value" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                    <real key="value" value="2"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="changeTableClick:" destination="0Mq-E5-8K4" eventType="touchUpInside" id="O6E-aB-XfZ"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </view>
+                                                <constraints>
+                                                    <constraint firstItem="Rbl-OG-8PW" firstAttribute="centerY" secondItem="0Mq-E5-8K4" secondAttribute="centerY" id="DWs-eN-aMM"/>
+                                                    <constraint firstItem="Rbl-OG-8PW" firstAttribute="centerX" secondItem="0Mq-E5-8K4" secondAttribute="centerX" id="EIA-Ni-iSX"/>
+                                                    <constraint firstItem="Rbl-OG-8PW" firstAttribute="width" secondItem="0Mq-E5-8K4" secondAttribute="width" id="Rjj-vh-GmH"/>
+                                                    <constraint firstItem="Rbl-OG-8PW" firstAttribute="height" secondItem="0Mq-E5-8K4" secondAttribute="height" id="Zbb-NL-IM9"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="changeNumBtn" destination="Rbl-OG-8PW" id="1Gi-75-gzm"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ChangeTableHeaderView" id="act-67-DMg" customClass="ChangeTableHeaderView" customModule="pos" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="210" height="35"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="堂食" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ol2-sK-SI5">
+                                                    <rect key="frame" x="0.0" y="0.0" width="210" height="35"/>
+                                                    <color key="backgroundColor" red="0.60392156860000001" green="0.1137254902" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="2"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Ol2-sK-SI5" firstAttribute="centerY" secondItem="act-67-DMg" secondAttribute="centerY" id="2Bk-tP-bCh"/>
+                                                <constraint firstItem="Ol2-sK-SI5" firstAttribute="centerX" secondItem="act-67-DMg" secondAttribute="centerX" id="Ijj-1v-pw0"/>
+                                                <constraint firstItem="Ol2-sK-SI5" firstAttribute="height" secondItem="act-67-DMg" secondAttribute="height" id="K3n-SG-kEI"/>
+                                                <constraint firstItem="Ol2-sK-SI5" firstAttribute="width" secondItem="act-67-DMg" secondAttribute="width" id="fTT-eD-Pa6"/>
+                                            </constraints>
+                                            <connections>
+                                                <outlet property="headerTitle" destination="Ol2-sK-SI5" id="d3e-0i-aNr"/>
+                                            </connections>
+                                        </collectionReusableView>
+                                        <connections>
+                                            <outlet property="dataSource" destination="ekj-Zy-cV1" id="l1O-rt-mWl"/>
+                                            <outlet property="delegate" destination="ekj-Zy-cV1" id="H5o-tZ-9Rf"/>
+                                        </connections>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.82352941180000006" green="0.63137254899999995" blue="0.63137254899999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="fsa-OD-uwC" secondAttribute="bottom" id="Dgx-yN-44G"/>
+                                    <constraint firstItem="fsa-OD-uwC" firstAttribute="top" secondItem="blH-jq-kHh" secondAttribute="bottom" constant="5" id="NDh-cK-2GW"/>
+                                    <constraint firstItem="fsa-OD-uwC" firstAttribute="width" secondItem="W03-6f-xTB" secondAttribute="width" constant="-20" id="NZA-tY-rvK"/>
+                                    <constraint firstItem="blH-jq-kHh" firstAttribute="top" secondItem="W03-6f-xTB" secondAttribute="top" constant="5" id="QLi-K8-Yzm"/>
+                                    <constraint firstItem="fsa-OD-uwC" firstAttribute="centerX" secondItem="W03-6f-xTB" secondAttribute="centerX" id="i27-kX-Inu"/>
+                                    <constraint firstAttribute="height" constant="200" id="j48-u2-FvP"/>
+                                    <constraint firstItem="blH-jq-kHh" firstAttribute="leading" secondItem="W03-6f-xTB" secondAttribute="leading" constant="5" id="o1f-JY-YR7"/>
+                                    <constraint firstAttribute="width" constant="230" id="zuz-iL-m02"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.46274509800000002" green="0.090196078430000007" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="W03-6f-xTB" firstAttribute="leading" secondItem="JjL-vd-lce" secondAttribute="leadingMargin" constant="360" id="5NX-gD-mBH"/>
+                            <constraint firstItem="W03-6f-xTB" firstAttribute="centerY" secondItem="JjL-vd-lce" secondAttribute="centerY" id="sob-Dv-xOL"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="TpS-O3-VNg" appends="YES" id="TGp-XC-k1I"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="changeCollection" destination="fsa-OD-uwC" id="ObY-A5-Qbm"/>
+                        <outlet property="changeHeight" destination="j48-u2-FvP" id="uB8-jJ-OgB"/>
+                        <outlet property="changeView" destination="W03-6f-xTB" id="xLl-lV-bTN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hPS-Zg-V8I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="TpS-O3-VNg">
+                    <connections>
+                        <action selector="cancelClick" destination="ekj-Zy-cV1" id="sIb-LL-Twu"/>
+                        <outlet property="delegate" destination="ekj-Zy-cV1" id="3eL-QS-CpC"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1679" y="2361"/>
         </scene>
         <!--Taste Controller-->
         <scene sceneID="JDx-BA-KEg">

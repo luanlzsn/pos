@@ -31,7 +31,7 @@ class AntSingleton: NSObject {
     //MARK: - post请求
     func postRequest(path:String, params:[String : Any]?, successResult:@escaping ([String : Any]) -> Void, failureResult:@escaping () -> Void) {
         AntLog(message: "请求接口：\(path),请求参数：\(String(describing: params))")
-        showMessage(message: "网络加载中，请耐心等候...")
+        showMessage(message: "")
         weak var weakSelf = self
         
         manager.post(requestBaseUrl + path, parameters: params, progress: nil, success: { (task, response) in
@@ -46,7 +46,7 @@ class AntSingleton: NSObject {
     //MARK: - get请求
     func getRequest(path:String, params:[String : Any]?, successResult:@escaping ([String : Any]) -> Void, failureResult:@escaping () -> Void) {
         AntLog(message: "请求接口：\(path),请求参数：\(String(describing: params))")
-        showMessage(message: "网络加载中，请耐心等候...")
+        showMessage(message: "")
         weak var weakSelf = self
         
         manager.get(requestBaseUrl + path, parameters: params, progress: nil, success: { (task, response) in
