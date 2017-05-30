@@ -215,7 +215,11 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             tokitchen()
             break
         case 90:
-            performSegue(withIdentifier: "Payment", sender: nil)
+            if orderModel != nil {
+                performSegue(withIdentifier: "Payment", sender: nil)
+            } else {
+                AntManage.showDelayToast(message: NSLocalizedString("抱歉，订单不存在。", comment: ""))
+            }
             break
         case 100:
             if selectFoodArray.count > 1 {
@@ -452,6 +456,10 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             taste.selectTaste = {(selectTaste) in
                 weakSelf?.addExtras(extraIdList: (selectTaste as! [String : Any])["ExtraIdList"] as! [Int], special: (selectTaste as! [String : Any])["Special"] as! String)
             }
+        } else if segue.identifier == "Payment" {
+            let payment: PaymentController = segue.destination as! PaymentController
+            payment.tableType = tableType
+            payment.tableNo = tableNo
         }
     }
     
@@ -493,13 +501,14 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             } else {
                 cell.contentView.backgroundColor = model.is_print == "Y" ? UIColor.init(rgb: 0xece7e7) : UIColor.white
             }
-            cell.foodName.text = model.name_en
             cell.price.text = "$\(model.price)"
             cell.number.text = "x\(model.qty)"
             var zhName = ""
             if model.is_takeout == "Y" {
+                cell.foodName.text = "(Take Out)" + model.name_en
                 zhName += "(\(NSLocalizedString("外卖", comment: "")))\(model.name_xh)"
             } else {
+                cell.foodName.text = model.name_en
                 zhName += model.name_xh
             }
             if model.selected_extras.count > 0 {
@@ -532,10 +541,10 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
                 }
             } else if indexPath.row == 1 + (isDiscount ? 2 : 0) {
                 if orderModel != nil {
-                    cell.titleLabel.text = NSLocalizedString("税", comment: "") + "\(orderModel!.tax)%"
+                    cell.titleLabel.text = NSLocalizedString("税", comment: "") + "(\(orderModel!.tax)%)"
                     cell.priceLabel.text = "$" + String(format: "%.2f", orderModel!.tax_amount)
                 } else {
-                    cell.titleLabel.text = NSLocalizedString("税", comment: "") + "0%"
+                    cell.titleLabel.text = NSLocalizedString("税", comment: "") + "(0%)"
                     cell.priceLabel.text = "$0.00"
                 }
             } else if indexPath.row == 2 + (isDiscount ? 2 : 0) {

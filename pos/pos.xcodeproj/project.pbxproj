@@ -10,6 +10,8 @@
 		0F45C4EA1EDBD45A006EC1CA /* TasteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F45C4E91EDBD45A006EC1CA /* TasteController.swift */; };
 		0F45C4EC1EDBD531006EC1CA /* TasteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F45C4EB1EDBD531006EC1CA /* TasteCell.swift */; };
 		0FB49A8A1EDBEE7C001BE76A /* PaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB49A891EDBEE7C001BE76A /* PaymentController.swift */; };
+		0FC1A32F1EDC50EC005438A5 /* PaymentOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1A32E1EDC50EC005438A5 /* PaymentOrderCell.swift */; };
+		0FC1A3311EDC619C005438A5 /* CalculatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1A3301EDC619C005438A5 /* CalculatorCell.swift */; };
 		6B2EDB221EBCA7380051C1A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2EDB211EBCA7380051C1A7 /* AppDelegate.swift */; };
 		6B2EDB271EBCA7380051C1A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B2EDB251EBCA7380051C1A7 /* Main.storyboard */; };
 		6B2EDB291EBCA7380051C1A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B2EDB281EBCA7380051C1A7 /* Assets.xcassets */; };
@@ -79,6 +81,8 @@
 		0F45C4E91EDBD45A006EC1CA /* TasteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasteController.swift; sourceTree = "<group>"; };
 		0F45C4EB1EDBD531006EC1CA /* TasteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasteCell.swift; sourceTree = "<group>"; };
 		0FB49A891EDBEE7C001BE76A /* PaymentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentController.swift; sourceTree = "<group>"; };
+		0FC1A32E1EDC50EC005438A5 /* PaymentOrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentOrderCell.swift; sourceTree = "<group>"; };
+		0FC1A3301EDC619C005438A5 /* CalculatorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorCell.swift; sourceTree = "<group>"; };
 		6B2EDB1E1EBCA7380051C1A7 /* pos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B2EDB211EBCA7380051C1A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6B2EDB261EBCA7380051C1A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 		0FB49A881EDBEE66001BE76A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0FC1A32E1EDC50EC005438A5 /* PaymentOrderCell.swift */,
+				0FC1A3301EDC619C005438A5 /* CalculatorCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -624,6 +630,7 @@
 				6B9540FE1EC820C800CCFF95 /* AntDefault.swift in Sources */,
 				6B9540FD1EC820C800CCFF95 /* AntController.swift in Sources */,
 				6B78D6291ED1C14500A1F6BF /* OrderFoodLayout.swift in Sources */,
+				0FC1A3311EDC619C005438A5 /* CalculatorCell.swift in Sources */,
 				6B9541071EC820C800CCFF95 /* SpinnerButton.swift in Sources */,
 				6B9541081EC820C800CCFF95 /* HomeController.swift in Sources */,
 				6BD6DD4F1EC9ECA900652204 /* HomeCell.swift in Sources */,
@@ -631,6 +638,7 @@
 				6B6DFE551ED00DDC00415B38 /* MenuController.swift in Sources */,
 				6B78D6231ED1BB0400A1F6BF /* OrderFoodCell.swift in Sources */,
 				6B9541011EC820C800CCFF95 /* AntSingleton.swift in Sources */,
+				0FC1A32F1EDC50EC005438A5 /* PaymentOrderCell.swift in Sources */,
 				6B9541021EC820C800CCFF95 /* Common.swift in Sources */,
 				6B50339D1ED1573600852E5A /* ChangeTableHeaderView.swift in Sources */,
 				6B9541031EC820C800CCFF95 /* LanguageManager.swift in Sources */,

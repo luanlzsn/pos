@@ -51,11 +51,6 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
         getTablesInfoWithType(type: "W")
     }
     
-    // MARK: 管理员
-    @IBAction func managerClick() {
-        
-    }
-    
     // MARK: 语言
     @IBAction func languageClick(_ sender: SpinnerButton) {
         weak var weakSelf = self
@@ -257,7 +252,9 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
             order.tableType = (sender as! [String : Any])["TableType"] as! String
             order.tableNo = (sender as! [String : Any])["TableNo"] as! Int
         } else if segue.identifier == "Payment" {
-            
+            let payment: PaymentController = segue.destination as! PaymentController
+            payment.tableType = (sender as! [String : Any])["TableType"] as! String
+            payment.tableNo = (sender as! [String : Any])["TableNo"] as! Int
         }
     }
     
