@@ -1,0 +1,415 @@
+
+/* Class = "UILabel"; text = "$0.00"; ObjectID = "017-dd-rMu"; */
+"017-dd-rMu.text" = "$0.00";
+
+/* Class = "UIButton"; normalTitle = "    换口味    "; ObjectID = "06f-im-WaY"; */
+"06f-im-WaY.normalTitle" = "    换口味    ";
+
+/* Class = "UIButton"; normalTitle = "主页"; ObjectID = "0ea-tR-PSr"; */
+"0ea-tR-PSr.normalTitle" = "主页";
+
+/* Class = "UILabel"; text = "$"; ObjectID = "0hn-a5-YFA"; */
+"0hn-a5-YFA.text" = "$";
+
+/* Class = "UILabel"; text = "已选口味："; ObjectID = "1Ob-5s-7FQ"; */
+"1Ob-5s-7FQ.text" = "已选口味：";
+
+/* Class = "UILabel"; text = "小费"; ObjectID = "1lK-Kz-6cd"; */
+"1lK-Kz-6cd.text" = "小费";
+
+/* Class = "UILabel"; text = "订单号"; ObjectID = "2dX-FO-sR5"; */
+"2dX-FO-sR5.text" = "订单号";
+
+/* Class = "UILabel"; text = "优惠码"; ObjectID = "2hS-xt-H9y"; */
+"2hS-xt-H9y.text" = "优惠码";
+
+/* Class = "UILabel"; text = "菜名"; ObjectID = "2pm-pJ-f0M"; */
+"2pm-pJ-f0M.text" = "菜名";
+
+/* Class = "UILabel"; text = "小计"; ObjectID = "2vt-LA-Z4X"; */
+"2vt-LA-Z4X.text" = "小计";
+
+/* Class = "UIButton"; normalTitle = "卡"; ObjectID = "37A-ol-4mw"; */
+"37A-ol-4mw.normalTitle" = "卡";
+
+/* Class = "UILabel"; text = "0.00"; ObjectID = "3IY-jb-RN1"; */
+"3IY-jb-RN1.text" = "0.00";
+
+/* Class = "UILabel"; text = "总计"; ObjectID = "3KE-hF-cxT"; */
+"3KE-hF-cxT.text" = "总计";
+
+/* Class = "UILabel"; text = "0.00"; ObjectID = "3qs-3v-G8Q"; */
+"3qs-3v-G8Q.text" = "0.00";
+
+/* Class = "UILabel"; text = "不辣"; ObjectID = "3ty-zU-tom"; */
+"3ty-zU-tom.text" = "不辣";
+
+/* Class = "UIButton"; normalTitle = "换桌"; ObjectID = "45g-sK-kMt"; */
+"45g-sK-kMt.normalTitle" = "换桌";
+
+/* Class = "UILabel"; text = "卡:$"; ObjectID = "579-wk-ORT"; */
+"579-wk-ORT.text" = "卡:$";
+
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "6K9-5B-4sM"; */
+"6K9-5B-4sM.normalTitle" = "+";
+
+/* Class = "UIButton"; normalTitle = "    催菜    "; ObjectID = "6UD-84-uTM"; */
+"6UD-84-uTM.normalTitle" = "    催菜    ";
+
+/* Class = "UIButton"; normalTitle = "  未送厨  "; ObjectID = "6kQ-Cx-MvZ"; */
+"6kQ-Cx-MvZ.normalTitle" = "  未送厨  ";
+
+/* Class = "UILabel"; text = "已收到"; ObjectID = "6qx-nq-z6x"; */
+"6qx-nq-z6x.text" = "已收到";
+
+/* Class = "UITextField"; text = "0.00"; ObjectID = "7Af-i2-WlX"; */
+"7Af-i2-WlX.text" = "0.00";
+
+/* Class = "UIButton"; normalTitle = "    加号码    "; ObjectID = "7Sg-fk-frR"; */
+"7Sg-fk-frR.normalTitle" = "    加号码    ";
+
+/* Class = "UILabel"; text = "现金:$"; ObjectID = "7c7-8g-Pdp"; */
+"7c7-8g-Pdp.text" = "现金:$";
+
+/* Class = "UILabel"; text = "$0.00"; ObjectID = "8Dk-xs-jTt"; */
+"8Dk-xs-jTt.text" = "$0.00";
+
+/* Class = "UILabel"; text = "未支付"; ObjectID = "9tV-r2-KYi"; */
+"9tV-r2-KYi.text" = "未支付";
+
+/* Class = "UILabel"; text = "2017-05-31 06:09:34"; ObjectID = "9xG-rz-qMw"; */
+"9xG-rz-qMw.text" = "2017-05-31 06:09:34";
+
+/* Class = "UILabel"; text = "现金:$0.00"; ObjectID = "A5g-Xy-DTf"; */
+"A5g-Xy-DTf.text" = "现金:$0.00";
+
+/* Class = "UILabel"; text = "$0.00"; ObjectID = "AO0-jY-NVA"; */
+"AO0-jY-NVA.text" = "$0.00";
+
+/* Class = "UILabel"; text = "订单摘要"; ObjectID = "AQO-GR-v0Z"; */
+"AQO-GR-v0Z.text" = "订单摘要";
+
+/* Class = "UIButton"; normalTitle = "确认"; ObjectID = "AzY-z8-agl"; */
+"AzY-z8-agl.normalTitle" = "确认";
+
+/* Class = "UITextField"; text = "0.00"; ObjectID = "BW3-RU-wIv"; */
+"BW3-RU-wIv.text" = "0.00";
+
+/* Class = "UILabel"; text = "固定折扣"; ObjectID = "BfH-gc-ryu"; */
+"BfH-gc-ryu.text" = "固定折扣";
+
+/* Class = "UILabel"; text = "$"; ObjectID = "C6u-IW-apc"; */
+"C6u-IW-apc.text" = "$";
+
+/* Class = "UIButton"; normalTitle = "  已付款"; ObjectID = "CTN-bm-KfX"; */
+"CTN-bm-KfX.normalTitle" = "  已付款";
+
+/* Class = "UILabel"; text = "外卖桌"; ObjectID = "DAN-a5-gBP"; */
+"DAN-a5-gBP.text" = "外卖桌";
+
+/* Class = "UIButton"; normalTitle = "主页"; ObjectID = "DXb-hj-USN"; */
+"DXb-hj-USN.normalTitle" = "主页";
+
+/* Class = "UILabel"; text = "菜名(中文)"; ObjectID = "EAB-ow-bG4"; */
+"EAB-ow-bG4.text" = "菜名(中文)";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "EQ6-s8-0pB"; */
+"EQ6-s8-0pB.text" = "1";
+
+/* Class = "UILabel"; text = "0.00"; ObjectID = "F7w-h8-cie"; */
+"F7w-h8-cie.text" = "0.00";
+
+/* Class = "UILabel"; text = "$0.00"; ObjectID = "F9E-cX-8PM"; */
+"F9E-cX-8PM.text" = "$0.00";
+
+/* Class = "UILabel"; text = "添加折扣"; ObjectID = "FBA-5s-C8f"; */
+"FBA-5s-C8f.text" = "添加折扣";
+
+/* Class = "UITextField"; text = "0.00"; ObjectID = "FNO-kC-qGj"; */
+"FNO-kC-qGj.text" = "0.00";
+
+/* Class = "UILabel"; text = "$"; ObjectID = "FSd-pT-eiN"; */
+"FSd-pT-eiN.text" = "$";
+
+/* Class = "UIButton"; normalTitle = "应用"; ObjectID = "FVB-Ly-mZU"; */
+"FVB-Ly-mZU.normalTitle" = "应用";
+
+/* Class = "UILabel"; text = "订单号
+桌"; ObjectID = "Ffh-Ne-I7u"; */
+"Ffh-Ne-I7u.text" = "订单号
+桌";
+
+/* Class = "UILabel"; text = "税(0%)"; ObjectID = "G6O-RQ-gvE"; */
+"G6O-RQ-gvE.text" = "税(0%)";
+
+/* Class = "UILabel"; text = "Nutritious Lamb Noodles\n滋补羊肉面"; ObjectID = "Gfx-rO-hAq"; */
+"Gfx-rO-hAq.text" = "Nutritious Lamb Noodles\n滋补羊肉面";
+
+/* Class = "UIButton"; normalTitle = "1"; ObjectID = "GhS-wF-ClS"; */
+"GhS-wF-ClS.normalTitle" = "1";
+
+/* Class = "UILabel"; text = "桌[[堂食]]#1"; ObjectID = "HK7-8F-pzE"; */
+"HK7-8F-pzE.text" = "桌[[堂食]]#1";
+
+/* Class = "UILabel"; text = "堂食"; ObjectID = "Ht4-H5-xfj"; */
+"Ht4-H5-xfj.text" = "堂食";
+
+/* Class = "UILabel"; text = "x0"; ObjectID = "Hxx-KE-p4l"; */
+"Hxx-KE-p4l.text" = "x0";
+
+/* Class = "UIButton"; normalTitle = "登出"; ObjectID = "Iok-d5-bNO"; */
+"Iok-d5-bNO.normalTitle" = "登出";
+
+/* Class = "UILabel"; text = "折后价"; ObjectID = "IsJ-VU-aKk"; */
+"IsJ-VU-aKk.text" = "折后价";
+
+/* Class = "UILabel"; text = "$8.99"; ObjectID = "IxJ-Ei-FZD"; */
+"IxJ-Ei-FZD.text" = "$8.99";
+
+/* Class = "UILabel"; text = "找零"; ObjectID = "Kod-dm-A7R"; */
+"Kod-dm-A7R.text" = "找零";
+
+/* Class = "UIButton"; normalTitle = "弹回"; ObjectID = "LK1-Ss-Jf0"; */
+"LK1-Ss-Jf0.normalTitle" = "弹回";
+
+/* Class = "UILabel"; text = "送餐桌"; ObjectID = "LiV-WV-jaT"; */
+"LiV-WV-jaT.text" = "送餐桌";
+
+/* Class = "UILabel"; text = "$"; ObjectID = "LrX-ob-sEX"; */
+"LrX-ob-sEX.text" = "$";
+
+/* Class = "UILabel"; text = "Nutritious Lamb Noodles\n滋补羊肉面"; ObjectID = "M5D-Gx-FvR"; */
+"M5D-Gx-FvR.text" = "Nutritious Lamb Noodles\n滋补羊肉面";
+
+/* Class = "UILabel"; text = "特别说明："; ObjectID = "MCZ-YI-awS"; */
+"MCZ-YI-awS.text" = "特别说明：";
+
+/* Class = "UILabel"; text = "$"; ObjectID = "MeE-Wd-K8b"; */
+"MeE-Wd-K8b.text" = "$";
+
+/* Class = "UILabel"; text = "固定折扣"; ObjectID = "MyD-4b-su3"; */
+"MyD-4b-su3.text" = "固定折扣";
+
+/* Class = "UIButton"; normalTitle = "    删除    "; ObjectID = "MyG-y5-Wya"; */
+"MyG-y5-Wya.normalTitle" = "    删除    ";
+
+/* Class = "UIButton"; normalTitle = "  已付款"; ObjectID = "OHz-wS-TyS"; */
+"OHz-wS-TyS.normalTitle" = "  已付款";
+
+/* Class = "UILabel"; text = "味道"; ObjectID = "OPR-B9-tbg"; */
+"OPR-B9-tbg.text" = "味道";
+
+/* Class = "UILabel"; text = "堂食"; ObjectID = "Ol2-sK-SI5"; */
+"Ol2-sK-SI5.text" = "堂食";
+
+/* Class = "UIButton"; normalTitle = "语言"; ObjectID = "OuR-rE-qMX"; */
+"OuR-rE-qMX.normalTitle" = "语言";
+
+/* Class = "UILabel"; text = "不辣"; ObjectID = "PaD-RZ-KHz"; */
+"PaD-RZ-KHz.text" = "不辣";
+
+/* Class = "UIButton"; normalTitle = "主页"; ObjectID = "PyW-ey-980"; */
+"PyW-ey-980.normalTitle" = "主页";
+
+/* Class = "UITextField"; placeholder = "例如 没有洋葱，没有麻油"; ObjectID = "Q16-Rf-UWW"; */
+"Q16-Rf-UWW.placeholder" = "例如 没有洋葱，没有麻油";
+
+/* Class = "UILabel"; text = "小费"; ObjectID = "Qvh-LA-TMm"; */
+"Qvh-LA-TMm.text" = "小费";
+
+/* Class = "UIButton"; normalTitle = "1"; ObjectID = "Rbl-OG-8PW"; */
+"Rbl-OG-8PW.normalTitle" = "1";
+
+/* Class = "UILabel"; text = "0.00"; ObjectID = "TWD-lY-I5p"; */
+"TWD-lY-I5p.text" = "0.00";
+
+/* Class = "UILabel"; text = "菜名"; ObjectID = "Tnf-db-BDN"; */
+"Tnf-db-BDN.text" = "菜名";
+
+/* Class = "UILabel"; text = "%折扣"; ObjectID = "ToR-8a-xjN"; */
+"ToR-8a-xjN.text" = "%折扣";
+
+/* Class = "UILabel"; text = "收到"; ObjectID = "U7n-Vq-Grs"; */
+"U7n-Vq-Grs.text" = "收到";
+
+/* Class = "UILabel"; text = "总计"; ObjectID = "WEa-ev-mRd"; */
+"WEa-ev-mRd.text" = "总计";
+
+/* Class = "UILabel"; text = "可用的"; ObjectID = "WV7-xu-fyD"; */
+"WV7-xu-fyD.text" = "可用的";
+
+/* Class = "UIButton"; normalTitle = "签入"; ObjectID = "Weu-il-C0j"; */
+"Weu-il-C0j.normalTitle" = "签入";
+
+/* Class = "UIButton"; normalTitle = "修改"; ObjectID = "X7K-qt-abV"; */
+"X7K-qt-abV.normalTitle" = "修改";
+
+/* Class = "UIButton"; normalTitle = "主页"; ObjectID = "Xe2-E5-hPw"; */
+"Xe2-E5-hPw.normalTitle" = "主页";
+
+/* Class = "UILabel"; text = "$8.99"; ObjectID = "YFR-gy-1zA"; */
+"YFR-gy-1zA.text" = "$8.99";
+
+/* Class = "UIButton"; normalTitle = "打印收据"; ObjectID = "YiS-h8-iu7"; */
+"YiS-h8-iu7.normalTitle" = "打印收据";
+
+/* Class = "UILabel"; text = "已付款"; ObjectID = "Yrg-Zz-5Bi"; */
+"Yrg-Zz-5Bi.text" = "已付款";
+
+/* Class = "UITextField"; text = "0.00"; ObjectID = "aaK-v2-nyg"; */
+"aaK-v2-nyg.text" = "0.00";
+
+/* Class = "UITextField"; text = "0.00"; ObjectID = "avQ-7s-nY0"; */
+"avQ-7s-nY0.text" = "0.00";
+
+/* Class = "UILabel"; text = "$0.00"; ObjectID = "bqS-f6-aUD"; */
+"bqS-f6-aUD.text" = "$0.00";
+
+/* Class = "UILabel"; text = "$0.00"; ObjectID = "brS-YC-TC5"; */
+"brS-YC-TC5.text" = "$0.00";
+
+/* Class = "UILabel"; text = "订单号0，桌号1"; ObjectID = "cpj-4j-COd"; */
+"cpj-4j-COd.text" = "订单号0，桌号1";
+
+/* Class = "UIButton"; normalTitle = "Detail"; ObjectID = "d7f-5W-L7a"; */
+"d7f-5W-L7a.normalTitle" = "Detail";
+
+/* Class = "UIButton"; normalTitle = "订单"; ObjectID = "e68-d4-iuO"; */
+"e68-d4-iuO.normalTitle" = "订单";
+
+/* Class = "UITextField"; text = "0.00"; ObjectID = "gBc-eP-lXk"; */
+"gBc-eP-lXk.text" = "0.00";
+
+/* Class = "UILabel"; text = "小计"; ObjectID = "gRr-SB-eRn"; */
+"gRr-SB-eRn.text" = "小计";
+
+/* Class = "UIButton"; normalTitle = "    送厨    "; ObjectID = "gXa-19-55u"; */
+"gXa-19-55u.normalTitle" = "    送厨    ";
+
+/* Class = "UIButton"; normalTitle = "确认"; ObjectID = "gfq-EU-YNr"; */
+"gfq-EU-YNr.normalTitle" = "确认";
+
+/* Class = "UIButton"; normalTitle = "  全选  "; ObjectID = "gg0-w7-CVT"; */
+"gg0-w7-CVT.normalTitle" = "  全选  ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "h3i-TB-iCw"; */
+"h3i-TB-iCw.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "    批量加口味    "; ObjectID = "hBm-qv-oIU"; */
+"hBm-qv-oIU.normalTitle" = "    批量加口味    ";
+
+/* Class = "UILabel"; text = "剩余"; ObjectID = "hte-Pl-PEa"; */
+"hte-Pl-PEa.text" = "剩余";
+
+/* Class = "UIButton"; normalTitle = "登出"; ObjectID = "huI-W9-tJw"; */
+"huI-W9-tJw.normalTitle" = "登出";
+
+/* Class = "UILabel"; text = "$0.00"; ObjectID = "iFo-Jo-jvH"; */
+"iFo-Jo-jvH.text" = "$0.00";
+
+/* Class = "UIButton"; normalTitle = "    保存    "; ObjectID = "iNX-9Y-60s"; */
+"iNX-9Y-60s.normalTitle" = "    保存    ";
+
+/* Class = "UIButton"; normalTitle = "应用"; ObjectID = "iwH-Zc-L3Y"; */
+"iwH-Zc-L3Y.normalTitle" = "应用";
+
+/* Class = "UIButton"; normalTitle = "  已送厨  "; ObjectID = "iwh-OP-Y1z"; */
+"iwh-OP-Y1z.normalTitle" = "  已送厨  ";
+
+/* Class = "UILabel"; text = "已打单"; ObjectID = "j2l-RQ-VsD"; */
+"j2l-RQ-VsD.text" = "已打单";
+
+/* Class = "UITextField"; text = "0.00"; ObjectID = "jju-cN-AR0"; */
+"jju-cN-AR0.text" = "0.00";
+
+/* Class = "UIButton"; normalTitle = "主页"; ObjectID = "jnq-Wg-TDq"; */
+"jnq-Wg-TDq.normalTitle" = "主页";
+
+/* Class = "UIButton"; normalTitle = "    改价格    "; ObjectID = "kGF-WA-69q"; */
+"kGF-WA-69q.normalTitle" = "    改价格    ";
+
+/* Class = "UIButton"; normalTitle = "    付款    "; ObjectID = "kRC-DG-yTZ"; */
+"kRC-DG-yTZ.normalTitle" = "    付款    ";
+
+/* Class = "UIButton"; normalTitle = "  清空  "; ObjectID = "krt-qM-QQs"; */
+"krt-qM-QQs.normalTitle" = "  清空  ";
+
+/* Class = "UILabel"; text = "Noodles
+招牌面"; ObjectID = "lZd-xY-TSi"; */
+"lZd-xY-TSi.text" = "Noodles
+招牌面";
+
+/* Class = "UILabel"; text = "折扣"; ObjectID = "m1C-8Y-eva"; */
+"m1C-8Y-eva.text" = "折扣";
+
+/* Class = "UILabel"; text = "折扣"; ObjectID = "myV-TD-cc1"; */
+"myV-TD-cc1.text" = "折扣";
+
+/* Class = "UITextField"; text = "0.00"; ObjectID = "n7y-cU-Hml"; */
+"n7y-cU-Hml.text" = "0.00";
+
+/* Class = "UIButton"; normalTitle = "登出"; ObjectID = "oT6-qd-iKI"; */
+"oT6-qd-iKI.normalTitle" = "Logout";
+
+/* Class = "UIButton"; normalTitle = "    改数量    "; ObjectID = "og3-IH-FYn"; */
+"og3-IH-FYn.normalTitle" = "    Change Quantity    ";
+
+/* Class = "UIButton"; normalTitle = "签出"; ObjectID = "p3a-1l-3Ny"; */
+"p3a-1l-3Ny.normalTitle" = "Checkout";
+
+/* Class = "UILabel"; text = "%折扣"; ObjectID = "pye-cg-l6O"; */
+"pye-cg-l6O.text" = "Discount in %";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "qWk-sZ-f4a"; */
+"qWk-sZ-f4a.text" = "Label";
+
+/* Class = "UILabel"; text = "%折扣"; ObjectID = "qhd-2i-LYN"; */
+"qhd-2i-LYN.text" = "Discount in %";
+
+/* Class = "UILabel"; text = "$0.00"; ObjectID = "r5M-1y-qF2"; */
+"r5M-1y-qF2.text" = "$0.00";
+
+/* Class = "UIButton"; normalTitle = "返回"; ObjectID = "rSV-Qh-bRc"; */
+"rSV-Qh-bRc.normalTitle" = "Back";
+
+/* Class = "UIButton"; normalTitle = "现金"; ObjectID = "ray-Uh-hsE"; */
+"ray-Uh-hsE.normalTitle" = "Cash";
+
+/* Class = "UIButton"; normalTitle = "    外卖    "; ObjectID = "sF6-X5-AyR"; */
+"sF6-X5-AyR.normalTitle" = "    Takeout    ";
+
+/* Class = "UILabel"; text = "卡:$0.00"; ObjectID = "t28-Av-nZ7"; */
+"t28-Av-nZ7.text" = "Card:$0.00";
+
+/* Class = "UILabel"; text = "小计"; ObjectID = "tlN-uH-eC7"; */
+"tlN-uH-eC7.text" = "Subtotal";
+
+/* Class = "UILabel"; text = "$"; ObjectID = "usQ-Ph-OA4"; */
+"usQ-Ph-OA4.text" = "$";
+
+/* Class = "UIButton"; normalTitle = "  反选  "; ObjectID = "vjQ-nI-Ucr"; */
+"vjQ-nI-Ucr.normalTitle" = "  Inverse  ";
+
+/* Class = "UILabel"; text = "$0.00"; ObjectID = "w1t-yK-Maa"; */
+"w1t-yK-Maa.text" = "$0.00";
+
+/* Class = "UILabel"; text = "$8.99"; ObjectID = "wyG-j2-Fb9"; */
+"wyG-j2-Fb9.text" = "$8.99";
+
+/* Class = "UILabel"; text = "$0.00"; ObjectID = "xpr-hi-kQM"; */
+"xpr-hi-kQM.text" = "$0.00";
+
+/* Class = "UIButton"; normalTitle = "加入折扣"; ObjectID = "xsm-wl-DiE"; */
+"xsm-wl-DiE.normalTitle" = "Add Discount";
+
+/* Class = "UILabel"; text = "税"; ObjectID = "xt7-FK-jvT"; */
+"xt7-FK-jvT.text" = "Tax";
+
+/* Class = "UILabel"; text = "$"; ObjectID = "xwH-lU-Jb3"; */
+"xwH-lU-Jb3.text" = "$";
+
+/* Class = "UILabel"; text = "堂食1"; ObjectID = "yhw-ev-oDL"; */
+"yhw-ev-oDL.text" = "堂食1";
+
+/* Class = "UILabel"; text = "订单摘要"; ObjectID = "z5n-en-kFM"; */
+"z5n-en-kFM.text" = "Order Summary";

@@ -55,8 +55,14 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
     @IBAction func languageClick(_ sender: SpinnerButton) {
         weak var weakSelf = self
         sender.show(view: view, array: ["English","中文"]) { (languageStr) in
-            if languageStr != LanguageManager.currentLanguageString() {
-                LanguageManager.saveLanguage(languageString: languageStr)
+            let language: String!
+            if languageStr == "English" {
+                language = "en"
+            } else {
+                language = "zh-Hans"
+            }
+            if language != LanguageManager.currentLanguageString() {
+                LanguageManager.saveLanguage(languageString: language)
                 weakSelf?.reloadRootViewController()
             }
         }

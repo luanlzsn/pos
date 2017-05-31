@@ -570,7 +570,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
                     weakSelf?.removeDiscount()
                 }
             } else {
-                cell.titleLabel.text = NSLocalizedString("折扣价", comment: "")
+                cell.titleLabel.text = NSLocalizedString("折后价", comment: "")
                 cell.priceLabel.text = "$" + String(format: "%.2f", orderModel!.after_discount)
             }
             return cell

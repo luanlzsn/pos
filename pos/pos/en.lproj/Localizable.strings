@@ -1,0 +1,68 @@
+/* 
+  Localizable.strings
+  pos
+
+  Created by luan on 2017/5/31.
+  Copyright © 2017年 luan. All rights reserved.
+*/
+
+"服务器地址变更，请重新登录！" = "The server address changed. Please log in again!";
+"堂食" = "Dinein";
+"外卖" = "Takeout";
+"送餐" = "Delivery";
+"请输入正确的邮箱地址！" = "Please enter the correct email address!";
+"桌" = "Tables";
+"订单号" = "Order No.";
+"桌号" = "Table No.";
+"税" = "Tax";
+"签入" = "Checkin";
+"签出" = "Checkout";
+"请输入你的id" = "Please input your ID";
+"确认" = "Confirm";
+"取消" = "Cancel";
+"签入成功" = "Check in success";
+"签出成功" = "Check out success";
+"请输入密码" = "Please input password";
+"成功清空本桌" = "Table successfully marked as available";
+"订单" = "Order";
+"换桌" = "Change Table";
+"付款" = "Pay";
+"变空桌" = "Clear Table";
+"合单" = "Merge Bill";
+"分单" = "Split Bill";
+"历史订单" = "History";
+"打印收据" = "Receipt";
+"换桌失败，请重试！" = "Change table failed. Please try again!";
+"请输入折扣。" = "Please enter discount.";
+"没有选择菜" = "No item selected";
+"抱歉，订单不存在。" = "Sorry, order does not exist.";
+"请只选择一个菜" = "Please select only one item";
+"已选项中包含已送厨菜品，若要修改已送厨菜品，请删除后重新添加。" = "If you want to modify items which have been sent to kitchen, please delete it and readd it. ";
+"电话" = "Phone";
+"改数量" = "Change Quantity";
+"新数量" = "New quantity";
+"保存" = "Save";
+"厨房已收到您的催菜提醒" = "The kitchen has received your reminder";
+"改价格" = "Change Price";
+"新价格" = "New price";
+"加号码" = "Input Phone";
+"号码" = "Phone";
+"小计" = "SubTotal";
+"合计" = "Total";
+"折扣" = "Discount";
+"折后价" = "After Discount";
+"默认" = "Default";
+"清空" = "Clear";
+"输入" = "Enter";
+"打印收据成功。" = "Print Receipt success";
+"请选择卡或现金付款方式。" = "Please select payment type card/cash.";
+"找零" = "Change";
+"订单成功完成。" = "The order was successfully completed.";
+"金额无效，请检查再次验证。" = "Invalid amount, please check and verfy again";
+"剩余" = "Remaining";
+"卡" = "Card";
+"现金" = "Cash";
+"请选择味道" = "Please choose taste";
+
+"登录成功！" = "Login successful!";
+"用户名或密码错误" = "Error Incorrect username or password";

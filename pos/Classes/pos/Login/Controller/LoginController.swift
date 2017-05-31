@@ -31,7 +31,7 @@ class LoginController: AntController {
             return
         }
         if (passWord.text?.isEmpty)! {
-            AntManage.showDelayToast(message: NSLocalizedString("请输入密码！", comment: ""))
+            AntManage.showDelayToast(message: NSLocalizedString("请输入密码", comment: ""))
             return
         }
         weak var weakSelf = self

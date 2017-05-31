@@ -1,0 +1,12 @@
+
+/* Class = "UITabBarItem"; title = "购物车"; ObjectID = "TZC-Ew-ncS"; */
+"TZC-Ew-ncS.title" = "购物车";
+
+/* Class = "UITabBarItem"; title = "我的"; ObjectID = "cTd-2d-Qik"; */
+"cTd-2d-Qik.title" = "我的";
+
+/* Class = "UITabBarItem"; title = "搜索"; ObjectID = "oqx-TL-we2"; */
+"oqx-TL-we2.title" = "搜索";
+
+/* Class = "UITabBarItem"; title = "首页"; ObjectID = "rr2-tm-Df2"; */
+"rr2-tm-Df2.title" = "首页";

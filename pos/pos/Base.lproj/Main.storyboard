@@ -38,18 +38,16 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OuR-rE-qMX" customClass="SpinnerButton" customModule="pos" customModuleProvider="target">
-                                        <rect key="frame" x="169" y="32" width="100" height="41"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="pIS-8r-1Bo"/>
-                                        </constraints>
+                                        <rect key="frame" x="169" y="38" width="109" height="29"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                        <inset key="contentEdgeInsets" minX="30" minY="0.0" maxX="30" maxY="0.0"/>
                                         <state key="normal" title="语言"/>
                                         <connections>
                                             <action selector="languageClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="htp-8Z-nwV"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Weu-il-C0j">
-                                        <rect key="frame" x="274" y="32" width="49" height="41"/>
+                                        <rect key="frame" x="283" y="32" width="49" height="41"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                         <state key="normal" title="签入"/>
                                         <connections>
@@ -57,7 +55,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p3a-1l-3Ny">
-                                        <rect key="frame" x="353" y="32" width="49" height="41"/>
+                                        <rect key="frame" x="362" y="32" width="49" height="41"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                         <state key="normal" title="签出"/>
                                         <connections>
@@ -1364,8 +1362,8 @@
                                                     <action selector="discountChange:" destination="qGq-0L-77b" eventType="editingChanged" id="iu9-ym-Bej"/>
                                                 </connections>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%折扣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhd-2i-LYN">
-                                                <rect key="frame" x="280" y="2" width="34" height="14.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="优惠码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhd-2i-LYN">
+                                                <rect key="frame" x="280" y="2" width="37" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
