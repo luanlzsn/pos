@@ -203,10 +203,10 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
     }
     
     // MARK: 打印收据
-    func printPayReceipt(tableDic: [String : Any]) {
+    func printPayBill(tableDic: [String : Any]) {
         weak var weakSelf = self
         let order = tableDic["OrderModel"] as! OrderModel
-        AntManage.postRequest(path: "print/printPayReceipt", params: ["restaurant_id":AntManage.userModel!.restaurant_id, "order_id":order.orderId, "access_token":AntManage.userModel!.token], successResult: { (_) in
+        AntManage.postRequest(path: "print/printPayBill", params: ["restaurant_id":AntManage.userModel!.restaurant_id, "order_id":order.orderId, "access_token":AntManage.userModel!.token], successResult: { (_) in
             let type = tableDic["TableType"] as! String
             weakSelf?.getTablesInfoWithType(type: type)
         }, failureResult: {})
@@ -227,9 +227,9 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
         } else if menu == NSLocalizedString("分单", comment: "") {
             
         } else if menu == NSLocalizedString("历史订单", comment: "") {
-            
+            performSegue(withIdentifier: "History", sender: tableDic)
         } else if menu == NSLocalizedString("打印收据", comment: "") {
-            printPayReceipt(tableDic: tableDic)
+            printPayBill(tableDic: tableDic)
         }
     }
     
@@ -255,6 +255,13 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
             let payment: PaymentController = segue.destination as! PaymentController
             payment.tableType = (sender as! [String : Any])["TableType"] as! String
             payment.tableNo = (sender as! [String : Any])["TableNo"] as! Int
+        } else if segue.identifier == "MergeBill" {
+            let mergeBill: MergeBillController = segue.destination as! MergeBillController
+            mergeBill.orderIdArray = sender as! [Int]
+        } else if segue.identifier == "History" {
+            let history: HistoryController = segue.destination as! HistoryController
+            history.tableType = (sender as! [String : Any])["TableType"] as! String
+            history.tableNo = (sender as! [String : Any])["TableNo"] as! Int
         }
     }
     

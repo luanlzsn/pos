@@ -72,8 +72,8 @@ class PaymentController: AntController,UITableViewDelegate,UITableViewDataSource
     }
     
     // MARK: 打印收据
-    @IBAction func printPayReceiptClick() {
-        AntManage.postRequest(path: "print/printPayReceipt", params: ["restaurant_id":AntManage.userModel!.restaurant_id, "order_id":orderModel!.orderId, "access_token":AntManage.userModel!.token], successResult: { (_) in
+    @IBAction func printPayBillClick() {
+        AntManage.postRequest(path: "print/printPayBill", params: ["restaurant_id":AntManage.userModel!.restaurant_id, "order_id":orderModel!.orderId, "access_token":AntManage.userModel!.token], successResult: { (_) in
             AntManage.showDelayToast(message: NSLocalizedString("打印收据成功。", comment: ""))
         }, failureResult: {})
     }

@@ -17,6 +17,9 @@ class MenuController: AntController,UICollectionViewDelegate,UICollectionViewDat
     @IBOutlet weak var changeView: UIView!
     @IBOutlet weak var changeHeight: NSLayoutConstraint!
     @IBOutlet weak var changeCollection: UICollectionView!
+    @IBOutlet weak var changeCollectionBottom: NSLayoutConstraint!
+    @IBOutlet weak var mergeConfirmBtn: UIButton!
+    
     var confirmMenu: ConfirmBlock?
     
     var model: OrderModel?
@@ -25,6 +28,9 @@ class MenuController: AntController,UICollectionViewDelegate,UICollectionViewDat
     weak var home: HomeController?
     var menuTitleArray = [String]()//菜单数组
     var changeArray = [[String : [NSNumber]]]()//可以被换桌的信息
+    var isChangeTable = false//是否是换桌
+    var mergeArray = [OrderModel]()//可合单的信息
+    var selectMergeArray = [Int]()//选择的合单的餐桌
     
     deinit {
         confirmMenu = nil
@@ -56,7 +62,11 @@ class MenuController: AntController,UICollectionViewDelegate,UICollectionViewDat
         viewHeight.constant = CGFloat(55 + (menuTitleArray.count / 2) * 51 + 1)
     }
     
+    // MARK: 获取换桌信息
     func checkChangeTableData() {
+        changeArray.removeAll()
+        changeCollectionBottom.constant = 0
+        mergeConfirmBtn.isHidden = true
         var height = 0.0
         
         var dineSet = Set<NSNumber>()
@@ -99,6 +109,38 @@ class MenuController: AntController,UICollectionViewDelegate,UICollectionViewDat
             height = Double(kScreenHeight - 75)
         }
         changeHeight.constant = CGFloat(35.0 + height)
+        changeCollection.reloadData()
+    }
+    
+    // MAKR: 获取合单信息
+    func checkMerge() {
+        mergeArray.removeAll()
+        changeCollectionBottom.constant = 55
+        mergeConfirmBtn.isHidden = false
+        var height = 0.0
+        for (num, order) in home!.dineDic {
+            if order.table_status != "R", num.intValue != tableNo {
+                mergeArray.append(order)
+            }
+        }
+        mergeArray.sort { (order1, order2) -> Bool in
+            order1.table_no.intValue < order2.table_no.intValue
+        }
+        height += 45.0 * (ceil(Double(mergeArray.count) / 3.0) + 1) + 55
+        
+        if height > Double(kScreenHeight - 75) {
+            height = Double(kScreenHeight - 75)
+        }
+        changeHeight.constant = CGFloat(35.0 + height)
+        changeCollection.reloadData()
+    }
+    
+    // MARK: 确认合单
+    @IBAction func mergeConfirmClick() {
+        var orderIdArray = selectMergeArray
+        orderIdArray.append(model!.orderId)
+        home!.performSegue(withIdentifier: "MergeBill", sender: orderIdArray)
+        dismiss(animated: false, completion: nil)
     }
     
     @IBAction func cancelChangeViewClick() {
@@ -130,17 +172,37 @@ class MenuController: AntController,UICollectionViewDelegate,UICollectionViewDat
     
     // MARK: UICollectionViewDelegate,UICollectionViewDataSource
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return collectionView == collection ? 1 : changeArray.count
+        if collectionView == collection {
+            return 1
+        } else {
+            if isChangeTable {
+                return changeArray.count
+            } else {
+                return 1
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionView == collection ? menuTitleArray.count : ((changeArray[section].values.first != nil) ? changeArray[section].values.first!.count : 0)
+        if collectionView == collection {
+            return menuTitleArray.count
+        } else {
+            if isChangeTable {
+                return ((changeArray[section].values.first != nil) ? changeArray[section].values.first!.count : 0)
+            } else {
+                return mergeArray.count
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if collectionView == changeCollection, kind == UICollectionElementKindSectionHeader {
             let header: ChangeTableHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ChangeTableHeaderView", for: indexPath) as! ChangeTableHeaderView
-            header.headerTitle.text = changeArray[indexPath.section].keys.first
+            if isChangeTable {
+                header.headerTitle.text = changeArray[indexPath.section].keys.first
+            } else {
+                header.headerTitle.text = NSLocalizedString("合单", comment: "")
+            }
             return header
         } else {
             return UICollectionReusableView()
@@ -155,11 +217,14 @@ class MenuController: AntController,UICollectionViewDelegate,UICollectionViewDat
             weak var weakSelf = self
             cell.confirmMenu = {(_) -> () in
                 if weakSelf?.menuTitleArray[indexPath.row] == NSLocalizedString("换桌", comment: "") {
-                    if weakSelf?.changeArray.count == 0 {
-                        weakSelf?.checkChangeTableData()
-                    }
+                    weakSelf?.isChangeTable = true
+                    weakSelf?.checkChangeTableData()
                     weakSelf?.changeView.isHidden = false
-                    weakSelf?.changeCollection.reloadData()
+                } else if weakSelf?.menuTitleArray[indexPath.row] == NSLocalizedString("合单", comment: "") {
+                    weakSelf?.isChangeTable = false
+                    weakSelf?.selectMergeArray.removeAll()
+                    weakSelf?.checkMerge()
+                    weakSelf?.changeView.isHidden = false
                 } else {
                     if weakSelf?.confirmMenu != nil {
                         weakSelf?.confirmMenu!(weakSelf!.menuTitleArray[indexPath.row])
@@ -180,19 +245,38 @@ class MenuController: AntController,UICollectionViewDelegate,UICollectionViewDat
             return cell
         } else {
             let cell: ChangeTableCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ChangeTableCell", for: indexPath) as! ChangeTableCell
-            cell.changeNumBtn.setTitle("\(changeArray[indexPath.section].values.first![indexPath.row])", for: .normal)
-            weak var weakSelf = self
-            cell.changeTable = {(_) -> () in
-                let tableNo = (weakSelf?.changeArray[indexPath.section].values.first![indexPath.row])!
-                let tableType: String!
-                if weakSelf?.changeArray[indexPath.section].keys.first == NSLocalizedString("堂食", comment: "") {
-                    tableType = "D"
-                } else if weakSelf?.changeArray[indexPath.section].keys.first == NSLocalizedString("外卖", comment: "") {
-                    tableType = "T"
-                } else {
-                    tableType = "W"
+            if isChangeTable {
+                cell.changeNumBtn.setTitle("\(changeArray[indexPath.section].values.first![indexPath.row])", for: .normal)
+                cell.changeNumBtn.layer.borderColor = UIColor.init(rgb: 0x808080).cgColor
+                weak var weakSelf = self
+                cell.changeTable = {(_) -> () in
+                    let tableNo = (weakSelf?.changeArray[indexPath.section].values.first![indexPath.row])!
+                    let tableType: String!
+                    if weakSelf?.changeArray[indexPath.section].keys.first == NSLocalizedString("堂食", comment: "") {
+                        tableType = "D"
+                    } else if weakSelf?.changeArray[indexPath.section].keys.first == NSLocalizedString("外卖", comment: "") {
+                        tableType = "T"
+                    } else {
+                        tableType = "W"
+                    }
+                    weakSelf?.changeTable(tableNo:tableNo , tableType:tableType )
                 }
-                weakSelf?.changeTable(tableNo:tableNo , tableType:tableType )
+            } else {
+                cell.changeNumBtn.setTitle("\(mergeArray[indexPath.row].table_no)", for: .normal)
+                if selectMergeArray.contains(mergeArray[indexPath.row].orderId) {
+                    cell.changeNumBtn.layer.borderColor = UIColor.init(rgb: 0x5BC0DE).cgColor
+                } else {
+                    cell.changeNumBtn.layer.borderColor = UIColor.init(rgb: 0x808080).cgColor
+                }
+                weak var weakSelf = self
+                cell.changeTable = {(_) -> () in
+                    if weakSelf!.selectMergeArray.contains(weakSelf!.mergeArray[indexPath.row].orderId) {
+                        weakSelf?.selectMergeArray.remove(at: weakSelf!.selectMergeArray.index(of: weakSelf!.mergeArray[indexPath.row].orderId)!)
+                    } else {
+                        weakSelf?.selectMergeArray.append(weakSelf!.mergeArray[indexPath.row].orderId)
+                    }
+                    weakSelf?.changeCollection.reloadData()
+                }
             }
             return cell
         }

@@ -161,3 +161,46 @@ class TasteModel: AntModel {
         return ["tasteId":"id"]
     }
 }
+
+// MARK: 历史订单信息
+class HistoryOrderModel: AntModel {
+    var paid = 0.0//支付金额
+    var tip = 0.0//小费
+    var cash_val = 0.0//现金支付金额
+    var card_val = 0.0//卡支付金额
+    var change = 0.0//找零
+    var order_no = ""//订单号
+    var tax = 0//税率
+    var table_status = ""//订单状态
+    var tax_amount = 0.0//交税金额
+    var subtotal = 0.0//小计
+    var total = 0.0//总计
+    var message = ""
+    var discount_value = 0.0//折扣
+    var promocode = ""//优惠码
+    var fix_discount = 0.0//固定优惠
+    var percent_discount = 0.0//百分比优惠
+    var created = ""//创建时间
+    var orderId = 0//订单id
+    
+    override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
+        return ["orderId":"id"]
+    }
+    
+}
+
+// MARK: 历史信息
+class HistoryModel: AntModel {
+    var orderInfo: HistoryOrderModel!
+    var orderItemArray = [OrderItemModel]()
+    var orderSplitArray = [AntModel]()
+    
+    override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
+        return ["orderInfo":"Order", "orderItemArray":"OrderItem", "orderSplitArray":"OrderSplit"]
+    }
+    
+    override static func mj_objectClassInArray() -> [AnyHashable : Any]! {
+        return ["orderItemArray":OrderItemModel.classForCoder(), "orderSplitArray":AntModel.classForCoder()]
+    }
+    
+}
