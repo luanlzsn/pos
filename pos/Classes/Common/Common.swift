@@ -99,6 +99,19 @@ class Common: NSObject {
         }
     }
     
+    // MARK: - 校验数字
+    class func isValidateNumber(numberStr: String) -> Bool {
+        do {
+            let pattern = "012345678"
+            let regex: NSRegularExpression = try NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+            let matches = regex.numberOfMatches(in: numberStr, options: [.reportProgress], range: NSMakeRange(0, numberStr.characters.count))
+            return matches > 0
+        }
+        catch {
+            return false
+        }
+    }
+    
     //MARK: - 将字符串根据格式转换为日期
     class func obtainDateWithStr(str: String, formatterStr: String) -> Date {
         let formatter = DateFormatter()

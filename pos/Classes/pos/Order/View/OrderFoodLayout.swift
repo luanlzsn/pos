@@ -18,8 +18,8 @@ class OrderFoodLayout: UICollectionViewLayout {
     var endPoint = CGPoint.zero
     var count = 0
     var sectionInset = UIEdgeInsets.zero
-    var lineSpacing: CGFloat = 0.5
-    var itemSpacing: CGFloat = 0.5
+    var lineSpacing: CGFloat = 1
+    var itemSpacing: CGFloat = 1
     var itemHeigh: CGFloat = 50.0
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {

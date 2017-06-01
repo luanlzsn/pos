@@ -38,7 +38,7 @@ class HistoryController: AntController,UITableViewDelegate,UITableViewDataSource
     
     func getHistoryInfo() {
         weak var weakSelf = self
-        AntManage.postRequest(path: "orderHandler/tableHistory", params: ["restaurant_id":AntManage.userModel!.restaurant_id, "table":tableNo, "order_type":tableType, "access_token":AntManage.userModel!.token], successResult: { (response) in
+        AntManage.postRequest(path: "orderHandler/tableHistory", params: ["restaurant_id":AntManage.userModel!.restaurant_id, "table":tableNo, "type":tableType, "access_token":AntManage.userModel!.token], successResult: { (response) in
             let dic = (response["data"] as! NSString).mj_JSONObject() as! NSDictionary
             weakSelf?.historyArray = HistoryModel.mj_objectArray(withKeyValuesArray: dic["Order_detail"]) as! [HistoryModel]
             weakSelf?.tableView.reloadData()

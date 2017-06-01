@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,OrderFoodLayout_Delegate {
+class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,OrderFoodLayout_Delegate,UISearchBarDelegate {
 
     @IBOutlet weak var menuCollection: UICollectionView!//菜单分类
     @IBOutlet weak var foodCollection: UICollectionView!//菜单信息
@@ -35,6 +35,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
     var categoryArray = [CategoryModel]()//菜单
     var selectMenu = CategoryModel()//当前选择的菜单类别
     var cousinesDic = [Int : [CousineModel]]()//菜单字典：key为菜单类别，value为菜单类别对应的菜
+    var foodArray = [CousineModel]()//菜单
     var selectFoodArray = [OrderItemModel]()//选择的餐数组
     
     override func viewDidLoad() {
@@ -310,7 +311,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
     // MARK: 获取子菜单信息
     func getCousinesByCategoryId() {
         if cousinesDic.keys.contains(selectMenu.categoryId) {
-            foodCollection.reloadData()
+            checkFoodInfo()
         } else {
             weak var weakSelf = self
             AntManage.postRequest(path: "tables/getCousinesByCategoryId", params: ["category_id":selectMenu.categoryId, "access_token":AntManage.userModel!.token], successResult: { (response) in
@@ -322,9 +323,25 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
                     }
                 }
                 weakSelf?.cousinesDic[weakSelf!.selectMenu.categoryId] = array
+                weakSelf?.checkFoodInfo()
                 weakSelf?.foodCollection.reloadData()
             }, failureResult: {})
         }
+    }
+    
+    // MARK: 
+    func checkFoodInfo() {
+        foodArray.removeAll()
+        if searchView.text!.isEmpty {
+            foodArray += cousinesDic[selectMenu.categoryId]!
+        } else {
+            for model in cousinesDic[selectMenu.categoryId]! {
+                if model.zh.contains(searchView.text!) || model.en.contains(searchView.text!) {
+                    foodArray.append(model)
+                }
+            }
+        }
+        foodCollection.reloadData()
     }
     
     // MARK: 删除已点菜
@@ -345,10 +362,20 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
         let alert = UIAlertController(title: NSLocalizedString("改数量", comment: ""), message: NSLocalizedString("新数量", comment: ""), preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.keyboardType = .numberPad
+            textField.text = "1"
         }
         alert.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: ""), style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: NSLocalizedString("保存", comment: ""), style: .default, handler: { (_) in
             let textField = alert.textFields?.first!
+            if Common.isValidateNumber(numberStr: textField!.text!) {
+                if Int(textField!.text!)! <= 0 {
+                    AntManage.showDelayToast(message: NSLocalizedString("不能小于0", comment: ""))
+                    return
+                }
+            } else {
+                AntManage.showDelayToast(message: NSLocalizedString("只能输入数字", comment: ""))
+                return
+            }
             var itemIdList = [Int]()
             for item in weakSelf!.selectFoodArray {
                 itemIdList.append(item.orderItemId)
@@ -452,6 +479,15 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Taste" {
             let taste: TasteController = segue.destination as! TasteController
+            if selectFoodArray.count == 1 {
+                let model = selectFoodArray.first!
+                taste.instructions = model.special_instruction
+                if model.selected_extras.count > 0 {
+                    for extras in model.selected_extras {
+                        taste.existingTasteIdArray.append(extras.extraId)
+                    }
+                }
+            }
             weak var weakSelf = self
             taste.selectTaste = {(selectTaste) in
                 weakSelf?.addExtras(extraIdList: (selectTaste as! [String : Any])["ExtraIdList"] as! [Int], special: (selectTaste as! [String : Any])["Special"] as! String)
@@ -461,6 +497,24 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             payment.tableType = tableType
             payment.tableNo = tableNo
         }
+    }
+    
+    //MARK: - UISearchBarDelegate
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.resignFirstResponder()
+        searchBar.text = ""
+        checkFoodInfo()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.resignFirstResponder()
+        checkFoodInfo()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        checkFoodInfo()
     }
     
     // MARK: UITableViewDelegate,UITableViewDataSource
@@ -520,6 +574,9 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
                         zhName += "\(extras.name),"
                     }
                 }
+            }
+            if !model.special_instruction.isEmpty {
+                zhName += "\n" + NSLocalizedString("特别说明", comment: "") + model.special_instruction
             }
             cell.note.text = zhName
             return cell
@@ -613,11 +670,12 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
         if collectionView == menuCollection {
             return categoryArray.count
         } else {
-            if cousinesDic.keys.contains(selectMenu.categoryId) {
-                return (cousinesDic[selectMenu.categoryId]?.count)!
-            } else {
-                return 0
-            }
+//            if cousinesDic.keys.contains(selectMenu.categoryId) {
+//                return (cousinesDic[selectMenu.categoryId]?.count)!
+//            } else {
+//                return 0
+//            }
+            return foodArray.count
         }
     }
     
@@ -631,7 +689,8 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             return cell
         } else {
             let cell: OrderFoodCell = collectionView.dequeueReusableCell(withReuseIdentifier: "OrderFoodCell", for: indexPath) as! OrderFoodCell
-            let model = cousinesDic[selectMenu.categoryId]![indexPath.row]
+//            let model = cousinesDic[selectMenu.categoryId]![indexPath.row]
+            let model = foodArray[indexPath.row]
             cell.name.text = "\(model.en)\n\(model.zh)"
             cell.price.text = "$\(model.price)"
             return cell

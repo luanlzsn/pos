@@ -18,6 +18,8 @@ class TasteController: AntController,UICollectionViewDelegate,UICollectionViewDa
     var tasteArray = [TasteModel]()
     var selectArray = [TasteModel]()
     var selectTaste: ConfirmBlock?
+    var existingTasteIdArray = [Int]()//现有的口味id
+    var instructions = ""//特别说明
     
     deinit {
         selectTaste = nil
@@ -28,6 +30,7 @@ class TasteController: AntController,UICollectionViewDelegate,UICollectionViewDa
 
         tasteHeight.constant = 0
         selectHeight.constant = 0
+        textField.text = instructions
         getAllExtras()
     }
     
@@ -36,10 +39,6 @@ class TasteController: AntController,UICollectionViewDelegate,UICollectionViewDa
     }
     
     @IBAction func saveClick(_ sender: UIButton) {
-        if selectArray.count == 0 {
-            AntManage.showDelayToast(message: NSLocalizedString("请选择味道", comment: ""))
-            return
-        }
         if selectTaste != nil {
             var extraIdList = [Int]()
             for model in selectArray {
@@ -68,9 +67,31 @@ class TasteController: AntController,UICollectionViewDelegate,UICollectionViewDa
                 weakSelf?.tasteHeight.constant = height
             }
             weakSelf?.tasteCollection.reloadData()
+            weakSelf?.checkExistingTaste()
         }, failureResult: {
             weakSelf?.dismiss(animated: true, completion: nil)
         })
+    }
+    
+    func checkExistingTaste() {
+        if existingTasteIdArray.count > 0 {
+            for model in tasteArray {
+                if existingTasteIdArray.contains(model.tasteId) {
+                    selectArray.append(model)
+                }
+            }
+        }
+        checkSelectCollectionHeight()
+    }
+    
+    func checkSelectCollectionHeight() {
+        let height = CGFloat(ceil(Double(selectArray.count) / 9.0) * 60.0 - 10.0)
+        if height + tasteHeight.constant + 250 > kScreenHeight {
+            selectHeight.constant = kScreenHeight - tasteHeight.constant - 250
+        } else {
+            selectHeight.constant = height
+        }
+        selectCollection.reloadData()
     }
     
     // MARK: UICollectionViewDelegate,UICollectionViewDataSource
@@ -86,7 +107,7 @@ class TasteController: AntController,UICollectionViewDelegate,UICollectionViewDa
         } else {
             model = selectArray[indexPath.row]
         }
-        cell.tasteLabel.text = (LanguageManager.currentLanguageString() == "中文") ? model.name_zh : model.name
+        cell.tasteLabel.text = (LanguageManager.currentLanguageString() == "zh-Hans") ? model.name_zh : model.name
         return cell
     }
     
@@ -99,13 +120,7 @@ class TasteController: AntController,UICollectionViewDelegate,UICollectionViewDa
         } else {
             selectArray.remove(at: indexPath.row)
         }
-        let height = CGFloat(ceil(Double(selectArray.count) / 9.0) * 60.0 - 10.0)
-        if height + tasteHeight.constant + 250 > kScreenHeight {
-            selectHeight.constant = kScreenHeight - tasteHeight.constant - 250
-        } else {
-            selectHeight.constant = height
-        }
-        selectCollection.reloadData()
+        checkSelectCollectionHeight()
     }
     
     override func didReceiveMemoryWarning() {
