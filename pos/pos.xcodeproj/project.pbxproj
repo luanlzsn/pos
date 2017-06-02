@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F08FFF91EE1473A005C2C78 /* MergeBillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FFF81EE1473A005C2C78 /* MergeBillCell.swift */; };
+		0F08FFFB1EE14757005C2C78 /* MergeBillDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FFFA1EE14757005C2C78 /* MergeBillDetailCell.swift */; };
 		0F0BA3811EDD839500D9873C /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BA3801EDD839400D9873C /* HistoryController.swift */; };
 		0F26FDC01EDEE79F005A424F /* HistoryDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F26FDBF1EDEE79F005A424F /* HistoryDetailController.swift */; };
 		0F26FDC81EDF05F1005A424F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0F26FDCA1EDF05F1005A424F /* Localizable.strings */; };
@@ -15,6 +17,7 @@
 		0F7590961EDED1EC00B180D1 /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7590951EDED1EC00B180D1 /* HistoryCell.swift */; };
 		0F8AD2AA1EDD46F700438AFD /* ChangeTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AD2A91EDD46F700438AFD /* ChangeTableController.swift */; };
 		0F8AD2AC1EDD578000438AFD /* MergeBillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AD2AB1EDD578000438AFD /* MergeBillController.swift */; };
+		0FB0E8FF1EE182A80051C0DF /* AutoGenStrings.py in Resources */ = {isa = PBXBuildFile; fileRef = 0FB0E8FE1EE182A80051C0DF /* AutoGenStrings.py */; };
 		0FB49A8A1EDBEE7C001BE76A /* PaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB49A891EDBEE7C001BE76A /* PaymentController.swift */; };
 		0FC1A32F1EDC50EC005438A5 /* PaymentOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1A32E1EDC50EC005438A5 /* PaymentOrderCell.swift */; };
 		0FC1A3311EDC619C005438A5 /* CalculatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1A3301EDC619C005438A5 /* CalculatorCell.swift */; };
@@ -84,6 +87,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F08FFF81EE1473A005C2C78 /* MergeBillCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeBillCell.swift; sourceTree = "<group>"; };
+		0F08FFFA1EE14757005C2C78 /* MergeBillDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeBillDetailCell.swift; sourceTree = "<group>"; };
 		0F0BA3801EDD839400D9873C /* HistoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
 		0F26FDBF1EDEE79F005A424F /* HistoryDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryDetailController.swift; sourceTree = "<group>"; };
 		0F26FDC21EDEFA24005A424F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -96,6 +101,7 @@
 		0F7590951EDED1EC00B180D1 /* HistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
 		0F8AD2A91EDD46F700438AFD /* ChangeTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTableController.swift; sourceTree = "<group>"; };
 		0F8AD2AB1EDD578000438AFD /* MergeBillController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeBillController.swift; sourceTree = "<group>"; };
+		0FB0E8FE1EE182A80051C0DF /* AutoGenStrings.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = AutoGenStrings.py; sourceTree = "<group>"; };
 		0FB49A891EDBEE7C001BE76A /* PaymentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentController.swift; sourceTree = "<group>"; };
 		0FC1A32E1EDC50EC005438A5 /* PaymentOrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentOrderCell.swift; sourceTree = "<group>"; };
 		0FC1A3301EDC619C005438A5 /* CalculatorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorCell.swift; sourceTree = "<group>"; };
@@ -186,6 +192,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FB0E8FD1EE182A80051C0DF /* RunScript */ = {
+			isa = PBXGroup;
+			children = (
+				0FB0E8FE1EE182A80051C0DF /* AutoGenStrings.py */,
+			);
+			path = RunScript;
+			sourceTree = "<group>";
+		};
 		0FB49A861EDBEE66001BE76A /* Payment */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +224,8 @@
 			children = (
 				0FC1A32E1EDC50EC005438A5 /* PaymentOrderCell.swift */,
 				0FC1A3301EDC619C005438A5 /* CalculatorCell.swift */,
+				0F08FFF81EE1473A005C2C78 /* MergeBillCell.swift */,
+				0F08FFFA1EE14757005C2C78 /* MergeBillDetailCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -474,6 +490,7 @@
 		6BB7F1071EBF2A7000918BEF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0FB0E8FD1EE182A80051C0DF /* RunScript */,
 				6B9540E51EC820C800CCFF95 /* Ant */,
 				6B9540EB1EC820C800CCFF95 /* Common */,
 				6B9540F31EC820C800CCFF95 /* pos */,
@@ -493,6 +510,7 @@
 				6B2EDB1B1EBCA7380051C1A7 /* Frameworks */,
 				6B2EDB1C1EBCA7380051C1A7 /* Resources */,
 				6BB7F1021EBF297800918BEF /* ShellScript */,
+				0FB0E9001EE182CB0051C0DF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -573,6 +591,7 @@
 				6B2EDB291EBCA7380051C1A7 /* Assets.xcassets in Resources */,
 				0F26FDC81EDF05F1005A424F /* Localizable.strings in Resources */,
 				6B95410B1EC820C800CCFF95 /* Login.storyboard in Resources */,
+				0FB0E8FF1EE182A80051C0DF /* AutoGenStrings.py in Resources */,
 				6BD6DD501EC9ECA900652204 /* HomeCell.xib in Resources */,
 				6B2EDB271EBCA7380051C1A7 /* Main.storyboard in Resources */,
 			);
@@ -596,6 +615,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0FB0E9001EE182CB0051C0DF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "python ${SRCROOT}/Classes/RunScript/AutoGenStrings.py ${SRCROOT}/${TARGET_NAME}";
+		};
 		6B9541321EC821F800CCFF95 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -659,11 +691,13 @@
 				0F8AD2AA1EDD46F700438AFD /* ChangeTableController.swift in Sources */,
 				0F8AD2AC1EDD578000438AFD /* MergeBillController.swift in Sources */,
 				6B9541081EC820C800CCFF95 /* HomeController.swift in Sources */,
+				0F08FFFB1EE14757005C2C78 /* MergeBillDetailCell.swift in Sources */,
 				6BD6DD4F1EC9ECA900652204 /* HomeCell.swift in Sources */,
 				6B9541001EC820C800CCFF95 /* AntNavController.swift in Sources */,
 				6B6DFE551ED00DDC00415B38 /* MenuController.swift in Sources */,
 				0F7590961EDED1EC00B180D1 /* HistoryCell.swift in Sources */,
 				6B78D6231ED1BB0400A1F6BF /* OrderFoodCell.swift in Sources */,
+				0F08FFF91EE1473A005C2C78 /* MergeBillCell.swift in Sources */,
 				6B9541011EC820C800CCFF95 /* AntSingleton.swift in Sources */,
 				0FC1A32F1EDC50EC005438A5 /* PaymentOrderCell.swift in Sources */,
 				6B9541021EC820C800CCFF95 /* Common.swift in Sources */,

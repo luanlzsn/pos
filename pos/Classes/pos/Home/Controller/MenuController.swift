@@ -45,7 +45,7 @@ class MenuController: AntController,UICollectionViewDelegate,UICollectionViewDat
     func checkMenuData() {
         if tableType == "D" {
             titleLabel.text = NSLocalizedString("堂食", comment: "") + " \(tableNo)"
-            menuTitleArray += [NSLocalizedString("订单", comment: ""),NSLocalizedString("换桌", comment: ""),NSLocalizedString("付款", comment: ""),NSLocalizedString("变空桌", comment: ""),NSLocalizedString("合单", comment: ""),NSLocalizedString("分单", comment: ""),NSLocalizedString("历史订单", comment: "")]
+            menuTitleArray += [NSLocalizedString("订单", comment: ""),NSLocalizedString("换桌", comment: ""),NSLocalizedString("付款", comment: ""),NSLocalizedString("变空桌", comment: ""),NSLocalizedString("合单", comment: ""),/*NSLocalizedString("分单", comment: ""),*/NSLocalizedString("历史订单", comment: "")]
         } else if tableType == "T" {
             titleLabel.text = NSLocalizedString("外卖", comment: "") + " \(tableNo)"
             menuTitleArray += [NSLocalizedString("订单", comment: ""),NSLocalizedString("换桌", comment: ""),NSLocalizedString("付款", comment: ""),NSLocalizedString("变空桌", comment: ""),NSLocalizedString("历史订单", comment: "")]
@@ -119,12 +119,12 @@ class MenuController: AntController,UICollectionViewDelegate,UICollectionViewDat
         mergeConfirmBtn.isHidden = false
         var height = 0.0
         for (num, order) in home!.dineDic {
-            if order.table_status != "R", num.intValue != tableNo {
+            if order.table_status != "R", num != tableNo {
                 mergeArray.append(order)
             }
         }
         mergeArray.sort { (order1, order2) -> Bool in
-            order1.table_no.intValue < order2.table_no.intValue
+            order1.table_no < order2.table_no
         }
         height += 45.0 * (ceil(Double(mergeArray.count) / 3.0) + 1) + 55
         
@@ -138,7 +138,7 @@ class MenuController: AntController,UICollectionViewDelegate,UICollectionViewDat
     // MARK: 确认合单
     @IBAction func mergeConfirmClick() {
         var orderIdArray = selectMergeArray
-        orderIdArray.append(model!.orderId)
+        orderIdArray.insert(model!.table_no, at: 0)
         home!.performSegue(withIdentifier: "MergeBill", sender: orderIdArray)
         dismiss(animated: false, completion: nil)
     }
@@ -263,17 +263,17 @@ class MenuController: AntController,UICollectionViewDelegate,UICollectionViewDat
                 }
             } else {
                 cell.changeNumBtn.setTitle("\(mergeArray[indexPath.row].table_no)", for: .normal)
-                if selectMergeArray.contains(mergeArray[indexPath.row].orderId) {
+                if selectMergeArray.contains(mergeArray[indexPath.row].table_no) {
                     cell.changeNumBtn.layer.borderColor = UIColor.init(rgb: 0x5BC0DE).cgColor
                 } else {
                     cell.changeNumBtn.layer.borderColor = UIColor.init(rgb: 0x808080).cgColor
                 }
                 weak var weakSelf = self
                 cell.changeTable = {(_) -> () in
-                    if weakSelf!.selectMergeArray.contains(weakSelf!.mergeArray[indexPath.row].orderId) {
-                        weakSelf?.selectMergeArray.remove(at: weakSelf!.selectMergeArray.index(of: weakSelf!.mergeArray[indexPath.row].orderId)!)
+                    if weakSelf!.selectMergeArray.contains(weakSelf!.mergeArray[indexPath.row].table_no) {
+                        weakSelf?.selectMergeArray.remove(at: weakSelf!.selectMergeArray.index(of: weakSelf!.mergeArray[indexPath.row].table_no)!)
                     } else {
-                        weakSelf?.selectMergeArray.append(weakSelf!.mergeArray[indexPath.row].orderId)
+                        weakSelf?.selectMergeArray.append(weakSelf!.mergeArray[indexPath.row].table_no)
                     }
                     weakSelf?.changeCollection.reloadData()
                 }

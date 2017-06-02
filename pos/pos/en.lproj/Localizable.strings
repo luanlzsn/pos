@@ -49,6 +49,7 @@
 "号码" = "Phone";
 "小计" = "SubTotal";
 "合计" = "Total";
+"总计" = "Total";
 "折扣" = "Discount";
 "折后价" = "After Discount";
 "默认" = "Default";

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,OrderFoodLayout_Delegate,UISearchBarDelegate {
+class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UISearchBarDelegate {
 
     @IBOutlet weak var menuCollection: UICollectionView!//菜单分类
     @IBOutlet weak var foodCollection: UICollectionView!//菜单信息
@@ -49,7 +49,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
         alreadyTableView.rowHeight = UITableViewAutomaticDimension
         billTableView.separatorInset = UIEdgeInsets.zero
         billTableView.layoutMargins = UIEdgeInsets.zero
-        foodLayout.delegate = self
+//        foodLayout.delegate = self
         if isOrder {
             getOrderInfo()
         }
@@ -648,21 +648,25 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
         }
     }
     
-    // MARK: OrderFoodLayout_Delegate
-    func collectionView(collectionView: UICollectionView, indexPath: IndexPath) -> CGFloat {
-        if cousinesDic.keys.contains(selectMenu.categoryId) {
-            let model = cousinesDic[selectMenu.categoryId]![indexPath.row]
-            return ("\(model.en)\n\(model.zh)" as NSString).width(for: UIFont.systemFont(ofSize: 14)) + 35 + ("$\(model.price)" as NSString).width(for: UIFont.systemFont(ofSize: 14))
-        } else {
-            return 0
-        }
-    }
+//    // MARK: OrderFoodLayout_Delegate
+//    func collectionView(collectionView: UICollectionView, indexPath: IndexPath) -> CGFloat {
+//        if cousinesDic.keys.contains(selectMenu.categoryId) {
+//            let model = cousinesDic[selectMenu.categoryId]![indexPath.row]
+//            return ("\(model.en)\n\(model.zh)" as NSString).width(for: UIFont.systemFont(ofSize: 14)) + 35 + ("$\(model.price)" as NSString).width(for: UIFont.systemFont(ofSize: 14))
+//        } else {
+//            return 0
+//        }
+//    }
     
     //MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let model = categoryArray[indexPath.row]
-        let width = ("\(model.en)\n\(model.zh)" as NSString).width(for: UIFont.systemFont(ofSize: 16)) + 40
-        return CGSize(width: width, height: 75)
+        if collectionView == menuCollection {
+            let model = categoryArray[indexPath.row]
+            let width = ("\(model.en)\n\(model.zh)" as NSString).width(for: UIFont.systemFont(ofSize: 16)) + 40
+            return CGSize(width: width, height: 75)
+        } else {
+            return CGSize(width: (collectionView.width - 10.0) / 2.0, height: 56)
+        }
     }
     
     // MARK: UICollectionViewDelegate,UICollectionViewDataSource
@@ -691,7 +695,8 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             let cell: OrderFoodCell = collectionView.dequeueReusableCell(withReuseIdentifier: "OrderFoodCell", for: indexPath) as! OrderFoodCell
 //            let model = cousinesDic[selectMenu.categoryId]![indexPath.row]
             let model = foodArray[indexPath.row]
-            cell.name.text = "\(model.en)\n\(model.zh)"
+            cell.name.text = model.en
+            cell.nameZh.text = model.zh
             cell.price.text = "$\(model.price)"
             return cell
         }

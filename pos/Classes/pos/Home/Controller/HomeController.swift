@@ -13,9 +13,9 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
     @IBOutlet weak var collection: UICollectionView!
     @IBOutlet weak var takeoutCollection: UICollectionView!
     @IBOutlet weak var deliveryCollection: UICollectionView!
-    var dineDic = [NSNumber : OrderModel]()//堂食字典,key为餐桌号,value为餐桌信息
-    var takeoutDic = [NSNumber : OrderModel]()//外卖字典,key为餐桌号,value为餐桌信息
-    var deliveryDic = [NSNumber : OrderModel]()//送餐字典,key为餐桌号,value为餐桌信息
+    var dineDic = [Int : OrderModel]()//堂食字典,key为餐桌号,value为餐桌信息
+    var takeoutDic = [Int : OrderModel]()//外卖字典,key为餐桌号,value为餐桌信息
+    var deliveryDic = [Int : OrderModel]()//送餐字典,key为餐桌号,value为餐桌信息
     var dineNum = 0//堂食餐桌数量
     var takeoutNum = 0//外卖餐桌数量
     var deliveryNum = 0//送餐餐桌数量
@@ -196,13 +196,13 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
             let type = tableDic["TableType"] as! String
             let tableNo = tableDic["TableNo"] as! Int
             if type == "D" {
-                weakSelf?.dineDic.removeValue(forKey: NSNumber(integerLiteral: tableNo))
+                weakSelf?.dineDic.removeValue(forKey: tableNo)
                 weakSelf?.collection.reloadData()
             } else if type == "T" {
-                weakSelf?.takeoutDic.removeValue(forKey: NSNumber(integerLiteral: tableNo))
+                weakSelf?.takeoutDic.removeValue(forKey: tableNo)
                 weakSelf?.takeoutCollection.reloadData()
             } else {
-                weakSelf?.deliveryDic.removeValue(forKey: NSNumber(integerLiteral: tableNo))
+                weakSelf?.deliveryDic.removeValue(forKey: tableNo)
                 weakSelf?.deliveryCollection.reloadData()
             }
         }, failureResult: {})
@@ -263,7 +263,7 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
             payment.tableNo = (sender as! [String : Any])["TableNo"] as! Int
         } else if segue.identifier == "MergeBill" {
             let mergeBill: MergeBillController = segue.destination as! MergeBillController
-            mergeBill.orderIdArray = sender as! [Int]
+            mergeBill.tableNoArray = sender as! [Int]
         } else if segue.identifier == "History" {
             let history: HistoryController = segue.destination as! HistoryController
             history.tableType = (sender as! [String : Any])["TableType"] as! String
@@ -297,14 +297,14 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
         cell.lineView.isHidden = false
         if collectionView == collection {
             cell.numberLabel.text = NSLocalizedString("堂食", comment: "") + " \(indexPath.row + 1)"
-            model = dineDic[NSNumber(integerLiteral: indexPath.row + 1)]
+            model = dineDic[indexPath.row + 1]
             cell.lineView.isHidden = true
         } else if collectionView == takeoutCollection {
             cell.numberLabel.text = NSLocalizedString("外卖", comment: "") + " \(indexPath.row + 1)"
-            model = takeoutDic[NSNumber(integerLiteral: indexPath.row + 1)]
+            model = takeoutDic[indexPath.row + 1]
         } else {
             cell.numberLabel.text = NSLocalizedString("送餐", comment: "") + " \(indexPath.row + 1)"
-            model = deliveryDic[NSNumber(integerLiteral: indexPath.row + 1)]
+            model = deliveryDic[indexPath.row + 1]
         }
         if model != nil {
             cell.contentView.backgroundColor = (model!.table_status == "R" ? UIColor.init(rgb: 0xB15BFF) : UIColor.init(rgb: 0xFF8400))
@@ -327,13 +327,13 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
         let model: OrderModel?
         let tableType: String!
         if collectionView == collection {
-            model = dineDic[NSNumber(integerLiteral: indexPath.row + 1)]
+            model = dineDic[indexPath.row + 1]
             tableType = "D"
         } else if collectionView == takeoutCollection {
-            model = takeoutDic[NSNumber(integerLiteral: indexPath.row + 1)]
+            model = takeoutDic[indexPath.row + 1]
             tableType = "T"
         } else {
-            model = deliveryDic[NSNumber(integerLiteral: indexPath.row + 1)]
+            model = deliveryDic[indexPath.row + 1]
             tableType = "W"
         }
         if model != nil {

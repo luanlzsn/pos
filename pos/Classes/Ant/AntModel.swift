@@ -36,7 +36,7 @@ class OrderModel : AntModel {
     var created = ""//创建时间
     var order_no = ""//订单号
     var order_type = ""//订单状态
-    var table_no: NSNumber = 0//餐桌号
+    var table_no = 0//餐桌号
     var table_status = ""//餐桌状态
     var fix_discount = 0.0//固定折扣
     var percent_discount = 0//%的折扣
@@ -64,6 +64,7 @@ class OrderModel : AntModel {
     var tip = 0.0
     var tip_paid_by = ""
     var phone = ""//电话
+    var isAddDiscount = false//是否添加折扣,本地字段,合并订单使用
     
     override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
         return ["orderId":"id"]

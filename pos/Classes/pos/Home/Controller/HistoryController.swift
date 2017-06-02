@@ -44,7 +44,12 @@ class HistoryController: AntController,UITableViewDelegate,UITableViewDataSource
         weak var weakSelf = self
         AntManage.postRequest(path: "orderHandler/tableHistory", params: ["restaurant_id":AntManage.userModel!.restaurant_id, "table":tableNo, "type":tableType, "access_token":AntManage.userModel!.token], successResult: { (response) in
             let dic = (response["data"] as! NSString).mj_JSONObject() as! NSDictionary
-            weakSelf?.historyArray = HistoryModel.mj_objectArray(withKeyValuesArray: dic["Order_detail"]) as! [HistoryModel]
+            if dic["Order_detail"] != nil {
+                weakSelf?.historyArray = HistoryModel.mj_objectArray(withKeyValuesArray: dic["Order_detail"]) as! [HistoryModel]
+            } else {
+                AntManage.showDelayToast(message: dic["message"] as! String)
+                weakSelf?.homeClick()
+            }
             weakSelf?.tableView.reloadData()
         }, failureResult: {
             weakSelf?.homeClick()
