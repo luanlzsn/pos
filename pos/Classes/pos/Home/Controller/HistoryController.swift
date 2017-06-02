@@ -29,6 +29,10 @@ class HistoryController: AntController,UITableViewDelegate,UITableViewDataSource
             type = NSLocalizedString("送餐", comment: "")
         }
         tableNumLabel.text = NSLocalizedString("桌", comment: "") + "[[\(type!)]]#\(tableNo)"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getHistoryInfo()
     }
 

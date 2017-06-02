@@ -576,7 +576,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
                 }
             }
             if !model.special_instruction.isEmpty {
-                zhName += "\n" + NSLocalizedString("特别说明", comment: "") + model.special_instruction
+                zhName += "\n" + NSLocalizedString("特别说明:", comment: "") + model.special_instruction
             }
             cell.note.text = zhName
             return cell

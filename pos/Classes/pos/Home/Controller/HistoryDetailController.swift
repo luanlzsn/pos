@@ -62,12 +62,19 @@ class HistoryDetailController: AntController,UITableViewDelegate,UITableViewData
     
     // MARK: 弹回订单
     @IBAction func restoreOrderClick() {
-        AntManage.showDelayToast(message: "弹回订单")
+        weak var weakSelf = self
+        AntManage.postRequest(path: "orderHandler/tableRestore", params: ["order_id":historyModel.orderInfo.orderId, "access_token":AntManage.userModel!.token], successResult: { (_) in
+            weakSelf?.homeClick()
+        }, failureResult: {})
     }
     
     // MARK: 修改订单
     @IBAction func updateOrderClick() {
-        AntManage.showDelayToast(message: "修改订单")
+        UIApplication.shared.keyWindow?.endEditing(true)
+        weak var weakSelf = self
+        AntManage.postRequest(path: "orderHandler/tableHisupdate", params: ["order_id":historyModel.orderInfo.orderId, "subtotal":subTotal.text!, "discount_value":discount.text!, "total":total.text!, "paid":receive.text!, "cash_val":cash.text!, "card_val":card.text!, "change":change.text!, "tip":tip.text!, "access_token":AntManage.userModel!.token], successResult: { (_) in
+            weakSelf?.navigationController?.popViewController(animated: true)
+        }, failureResult: {})
     }
     
     // MARK: UITableViewDelegate,UITableViewDataSource
