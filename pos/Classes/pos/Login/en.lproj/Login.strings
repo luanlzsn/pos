@@ -1,0 +1,24 @@
+
+/* Class = "UITextField"; placeholder = "密码"; ObjectID = "1b2-qx-c1d"; */
+"1b2-qx-c1d.placeholder" = "Password";
+
+/* Class = "UITextField"; placeholder = "用户名"; ObjectID = "KZC-zd-896"; */
+"KZC-zd-896.placeholder" = "User Name";
+
+/* Class = "UIButton"; normalTitle = "上传"; ObjectID = "bDJ-aa-WMz"; */
+"bDJ-aa-WMz.normalTitle" = "Submit";
+
+/* Class = "UIButton"; normalTitle = "签入"; ObjectID = "fFa-Rb-0Qx"; */
+"fFa-Rb-0Qx.normalTitle" = "Checkin";
+
+/* Class = "UIButton"; normalTitle = "忘记密码？"; ObjectID = "gZa-iu-h7S"; */
+"gZa-iu-h7S.normalTitle" = "Forgot your password?";
+
+/* Class = "UIButton"; normalTitle = "登录"; ObjectID = "qkq-w3-9i8"; */
+"qkq-w3-9i8.normalTitle" = "Sign in";
+
+/* Class = "UIButton"; normalTitle = "已经注册？"; ObjectID = "tUP-FU-dSu"; */
+"tUP-FU-dSu.normalTitle" = "Already have an account?";
+
+/* Class = "UITextField"; placeholder = "邮箱"; ObjectID = "xG2-eX-3Nb"; */
+"xG2-eX-3Nb.placeholder" = "Email";

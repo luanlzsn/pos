@@ -18,6 +18,7 @@
 		0F8AD2AA1EDD46F700438AFD /* ChangeTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AD2A91EDD46F700438AFD /* ChangeTableController.swift */; };
 		0F8AD2AC1EDD578000438AFD /* MergeBillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AD2AB1EDD578000438AFD /* MergeBillController.swift */; };
 		0FB0E8FF1EE182A80051C0DF /* AutoGenStrings.py in Resources */ = {isa = PBXBuildFile; fileRef = 0FB0E8FE1EE182A80051C0DF /* AutoGenStrings.py */; };
+		0FB0E9011EE18D6E0051C0DF /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FB0E9031EE18D6E0051C0DF /* Login.storyboard */; };
 		0FB49A8A1EDBEE7C001BE76A /* PaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB49A891EDBEE7C001BE76A /* PaymentController.swift */; };
 		0FC1A32F1EDC50EC005438A5 /* PaymentOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1A32E1EDC50EC005438A5 /* PaymentOrderCell.swift */; };
 		0FC1A3311EDC619C005438A5 /* CalculatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1A3301EDC619C005438A5 /* CalculatorCell.swift */; };
@@ -52,7 +53,6 @@
 		6B9541081EC820C800CCFF95 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9540F61EC820C800CCFF95 /* HomeController.swift */; };
 		6B9541091EC820C800CCFF95 /* ForgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9540F91EC820C800CCFF95 /* ForgetController.swift */; };
 		6B95410A1EC820C800CCFF95 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9540FA1EC820C800CCFF95 /* LoginController.swift */; };
-		6B95410B1EC820C800CCFF95 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B9540FB1EC820C800CCFF95 /* Login.storyboard */; };
 		6B9541131EC820E300CCFF95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9541121EC820E300CCFF95 /* AppDelegate.swift */; };
 		6B95411A1EC820E300CCFF95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B9541181EC820E300CCFF95 /* Main.storyboard */; };
 		6B95411C1EC820E300CCFF95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B95411B1EC820E300CCFF95 /* Assets.xcassets */; };
@@ -102,6 +102,9 @@
 		0F8AD2A91EDD46F700438AFD /* ChangeTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTableController.swift; sourceTree = "<group>"; };
 		0F8AD2AB1EDD578000438AFD /* MergeBillController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeBillController.swift; sourceTree = "<group>"; };
 		0FB0E8FE1EE182A80051C0DF /* AutoGenStrings.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = AutoGenStrings.py; sourceTree = "<group>"; };
+		0FB0E9051EE18D710051C0DF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Login.strings"; sourceTree = "<group>"; };
+		0FB0E9061EE18D790051C0DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
+		0FB0E9071EE18D830051C0DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Login.strings; sourceTree = "<group>"; };
 		0FB49A891EDBEE7C001BE76A /* PaymentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentController.swift; sourceTree = "<group>"; };
 		0FC1A32E1EDC50EC005438A5 /* PaymentOrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentOrderCell.swift; sourceTree = "<group>"; };
 		0FC1A3301EDC619C005438A5 /* CalculatorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorCell.swift; sourceTree = "<group>"; };
@@ -140,7 +143,6 @@
 		6B9540F61EC820C800CCFF95 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		6B9540F91EC820C800CCFF95 /* ForgetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetController.swift; sourceTree = "<group>"; };
 		6B9540FA1EC820C800CCFF95 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		6B9540FB1EC820C800CCFF95 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		6B9541101EC820E300CCFF95 /* pos_iphone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pos_iphone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B9541121EC820E300CCFF95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6B9541191EC820E300CCFF95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -370,7 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				6B9540F81EC820C800CCFF95 /* Controller */,
-				6B9540FB1EC820C800CCFF95 /* Login.storyboard */,
+				0FB0E9031EE18D6E0051C0DF /* Login.storyboard */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -569,6 +571,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 6B2EDB151EBCA7380051C1A7;
 			productRefGroup = 6B2EDB1F1EBCA7380051C1A7 /* Products */;
@@ -590,7 +593,7 @@
 				6BB7F12A1EBF2C0D00918BEF /* Settings.bundle in Resources */,
 				6B2EDB291EBCA7380051C1A7 /* Assets.xcassets in Resources */,
 				0F26FDC81EDF05F1005A424F /* Localizable.strings in Resources */,
-				6B95410B1EC820C800CCFF95 /* Login.storyboard in Resources */,
+				0FB0E9011EE18D6E0051C0DF /* Login.storyboard in Resources */,
 				0FB0E8FF1EE182A80051C0DF /* AutoGenStrings.py in Resources */,
 				6BD6DD501EC9ECA900652204 /* HomeCell.xib in Resources */,
 				6B2EDB271EBCA7380051C1A7 /* Main.storyboard in Resources */,
@@ -742,6 +745,16 @@
 				0F26FDCC1EDF0606005A424F /* zh-Hans */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		0FB0E9031EE18D6E0051C0DF /* Login.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0FB0E9051EE18D710051C0DF /* zh-Hans */,
+				0FB0E9061EE18D790051C0DF /* Base */,
+				0FB0E9071EE18D830051C0DF /* en */,
+			);
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 		6B2EDB251EBCA7380051C1A7 /* Main.storyboard */ = {

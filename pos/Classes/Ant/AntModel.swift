@@ -65,6 +65,8 @@ class OrderModel : AntModel {
     var tip_paid_by = ""
     var phone = ""//电话
     var isAddDiscount = false//是否添加折扣,本地字段,合并订单使用
+    var inputDiscountType = ""//输入折扣的类型,fix_discount为固定折扣,percent_discount为百分比折扣,promocode为优惠码
+    var inputDiscount = ""//输入的折扣内容
     
     override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
         return ["orderId":"id"]

@@ -35,18 +35,23 @@ class MergeBillCell: UITableViewCell,UITableViewDelegate,UITableViewDataSource {
             if sender == fixDiscount {
                 percDiscount.isEnabled = false
                 promoCode.isEnabled = false
+                orderModel.inputDiscountType = "fix_discount"
             } else if sender == percDiscount {
                 fixDiscount.isEnabled = false
                 promoCode.isEnabled = false
+                orderModel.inputDiscountType = "percent_discount"
             } else {
                 fixDiscount.isEnabled = false
                 percDiscount.isEnabled = false
+                orderModel.inputDiscountType = "promocode"
             }
         } else {
             fixDiscount.isEnabled = true
             percDiscount.isEnabled = true
             promoCode.isEnabled = true
+            orderModel.inputDiscountType = ""
         }
+        orderModel.inputDiscount = sender.text!
     }
     
     @IBAction func discountClick(_ sender: UIButton) {
@@ -63,7 +68,7 @@ class MergeBillCell: UITableViewCell,UITableViewDelegate,UITableViewDataSource {
     
     func refreshOrderBill(model: OrderModel) {
         orderModel = model
-        orderNum.text = NSLocalizedString("订单号", comment: "") + " \(orderModel.order_no)," + NSLocalizedString("桌号", comment: "") + " \(orderModel.table_no)," + NSLocalizedString("类型", comment: "") + " " + NSLocalizedString("堂食", comment: "")
+        orderNum.text = NSLocalizedString("订单号", comment: "") + " \(orderModel.order_no)," + NSLocalizedString("桌号", comment: "") + " \(orderModel.table_no)," + NSLocalizedString("类型", comment: "") + " D"
         if orderModel.discount_value > 0 {
             addDiscountView.isHidden = true
             discountBtn.setTitle(NSLocalizedString("删除折扣", comment: ""), for: .normal)
@@ -72,6 +77,35 @@ class MergeBillCell: UITableViewCell,UITableViewDelegate,UITableViewDataSource {
             addDiscountView.isHidden = !orderModel.isAddDiscount
             discountBtn.setTitle(NSLocalizedString("加入折扣", comment: ""), for: .normal)
             discountBtn.backgroundColor = UIColor.init(rgb: 0x57AD12)
+        }
+        if orderModel.inputDiscountType == "fix_discount" {
+            fixDiscount.isEnabled = true
+            percDiscount.isEnabled = false
+            promoCode.isEnabled = false
+            fixDiscount.text = orderModel.inputDiscount
+            percDiscount.text = ""
+            promoCode.text = ""
+        } else if orderModel.inputDiscountType == "percent_discount" {
+            fixDiscount.isEnabled = false
+            percDiscount.isEnabled = true
+            promoCode.isEnabled = false
+            fixDiscount.text = ""
+            percDiscount.text = orderModel.inputDiscount
+            promoCode.text = ""
+        } else if orderModel.inputDiscountType == "promocode" {
+            fixDiscount.isEnabled = false
+            percDiscount.isEnabled = false
+            promoCode.isEnabled = true
+            fixDiscount.text = ""
+            percDiscount.text = ""
+            promoCode.text = orderModel.inputDiscount
+        } else {
+            fixDiscount.isEnabled = true
+            percDiscount.isEnabled = true
+            promoCode.isEnabled = true
+            fixDiscount.text = ""
+            percDiscount.text = ""
+            promoCode.text = ""
         }
         tableView.reloadData()
     }

@@ -413,3 +413,135 @@ Table";
 
 /* Class = "UILabel"; text = "订单摘要"; ObjectID = "z5n-en-kFM"; */
 "z5n-en-kFM.text" = "Order Summary";
+
+//##################################################################################
+//#           AutoGenStrings            2017-06-02 19:46:21
+//##################################################################################
+
+/* Class = "UIButton"; normalTitle = "主页"; ObjectID = "XeT-gr-5Q7"; */
+"XeT-gr-5Q7.normalTitle" = "Home";
+
+/* Class = "UILabel"; text = "小计"; ObjectID = "G3r-yG-Az2"; */
+"G3r-yG-Az2.text" = "Subtotal";
+
+/* Class = "UIButton"; normalTitle = "应用"; ObjectID = "FHW-zr-voo"; */
+"FHW-zr-voo.normalTitle" = "Apply";
+
+"ubC-Wc-L1A.text" = "Caed:$0.00";
+
+"62h-fx-l0k.text" = "$0.00";
+
+/* Class = "UILabel"; text = "Noodles
+招牌面"; ObjectID = "lZd-xY-TSi"; */
+"lZd-xY-TSi.text" = "Noodles
+招牌面";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "ijy-DB-Sac"; */
+"ijy-DB-Sac.text" = "1";
+
+/* Class = "UILabel"; text = "已收到"; ObjectID = "HG5-iz-UxO"; */
+"HG5-iz-UxO.text" = "Received";
+
+/* Class = "UIButton"; normalTitle = "  已付款"; ObjectID = "vJc-gm-BYR"; */
+"vJc-gm-BYR.normalTitle" = "  Paid";
+
+"LgJ-Eu-vRD.text" = "$0.00";
+
+/* Class = "UIButton"; normalTitle = "确认"; ObjectID = "ank-UU-LId"; */
+"ank-UU-LId.normalTitle" = "Confirm";
+
+/* Class = "UILabel"; text = "订单号
+桌"; ObjectID = "Ffh-Ne-I7u"; */
+"Ffh-Ne-I7u.text" = "Order No.
+Table";
+
+"RHg-gx-m9Z.text" = "Nutritious Lamb Noodles\n滋补羊肉面";
+
+"72l-IA-AfK.text" = "Cash:$0.00";
+
+/* Class = "UILabel"; text = "固定折扣"; ObjectID = "xld-xk-u4X"; */
+"xld-xk-u4X.text" = "Fix Discount";
+
+/* Class = "UIButton"; normalTitle = "打印收据"; ObjectID = "2Yh-TP-FdI"; */
+"2Yh-TP-FdI.normalTitle" = "Print Receipt";
+
+/* Class = "UILabel"; text = "剩余"; ObjectID = "64j-2k-isc"; */
+"64j-2k-isc.text" = "Remaining";
+
+
+"5Yf-g7-WIB.text" = "$0.00";
+
+/* Class = "UILabel"; text = "订单号"; ObjectID = "9Zl-tH-n5K"; */
+"9Zl-tH-n5K.text" = "Order No.";
+
+
+"rWh-mE-vmY.text" = "$0.00";
+
+/* Class = "UILabel"; text = "总计"; ObjectID = "emh-Xw-xcT"; */
+"emh-Xw-xcT.text" = "Total";
+
+/* Class = "UILabel"; text = "菜名"; ObjectID = "C52-Vc-Kde"; */
+"C52-Vc-Kde.text" = "菜名";
+
+/* Class = "UIButton"; normalTitle = "加入折扣"; ObjectID = "jFS-WR-YZ0"; */
+"jFS-WR-YZ0.normalTitle" = "Add Discount";
+
+/* Class = "UILabel"; text = "小计"; ObjectID = "qhv-aq-Gu2"; */
+"qhv-aq-Gu2.text" = "Subtotal";
+
+
+"3ii-KJ-hFg.text" = "$0.00";
+
+/* Class = "UILabel"; text = "优惠码"; ObjectID = "G3f-je-fPF"; */
+"G3f-je-fPF.text" = "Promo Code";
+
+"6Zj-cy-aih.text" = "$0.00";
+
+/* Class = "UILabel"; text = "折后价"; ObjectID = "xZj-U4-AiV"; */
+"xZj-U4-AiV.text" = "After Discount";
+
+/* Class = "UILabel"; text = "%折扣"; ObjectID = "omc-K0-wQa"; */
+"omc-K0-wQa.text" = "Discount in %";
+
+
+"PsA-lJ-jgG.text" = "Tax(0%)";
+
+/* Class = "UILabel"; text = "小费"; ObjectID = "RBs-WQ-LD7"; */
+"RBs-WQ-LD7.text" = "Tip";
+
+/* Class = "UIButton"; normalTitle = "卡"; ObjectID = "zfV-2p-CtZ"; */
+"zfV-2p-CtZ.normalTitle" = "Card";
+
+
+"sLL-jg-mif.text" = "$0.00";
+
+/* Class = "UILabel"; text = "订单摘要"; ObjectID = "Crn-EY-4od"; */
+"Crn-EY-4od.text" = "Order Summary";
+
+/* Class = "UILabel"; text = "订单号"; ObjectID = "8de-8Q-uX6"; */
+"8de-8Q-uX6.text" = "Order No.";
+
+/* Class = "UIButton"; normalTitle = "现金"; ObjectID = "U0p-5P-jAr"; */
+"U0p-5P-jAr.normalTitle" = "Cash";
+
+"DjR-Fo-jLc.text" = "$0.00";
+
+"1l9-lS-6hh.text" = "$0.00";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "D9c-El-mHw"; */
+"D9c-El-mHw.text" = "Label";
+
+/* Class = "UILabel"; text = "折扣"; ObjectID = "OMk-g7-jxc"; */
+"OMk-g7-jxc.text" = "Discount";
+
+"agR-9o-Ewi.text" = "$0.00";
+
+//##################################################################################
+//#           AutoGenStrings            2017-06-02 20:07:31
+//##################################################################################
+
+/* Class = "UILabel"; text = "Noodles 招牌面"; ObjectID = "lZd-xY-TSi"; */
+"lZd-xY-TSi.text" = "Noodles 招牌面";
+
+/* Class = "UILabel"; text = "订单号 桌"; ObjectID = "Ffh-Ne-I7u"; */
+"Ffh-Ne-I7u.text" = "订单号 桌";

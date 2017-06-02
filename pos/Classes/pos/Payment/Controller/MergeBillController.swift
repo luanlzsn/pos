@@ -75,6 +75,21 @@ class MergeBillController: AntController,UITableViewDelegate,UITableViewDataSour
         })
     }
     
+    // MARK: 应用折扣
+    func discountApple(orderModel: OrderModel) {
+        UIApplication.shared.keyWindow?.endEditing(true)
+        let discount = orderModel.inputDiscount
+        let type = orderModel.inputDiscountType
+        if !discount.isEmpty {
+            weak var weakSelf = self
+            AntManage.postRequest(path: "discountHandler/addDiscount", params: ["order_no":orderModel.order_no, "access_token":AntManage.userModel!.token, "discountType":type, "discountValue":discount, "cashier_id":AntManage.userModel!.cashier_id], successResult: { (_) in
+                weakSelf?.getOrderInfo(tableNo: orderModel.table_no)
+            }, failureResult: {})
+        } else {
+            AntManage.showDelayToast(message: NSLocalizedString("请输入折扣。", comment: ""))
+        }
+    }
+    
     // MARK: 删除折扣
     func removeDiscount(orderModel: OrderModel) {
         weak var weakSelf = self
@@ -334,7 +349,7 @@ class MergeBillController: AntController,UITableViewDelegate,UITableViewDataSour
                         tableView.reloadData()
                     }
                 } else {
-                    
+                    weakSelf?.discountApple(orderModel: model)
                 }
             }
             return cell
