@@ -540,6 +540,30 @@ Table";
 //#           AutoGenStrings            2017-06-02 20:07:31
 //##################################################################################
 
+/* Class = "UILabel"; text = "Noodles
+招牌面"; ObjectID = "lZd-xY-TSi"; */
+"lZd-xY-TSi.text" = "Noodles
+招牌面";
+
+/* Class = "UILabel"; text = "订单号
+桌"; ObjectID = "Ffh-Ne-I7u"; */
+"Ffh-Ne-I7u.text" = "订单号
+桌";
+
+//##################################################################################
+//#           AutoGenStrings            2017-06-14 20:03:27
+//##################################################################################
+
+/* Class = "UILabel"; text = "不辣"; ObjectID = "1LN-Pv-lZw"; */
+"1LN-Pv-lZw.text" = "不辣";
+
+/* Class = "UILabel"; text = "已选拼盘："; ObjectID = "fXQ-qO-HSI"; */
+"fXQ-qO-HSI.text" = "Selected Combo:";
+
+//##################################################################################
+//#           AutoGenStrings            2017-06-14 20:27:50
+//##################################################################################
+
 /* Class = "UILabel"; text = "Noodles 招牌面"; ObjectID = "lZd-xY-TSi"; */
 "lZd-xY-TSi.text" = "Noodles 招牌面";
 

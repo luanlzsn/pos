@@ -37,6 +37,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
     var cousinesDic = [Int : [CousineModel]]()//菜单字典：key为菜单类别，value为菜单类别对应的菜
     var foodArray = [CousineModel]()//菜单
     var selectFoodArray = [OrderItemModel]()//选择的餐数组
+    var order_item_id = 0//最近一次点双拼、三拼的订单id
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -192,7 +193,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
         }
         switch sender.tag {
         case 10:
-            performSegue(withIdentifier: "Taste", sender: nil)
+            performSegue(withIdentifier: "Taste", sender: 0)
             break
         case 20:
             removeItem()
@@ -226,7 +227,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             if selectFoodArray.count > 1 {
                 AntManage.showDelayToast(message: NSLocalizedString("请只选择一个菜", comment: ""))
             } else {
-                performSegue(withIdentifier: "Taste", sender: nil)
+                performSegue(withIdentifier: "Taste", sender: 1)
             }
             break
         default:
@@ -284,6 +285,9 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
                 weakSelf?.billTableHeight.constant = 260.0
             }
             weakSelf?.selectFoodArray.removeAll()
+            if weakSelf?.order_item_id != 0 {
+                weakSelf?.checkOrderItem()
+            }
             weakSelf?.alreadyTableView.reloadData()
             weakSelf?.billTableView.reloadData()
             weakSelf?.checkFunctionButtonStatus()
@@ -329,6 +333,17 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
         }
     }
     
+    func checkOrderItem() {
+        for model in orderItemArray {
+            if model.orderItemId == order_item_id {
+                selectFoodArray.append(model)
+                performSegue(withIdentifier: "Taste", sender: 1)
+                order_item_id = 0
+                break
+            }
+        }
+    }
+    
     // MARK: 
     func checkFoodInfo() {
         foodArray.removeAll()
@@ -369,7 +384,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             let textField = alert.textFields?.first!
             if Common.isValidateNumber(numberStr: textField!.text!) {
                 if Int(textField!.text!)! <= 0 {
-                    AntManage.showDelayToast(message: NSLocalizedString("不能小于0", comment: ""))
+                    AntManage.showDelayToast(message: NSLocalizedString("不能小于1", comment: ""))
                     return
                 }
             } else {
@@ -479,8 +494,9 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Taste" {
             let taste: TasteController = segue.destination as! TasteController
-            if selectFoodArray.count == 1 {
+            if (sender as! Int) == 1 {
                 let model = selectFoodArray.first!
+                taste.combId = model.comb_id
                 taste.instructions = model.special_instruction
                 if model.selected_extras.count > 0 {
                     for extras in model.selected_extras {
@@ -711,6 +727,9 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             let model = cousinesDic[selectMenu.categoryId]![indexPath.row]
             weak var weakSelf = self
             AntManage.postRequest(path: "orderHandler/addItem", params: ["item_id":model.cousineId, "table":tableNo, "type":tableType, "cashier_id":AntManage.userModel!.cashier_id, "access_token":AntManage.userModel!.token], successResult: { (response) in
+                if model.comb_num != 0 {
+                    weakSelf?.order_item_id = (((response["data"] as! NSString).mj_JSONObject() as! NSDictionary)["order_item_id"] as! NSString).integerValue
+                }
                 weakSelf?.getOrderInfo()
             }, failureResult: {})
         }

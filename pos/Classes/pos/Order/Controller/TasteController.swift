@@ -14,11 +14,17 @@ class TasteController: AntController,UICollectionViewDelegate,UICollectionViewDa
     @IBOutlet weak var tasteHeight: NSLayoutConstraint!
     @IBOutlet weak var selectCollection: UICollectionView!
     @IBOutlet weak var selectHeight: NSLayoutConstraint!
+    @IBOutlet weak var comboTitle: UILabel!
+    @IBOutlet weak var comboCollection: UICollectionView!
+    @IBOutlet weak var comboHeight: NSLayoutConstraint!
+    @IBOutlet weak var comboBottom: NSLayoutConstraint!
     @IBOutlet weak var textField: UITextField!
     var tasteArray = [TasteModel]()
     var selectArray = [TasteModel]()
+    var comboArray = [TasteModel]()
     var selectTaste: ConfirmBlock?
     var existingTasteIdArray = [Int]()//现有的口味id
+    var combId = 0
     var instructions = ""//特别说明
     
     deinit {
@@ -31,6 +37,14 @@ class TasteController: AntController,UICollectionViewDelegate,UICollectionViewDa
         tasteHeight.constant = 0
         selectHeight.constant = 0
         textField.text = instructions
+        if combId == 0 {
+            comboTitle.isHidden = true
+            comboHeight.constant = 0
+            comboBottom.constant = -30
+        } else {
+            comboTitle.isHidden = false
+            comboBottom.constant = 10
+        }
         getAllExtras()
     }
     
@@ -39,9 +53,16 @@ class TasteController: AntController,UICollectionViewDelegate,UICollectionViewDa
     }
     
     @IBAction func saveClick(_ sender: UIButton) {
+        if combId != 0 && comboArray.count != combId {
+            AntManage.showDelayToast(message: NSLocalizedString("请选择", comment: "") + "\(combId)" + NSLocalizedString("种拼盘", comment: ""))
+            return
+        }
         if selectTaste != nil {
             var extraIdList = [Int]()
             for model in selectArray {
+                extraIdList.append(model.tasteId)
+            }
+            for model in comboArray {
                 extraIdList.append(model.tasteId)
             }
             selectTaste!(["ExtraIdList":extraIdList, "Special":textField.text!])
@@ -53,31 +74,39 @@ class TasteController: AntController,UICollectionViewDelegate,UICollectionViewDa
         weak var weakSelf = self
         AntManage.postRequest(path: "tables/getAllExtras", params: ["status":"A", "access_token":AntManage.userModel!.token], successResult: { (response) in
             let array = response["data"] as! [[String : Any]]
+            var allExtra = [TasteModel]()
             for dic in array {
                 let model = TasteModel.mj_object(withKeyValues: dic["Extra"])!
-                if model.category_id == 1 {
+                allExtra.append(model)
+                if model.category_id == ((weakSelf?.combId == 0) ? 1 : weakSelf!.combId) {
                     weakSelf?.tasteArray.append(model)
                 }
             }
-            let height = CGFloat(ceil(Double(weakSelf!.tasteArray.count) / 9.0) * 60.0 - 10.0)
-            
+            var height = CGFloat(ceil(Double(weakSelf!.tasteArray.count) / 9.0) * 60.0 - 10.0)
+            if weakSelf?.combId != 0 {
+                height += (weakSelf!.comboArray.count > 0) ? 90 : 20
+            }
             if height + 300 > kScreenHeight {
                 weakSelf?.tasteHeight.constant = kScreenHeight - 300
             } else {
                 weakSelf?.tasteHeight.constant = height
             }
             weakSelf?.tasteCollection.reloadData()
-            weakSelf?.checkExistingTaste()
+            weakSelf?.checkExistingTaste(allExtra: allExtra)
         }, failureResult: {
             weakSelf?.dismiss(animated: true, completion: nil)
         })
     }
     
-    func checkExistingTaste() {
+    func checkExistingTaste(allExtra: [TasteModel]) {
         if existingTasteIdArray.count > 0 {
-            for model in tasteArray {
+            for model in allExtra {
                 if existingTasteIdArray.contains(model.tasteId) {
-                    selectArray.append(model)
+                    if model.category_id == 1 {
+                        selectArray.append(model)
+                    } else {
+                        comboArray.append(model)
+                    }
                 }
             }
         }
@@ -86,17 +115,29 @@ class TasteController: AntController,UICollectionViewDelegate,UICollectionViewDa
     
     func checkSelectCollectionHeight() {
         let height = CGFloat(ceil(Double(selectArray.count) / 9.0) * 60.0 - 10.0)
-        if height + tasteHeight.constant + 250 > kScreenHeight {
-            selectHeight.constant = kScreenHeight - tasteHeight.constant - 250
+        var changeHeight: CGFloat = 0.0
+        if combId != 0 {
+            comboHeight.constant = (comboArray.count > 0) ? 50 : 0
+            changeHeight = 40.0
+        }
+        if height + tasteHeight.constant + 250 + comboHeight.constant + changeHeight > kScreenHeight {
+            selectHeight.constant = kScreenHeight - tasteHeight.constant - 250 - comboHeight.constant - changeHeight
         } else {
             selectHeight.constant = height
         }
         selectCollection.reloadData()
+        comboCollection.reloadData()
     }
     
     // MARK: UICollectionViewDelegate,UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (collectionView == tasteCollection) ? tasteArray.count : selectArray.count
+        if collectionView == tasteCollection {
+            return tasteArray.count
+        } else if collectionView == selectCollection {
+            return selectArray.count
+        } else {
+            return comboArray.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -104,8 +145,10 @@ class TasteController: AntController,UICollectionViewDelegate,UICollectionViewDa
         let model: TasteModel!
         if collectionView == tasteCollection {
             model = tasteArray[indexPath.row]
-        } else {
+        } else if collectionView == selectCollection {
             model = selectArray[indexPath.row]
+        } else {
+            model = comboArray[indexPath.row]
         }
         cell.tasteLabel.text = (LanguageManager.currentLanguageString() == "zh-Hans") ? model.name_zh : model.name
         return cell
@@ -114,11 +157,22 @@ class TasteController: AntController,UICollectionViewDelegate,UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == tasteCollection {
             let model = tasteArray[indexPath.row]
-            if !selectArray.contains(model) {
-                selectArray.append(model)
+            if combId == 0 {
+                if !selectArray.contains(model) {
+                    selectArray.append(model)
+                }
+            } else {
+                if comboArray.count >= combId {
+                    return
+                }
+                if !comboArray.contains(model) {
+                    comboArray.append(model)
+                }
             }
-        } else {
+        } else if collectionView == selectCollection {
             selectArray.remove(at: indexPath.row)
+        } else {
+            comboArray.remove(at: indexPath.row)
         }
         checkSelectCollectionHeight()
     }

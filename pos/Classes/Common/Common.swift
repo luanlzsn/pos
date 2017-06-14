@@ -102,7 +102,7 @@ class Common: NSObject {
     // MARK: - 校验数字
     class func isValidateNumber(numberStr: String) -> Bool {
         do {
-            let pattern = "012345678"
+            let pattern = "^[0-9]*$"
             let regex: NSRegularExpression = try NSRegularExpression(pattern: pattern, options: .caseInsensitive)
             let matches = regex.numberOfMatches(in: numberStr, options: [.reportProgress], range: NSMakeRange(0, numberStr.characters.count))
             return matches > 0

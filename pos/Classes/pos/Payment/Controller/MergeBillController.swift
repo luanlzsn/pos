@@ -171,7 +171,7 @@ class MergeBillController: AntController,UITableViewDelegate,UITableViewDataSour
     
     func printMergeReceipt(orderIds: [Int]) {
         weak var weakSelf = self
-        AntManage.postRequest(path: "payHandler/completeMergeOrder", params: ["restaurant_id":AntManage.userModel!.restaurant_id, "order_ids":orderIds, "access_token":AntManage.userModel!.token], successResult: { (_) in
+        AntManage.postRequest(path: "print/printMergeReceipt", params: ["restaurant_id":AntManage.userModel!.restaurant_id, "order_ids":orderIds, "access_token":AntManage.userModel!.token], successResult: { (_) in
             weakSelf?.homeClick()
         }, failureResult: {})
     }
@@ -225,6 +225,7 @@ class MergeBillController: AntController,UITableViewDelegate,UITableViewDataSour
         
         orderTableView.reloadData()
         billTableView.reloadData()
+        checkReceiveMoney()
     }
     
     // MARK: 处理收到的金额

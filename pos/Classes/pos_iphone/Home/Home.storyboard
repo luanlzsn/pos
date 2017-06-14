@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="u8u-Tw-bFx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="u8u-Tw-bFx">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -31,7 +31,9 @@
         <scene sceneID="IaT-CJ-MjZ">
             <objects>
                 <navigationController title="首页" automaticallyAdjustsScrollViewInsets="NO" id="u8u-Tw-bFx" customClass="AntNavController" customModule="pos_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="首页" image="home_icon" selectedImage="home_icon_select" id="IRb-sV-fqY"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VRx-sc-brq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -46,4 +48,8 @@
             <point key="canvasLocation" x="205.59999999999999" y="114.69265367316342"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="home_icon" width="21" height="20"/>
+        <image name="home_icon_select" width="21" height="20"/>
+    </resources>
 </document>

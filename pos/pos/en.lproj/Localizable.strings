@@ -67,9 +67,11 @@
 "删除折扣" = "Delete Discount";
 "加入折扣" = "Add Discount";
 
-"不能小于0" = "Not less than 0";
+"不能小于1" = "Not less than 1";
 "只能输入数字" = "You can only enter numbers";
 "特别说明:" = "Special Instructions:";
+"请选择" = "Please selected ";
+"种拼盘" = " combo";
 
 "登录成功！" = "Login successful!";
 "用户名或密码错误" = "Error Incorrect username or password";

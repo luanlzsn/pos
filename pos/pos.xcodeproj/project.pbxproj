@@ -22,6 +22,9 @@
 		0FB49A8A1EDBEE7C001BE76A /* PaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB49A891EDBEE7C001BE76A /* PaymentController.swift */; };
 		0FC1A32F1EDC50EC005438A5 /* PaymentOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1A32E1EDC50EC005438A5 /* PaymentOrderCell.swift */; };
 		0FC1A3311EDC619C005438A5 /* CalculatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1A3301EDC619C005438A5 /* CalculatorCell.swift */; };
+		0FE591D11EE5569800E6FAB4 /* ShopCartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE591CF1EE5569800E6FAB4 /* ShopCartController.swift */; };
+		0FE591D21EE5569800E6FAB4 /* ShopCart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FE591D01EE5569800E6FAB4 /* ShopCart.storyboard */; };
+		0FE591DC1EE55C7900E6FAB4 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE591DB1EE55C7900E6FAB4 /* HomeController.swift */; };
 		6B2EDB221EBCA7380051C1A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2EDB211EBCA7380051C1A7 /* AppDelegate.swift */; };
 		6B2EDB271EBCA7380051C1A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B2EDB251EBCA7380051C1A7 /* Main.storyboard */; };
 		6B2EDB291EBCA7380051C1A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B2EDB281EBCA7380051C1A7 /* Assets.xcassets */; };
@@ -73,8 +76,6 @@
 		6B9541311EC821E800CCFF95 /* YYCategories.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B8DB1831EBF1BC8005C9A63 /* YYCategories.framework */; };
 		6B9541361EC8226000CCFF95 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6BB7F1291EBF2C0D00918BEF /* Settings.bundle */; };
 		6B9541391EC8230900CCFF95 /* AntModel_iphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9541371EC822ED00CCFF95 /* AntModel_iphone.swift */; };
-		6B9541521EC827B700CCFF95 /* ShopCart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B9541481EC824ED00CCFF95 /* ShopCart.storyboard */; };
-		6B9541531EC827BA00CCFF95 /* ShopCartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B95414A1EC8252A00CCFF95 /* ShopCartController.swift */; };
 		6B9541541EC827BE00CCFF95 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B9541461EC824E100CCFF95 /* Search.storyboard */; };
 		6B9541551EC827C100CCFF95 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B95414C1EC8253F00CCFF95 /* SearchController.swift */; };
 		6B9541561EC827C400CCFF95 /* Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B9541441EC824D700CCFF95 /* Mine.storyboard */; };
@@ -108,6 +109,9 @@
 		0FB49A891EDBEE7C001BE76A /* PaymentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentController.swift; sourceTree = "<group>"; };
 		0FC1A32E1EDC50EC005438A5 /* PaymentOrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentOrderCell.swift; sourceTree = "<group>"; };
 		0FC1A3301EDC619C005438A5 /* CalculatorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorCell.swift; sourceTree = "<group>"; };
+		0FE591CF1EE5569800E6FAB4 /* ShopCartController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopCartController.swift; sourceTree = "<group>"; };
+		0FE591D01EE5569800E6FAB4 /* ShopCart.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShopCart.storyboard; sourceTree = "<group>"; };
+		0FE591DB1EE55C7900E6FAB4 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		6B2EDB1E1EBCA7380051C1A7 /* pos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B2EDB211EBCA7380051C1A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6B2EDB261EBCA7380051C1A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -153,8 +157,6 @@
 		6B9541421EC824CE00CCFF95 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		6B9541441EC824D700CCFF95 /* Mine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mine.storyboard; sourceTree = "<group>"; };
 		6B9541461EC824E100CCFF95 /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
-		6B9541481EC824ED00CCFF95 /* ShopCart.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShopCart.storyboard; sourceTree = "<group>"; };
-		6B95414A1EC8252A00CCFF95 /* ShopCartController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopCartController.swift; sourceTree = "<group>"; };
 		6B95414C1EC8253F00CCFF95 /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		6B95414E1EC8254900CCFF95 /* MineController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineController.swift; sourceTree = "<group>"; };
 		6BB7F1001EBF24D900918BEF /* MJExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MJExtension.framework; path = Carthage/Build/iOS/MJExtension.framework; sourceTree = "<group>"; };
@@ -228,6 +230,83 @@
 				0FC1A3301EDC619C005438A5 /* CalculatorCell.swift */,
 				0F08FFF81EE1473A005C2C78 /* MergeBillCell.swift */,
 				0F08FFFA1EE14757005C2C78 /* MergeBillDetailCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0FE591CD1EE5569800E6FAB4 /* ShopCart */ = {
+			isa = PBXGroup;
+			children = (
+				0FE591D51EE55BE900E6FAB4 /* View */,
+				0FE591CE1EE5569800E6FAB4 /* Controller */,
+				0FE591D01EE5569800E6FAB4 /* ShopCart.storyboard */,
+			);
+			path = ShopCart;
+			sourceTree = "<group>";
+		};
+		0FE591CE1EE5569800E6FAB4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0FE591CF1EE5569800E6FAB4 /* ShopCartController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0FE591D31EE55BE300E6FAB4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0FE591DB1EE55C7900E6FAB4 /* HomeController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0FE591D41EE55BE300E6FAB4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0FE591D51EE55BE900E6FAB4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0FE591D61EE55BF200E6FAB4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0FE591D71EE55BF900E6FAB4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0FE591D81EE55C0200E6FAB4 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0FE591D91EE55C0200E6FAB4 /* Controller */,
+				0FE591DA1EE55C0200E6FAB4 /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		0FE591D91EE55C0200E6FAB4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0FE591DA1EE55C0200E6FAB4 /* View */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -389,10 +468,11 @@
 		6B9540FC1EC820C800CCFF95 /* pos_iphone */ = {
 			isa = PBXGroup;
 			children = (
+				0FE591D81EE55C0200E6FAB4 /* Login */,
+				0FE591CD1EE5569800E6FAB4 /* ShopCart */,
 				6B95413A1EC824C400CCFF95 /* Home */,
 				6B95413C1EC824C400CCFF95 /* Mine */,
 				6B95413E1EC824C400CCFF95 /* Search */,
-				6B9541401EC824C400CCFF95 /* ShopCare */,
 			);
 			path = pos_iphone;
 			sourceTree = "<group>";
@@ -412,22 +492,17 @@
 		6B95413A1EC824C400CCFF95 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				6B95413B1EC824C400CCFF95 /* Controller */,
+				0FE591D31EE55BE300E6FAB4 /* Controller */,
+				0FE591D41EE55BE300E6FAB4 /* View */,
 				6B9541421EC824CE00CCFF95 /* Home.storyboard */,
 			);
 			path = Home;
 			sourceTree = "<group>";
 		};
-		6B95413B1EC824C400CCFF95 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		6B95413C1EC824C400CCFF95 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				0FE591D61EE55BF200E6FAB4 /* View */,
 				6B95413D1EC824C400CCFF95 /* Controller */,
 				6B9541441EC824D700CCFF95 /* Mine.storyboard */,
 			);
@@ -445,6 +520,7 @@
 		6B95413E1EC824C400CCFF95 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				0FE591D71EE55BF900E6FAB4 /* View */,
 				6B95413F1EC824C400CCFF95 /* Controller */,
 				6B9541461EC824E100CCFF95 /* Search.storyboard */,
 			);
@@ -455,23 +531,6 @@
 			isa = PBXGroup;
 			children = (
 				6B95414C1EC8253F00CCFF95 /* SearchController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		6B9541401EC824C400CCFF95 /* ShopCare */ = {
-			isa = PBXGroup;
-			children = (
-				6B9541411EC824C400CCFF95 /* Controller */,
-				6B9541481EC824ED00CCFF95 /* ShopCart.storyboard */,
-			);
-			path = ShopCare;
-			sourceTree = "<group>";
-		};
-		6B9541411EC824C400CCFF95 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				6B95414A1EC8252A00CCFF95 /* ShopCartController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -605,12 +664,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B9541361EC8226000CCFF95 /* Settings.bundle in Resources */,
-				6B9541521EC827B700CCFF95 /* ShopCart.storyboard in Resources */,
 				6B95411F1EC820E300CCFF95 /* LaunchScreen.storyboard in Resources */,
 				6B95411C1EC820E300CCFF95 /* Assets.xcassets in Resources */,
 				6B9541561EC827C400CCFF95 /* Mine.storyboard in Resources */,
 				6B9541541EC827BE00CCFF95 /* Search.storyboard in Resources */,
 				6B95411A1EC820E300CCFF95 /* Main.storyboard in Resources */,
+				0FE591D21EE5569800E6FAB4 /* ShopCart.storyboard in Resources */,
 				6B9541591EC827CE00CCFF95 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -721,7 +780,8 @@
 			files = (
 				6B95412A1EC8217200CCFF95 /* NSBundle+Language.m in Sources */,
 				6B9541131EC820E300CCFF95 /* AppDelegate.swift in Sources */,
-				6B9541531EC827BA00CCFF95 /* ShopCartController.swift in Sources */,
+				0FE591DC1EE55C7900E6FAB4 /* HomeController.swift in Sources */,
+				0FE591D11EE5569800E6FAB4 /* ShopCartController.swift in Sources */,
 				6B9541391EC8230900CCFF95 /* AntModel_iphone.swift in Sources */,
 				6B95412B1EC8217E00CCFF95 /* SpinnerButton.swift in Sources */,
 				6B9541291EC8215A00CCFF95 /* LanguageManager.swift in Sources */,
@@ -897,6 +957,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4AK99QTKB7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -906,6 +967,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aurora.pos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "pos/pos-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -917,6 +980,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4AK99QTKB7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -926,6 +990,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aurora.pos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "pos/pos-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

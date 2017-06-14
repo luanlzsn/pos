@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rkM-Ir-ktm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rkM-Ir-ktm">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -618,10 +618,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OrderAlreadyFoodCell" rowHeight="55" id="2bX-6j-Uc9" customClass="OrderAlreadyFoodCell" customModule="pos" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="56" width="310" height="55"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="310" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2bX-6j-Uc9" id="lCe-1p-6MF">
-                                            <rect key="frame" x="0.0" y="0.0" width="310" height="54"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="310" height="54.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="菜名" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tnf-db-BDN">
@@ -935,10 +935,10 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OrderPriceCell" rowHeight="44" id="DLC-nd-BiL" customClass="OrderPriceCell" customModule="pos" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="151" width="310" height="44"/>
+                                        <rect key="frame" x="0.0" y="150.5" width="310" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DLC-nd-BiL" id="kH0-s8-CEK">
-                                            <rect key="frame" x="0.0" y="0.0" width="310" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="310" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小计" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlN-uH-eC7">
@@ -1192,10 +1192,10 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PaymentOrderCell" rowHeight="65" id="Oyd-hc-hMa" customClass="PaymentOrderCell" customModule="pos" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="56" width="226" height="65"/>
+                                                <rect key="frame" x="0.0" y="55.5" width="226" height="65"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Oyd-hc-hMa" id="Gkr-vW-BPY">
-                                                    <rect key="frame" x="0.0" y="0.0" width="226" height="64"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="226" height="64.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHg-gx-m9Z">
@@ -1275,10 +1275,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MergeBillCell" rowHeight="274" id="5LH-Ld-rkJ" customClass="MergeBillCell" customModule="pos" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="56" width="325" height="274"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="325.5" height="274"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5LH-Ld-rkJ" id="HsP-Ri-xV3">
-                                            <rect key="frame" x="0.0" y="0.0" width="325" height="274"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="325.5" height="274"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="30" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="lI1-Wr-SZb">
@@ -1437,10 +1437,10 @@
                                                     </view>
                                                     <prototypes>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MergeBillDetailCell" rowHeight="30" id="vXE-tZ-6Ea" customClass="MergeBillDetailCell" customModule="pos" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="85" width="315" height="30"/>
+                                                            <rect key="frame" x="0.0" y="85.5" width="315.5" height="30"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vXE-tZ-6Ea" id="1xF-lq-de6">
-                                                                <rect key="frame" x="0.0" y="0.0" width="315" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="315.5" height="29.5"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小计" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhv-aq-Gu2">
@@ -2081,10 +2081,10 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PaymentOrderCell" rowHeight="65" id="tkc-X8-9TX" customClass="PaymentOrderCell" customModule="pos" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="56" width="339" height="65"/>
+                                                <rect key="frame" x="0.0" y="55.5" width="338.5" height="65"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tkc-X8-9TX" id="O3G-7e-ZQR">
-                                                    <rect key="frame" x="0.0" y="0.0" width="339" height="64"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="338.5" height="64.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gfx-rO-hAq">
@@ -2804,10 +2804,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HistoryCell" id="qyQ-XO-1ia" customClass="HistoryCell" customModule="pos" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="56" width="994" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="994" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qyQ-XO-1ia" id="ypQ-cL-GuI">
-                                            <rect key="frame" x="0.0" y="0.0" width="994" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="994" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-05-31 06:09:34" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xG-rz-qMw">
@@ -3003,10 +3003,10 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PaymentOrderCell" rowHeight="65" id="Pho-6R-HVN" customClass="PaymentOrderCell" customModule="pos" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="56" width="338" height="65"/>
+                                                <rect key="frame" x="0.0" y="55.5" width="338.5" height="65"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pho-6R-HVN" id="zBw-kT-hWW">
-                                                    <rect key="frame" x="0.0" y="0.0" width="338" height="64"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="338.5" height="64.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5D-Gx-FvR">
@@ -3638,7 +3638,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iOh-GX-34O">
-                                <rect key="frame" x="97" y="126.5" width="830" height="515"/>
+                                <rect key="frame" x="97" y="106.5" width="830" height="555"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="味道" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPR-B9-tbg">
                                         <rect key="frame" x="396.5" y="10" width="37" height="20"/>
@@ -3727,10 +3727,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Pwg-wl-Iax">
-                                        <rect key="frame" x="15" y="300.5" width="800" height="100"/>
+                                        <rect key="frame" x="15" y="300.5" width="800" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="etl-J2-HUz"/>
+                                            <constraint firstAttribute="height" constant="50" id="etl-J2-HUz"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5rM-GR-hsB">
                                             <size key="itemSize" width="80" height="50"/>
@@ -3775,18 +3775,67 @@
                                             <outlet property="delegate" destination="OtY-FH-Hl8" id="usQ-Tn-o2i"/>
                                         </connections>
                                     </collectionView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OYE-M8-GCh">
+                                        <rect key="frame" x="15" y="390.5" width="800" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="AhI-QP-kLL"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5v9-E9-SrD">
+                                            <size key="itemSize" width="80" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TasteCell" id="zqK-bC-pyC" customClass="TasteCell" customModule="pos" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="80" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不辣" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1LN-Pv-lZw">
+                                                            <rect key="frame" x="5" y="16.5" width="70" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </view>
+                                                <color key="backgroundColor" red="0.92549019610000005" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="1LN-Pv-lZw" firstAttribute="centerX" secondItem="zqK-bC-pyC" secondAttribute="centerX" id="6V4-pW-712"/>
+                                                    <constraint firstItem="1LN-Pv-lZw" firstAttribute="width" secondItem="zqK-bC-pyC" secondAttribute="width" constant="-10" id="EHn-Z4-hAN"/>
+                                                    <constraint firstItem="1LN-Pv-lZw" firstAttribute="centerY" secondItem="zqK-bC-pyC" secondAttribute="centerY" id="gQz-pQ-lp5"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="tasteLabel" destination="1LN-Pv-lZw" id="zUu-5w-qVj"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="OtY-FH-Hl8" id="8PO-O6-8mf"/>
+                                            <outlet property="delegate" destination="OtY-FH-Hl8" id="Duh-wK-KCk"/>
+                                        </connections>
+                                    </collectionView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F4G-ba-G13">
-                                        <rect key="frame" x="0.0" y="410.5" width="830" height="0.5"/>
+                                        <rect key="frame" x="0.0" y="450.5" width="830" height="0.5"/>
                                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="特别说明：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCZ-YI-awS">
-                                        <rect key="frame" x="15" y="431" width="71.5" height="17"/>
+                                        <rect key="frame" x="15" y="471" width="71.5" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="例如 没有洋葱，没有麻油" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q16-Rf-UWW">
-                                        <rect key="frame" x="86.5" y="425" width="200" height="30"/>
+                                        <rect key="frame" x="86.5" y="465" width="200" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="6gc-CF-78Y"/>
                                         </constraints>
@@ -3795,7 +3844,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iNX-9Y-60s">
-                                        <rect key="frame" x="748" y="468" width="67" height="32"/>
+                                        <rect key="frame" x="748" y="508" width="67" height="32"/>
                                         <color key="backgroundColor" red="0.36078431372549019" green="0.72156862745098038" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="    保存    "/>
@@ -3808,12 +3857,22 @@
                                             <action selector="saveClick:" destination="OtY-FH-Hl8" eventType="touchUpInside" id="Krz-jg-312"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已选拼盘：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXQ-qO-HSI">
+                                        <rect key="frame" x="15" y="360.5" width="71.5" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Lze-Bp-QEC"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="OYE-M8-GCh" firstAttribute="top" secondItem="fXQ-qO-HSI" secondAttribute="bottom" constant="10" id="0IE-bQ-Agx"/>
                                     <constraint firstItem="MCZ-YI-awS" firstAttribute="top" secondItem="F4G-ba-G13" secondAttribute="bottom" constant="20" id="0S1-hp-Bpg"/>
                                     <constraint firstItem="Jev-JT-EMy" firstAttribute="centerY" secondItem="OPR-B9-tbg" secondAttribute="centerY" id="17O-x3-QUL"/>
-                                    <constraint firstItem="F4G-ba-G13" firstAttribute="top" secondItem="Pwg-wl-Iax" secondAttribute="bottom" constant="10" id="1Mq-4k-Ym8"/>
+                                    <constraint firstItem="OYE-M8-GCh" firstAttribute="width" secondItem="Pwg-wl-Iax" secondAttribute="width" id="1Bc-Pw-f9b"/>
                                     <constraint firstItem="F4G-ba-G13" firstAttribute="width" secondItem="jTy-Xe-UA1" secondAttribute="width" id="4sB-5g-emy"/>
                                     <constraint firstItem="SD0-2t-BDx" firstAttribute="width" secondItem="iOh-GX-34O" secondAttribute="width" constant="-30" id="Bz2-jm-SQJ"/>
                                     <constraint firstItem="MCZ-YI-awS" firstAttribute="leading" secondItem="Pwg-wl-Iax" secondAttribute="leading" id="HfG-9Q-wQ3"/>
@@ -3832,8 +3891,12 @@
                                     <constraint firstItem="OPR-B9-tbg" firstAttribute="top" secondItem="iOh-GX-34O" secondAttribute="top" constant="10" id="cAf-eu-eBH"/>
                                     <constraint firstItem="Q16-Rf-UWW" firstAttribute="leading" secondItem="MCZ-YI-awS" secondAttribute="trailing" id="faX-wT-fqb"/>
                                     <constraint firstItem="SD0-2t-BDx" firstAttribute="top" secondItem="jTy-Xe-UA1" secondAttribute="bottom" constant="15" id="jCr-l4-gzf"/>
+                                    <constraint firstItem="fXQ-qO-HSI" firstAttribute="leading" secondItem="1Ob-5s-7FQ" secondAttribute="leading" id="kI8-6M-yCc"/>
                                     <constraint firstItem="jTy-Xe-UA1" firstAttribute="centerX" secondItem="iOh-GX-34O" secondAttribute="centerX" id="l30-Xf-bDn"/>
                                     <constraint firstItem="Pwg-wl-Iax" firstAttribute="width" secondItem="SD0-2t-BDx" secondAttribute="width" id="nJw-OV-9TS"/>
+                                    <constraint firstItem="OYE-M8-GCh" firstAttribute="centerX" secondItem="Pwg-wl-Iax" secondAttribute="centerX" id="peO-hc-bdP"/>
+                                    <constraint firstItem="F4G-ba-G13" firstAttribute="top" secondItem="OYE-M8-GCh" secondAttribute="bottom" constant="10" id="tn7-5f-ZqM"/>
+                                    <constraint firstItem="fXQ-qO-HSI" firstAttribute="top" secondItem="Pwg-wl-Iax" secondAttribute="bottom" constant="10" id="u6W-JK-ASE"/>
                                     <constraint firstItem="jTy-Xe-UA1" firstAttribute="top" secondItem="OPR-B9-tbg" secondAttribute="bottom" constant="10" id="uTa-iY-1Ys"/>
                                     <constraint firstAttribute="trailing" secondItem="iNX-9Y-60s" secondAttribute="trailing" constant="15" id="xey-tv-R5X"/>
                                     <constraint firstItem="SD0-2t-BDx" firstAttribute="centerX" secondItem="iOh-GX-34O" secondAttribute="centerX" id="zuF-hQ-Mp1"/>
@@ -3852,6 +3915,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="comboBottom" destination="tn7-5f-ZqM" id="5tj-6f-ndP"/>
+                        <outlet property="comboCollection" destination="OYE-M8-GCh" id="Z4v-Mo-I3M"/>
+                        <outlet property="comboHeight" destination="AhI-QP-kLL" id="DEs-nb-sOh"/>
+                        <outlet property="comboTitle" destination="fXQ-qO-HSI" id="y0F-Zu-OpD"/>
                         <outlet property="selectCollection" destination="Pwg-wl-Iax" id="b2y-s1-chM"/>
                         <outlet property="selectHeight" destination="etl-J2-HUz" id="8nH-A8-yqn"/>
                         <outlet property="tasteCollection" destination="SD0-2t-BDx" id="5Sc-UD-qdm"/>

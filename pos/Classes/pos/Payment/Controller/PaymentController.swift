@@ -244,6 +244,7 @@ class PaymentController: AntController,UITableViewDelegate,UITableViewDataSource
         }
         
         orderTable.reloadData()
+        checkReceiveMoney()
     }
     
     // MARK: 处理收到的金额
