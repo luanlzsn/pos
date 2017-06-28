@@ -26,6 +26,8 @@ class TasteController: AntController,UICollectionViewDelegate,UICollectionViewDa
     var existingTasteIdArray = [Int]()//现有的口味id
     var combId = 0
     var instructions = ""//特别说明
+    var combNum = 0
+    
     
     deinit {
         selectTaste = nil
@@ -45,6 +47,7 @@ class TasteController: AntController,UICollectionViewDelegate,UICollectionViewDa
             comboTitle.isHidden = false
             comboBottom.constant = 10
         }
+        getAllExtraCategories()
         getAllExtras()
     }
     
@@ -53,8 +56,8 @@ class TasteController: AntController,UICollectionViewDelegate,UICollectionViewDa
     }
     
     @IBAction func saveClick(_ sender: UIButton) {
-        if combId != 0 && comboArray.count != combId {
-            AntManage.showDelayToast(message: NSLocalizedString("请选择", comment: "") + "\(combId)" + NSLocalizedString("种拼盘", comment: ""))
+        if combId != 0 && comboArray.count != combNum {
+            AntManage.showDelayToast(message: NSLocalizedString("请选择", comment: "") + "\(combNum)" + NSLocalizedString("种拼盘", comment: ""))
             return
         }
         if selectTaste != nil {
@@ -68,6 +71,20 @@ class TasteController: AntController,UICollectionViewDelegate,UICollectionViewDa
             selectTaste!(["ExtraIdList":extraIdList, "Special":textField.text!])
         }
         cancelClick()
+    }
+    
+    func getAllExtraCategories() {
+        weak var weakSelf = self
+        AntManage.postRequest(path: "tables/getAllExtraCategories", params: ["status":"A", "access_token":AntManage.userModel!.token], successResult: { (response) in
+            let array = response["data"] as! [[String : Any]]
+            for dic in array {
+                let model = ExtraCategoryModel.mj_object(withKeyValues: dic["Extrascategory"])!
+                if model.categoryId == ((weakSelf?.combId == 0) ? 1 : weakSelf!.combId) {
+                    weakSelf?.combNum = model.extras_num
+                    return
+                }
+            }
+        }, failureResult: {})
     }
     
     func getAllExtras() {
@@ -158,16 +175,12 @@ class TasteController: AntController,UICollectionViewDelegate,UICollectionViewDa
         if collectionView == tasteCollection {
             let model = tasteArray[indexPath.row]
             if combId == 0 {
-                if !selectArray.contains(model) {
-                    selectArray.append(model)
-                }
+                selectArray.append(model)
             } else {
-                if comboArray.count >= combId {
+                if comboArray.count >= combNum {
                     return
                 }
-                if !comboArray.contains(model) {
-                    comboArray.append(model)
-                }
+                comboArray.append(model)
             }
         } else if collectionView == selectCollection {
             selectArray.remove(at: indexPath.row)

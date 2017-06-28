@@ -139,13 +139,26 @@ class CousineModel: AntModel {
     var image = ""//图片
     var casier_id = 0
     var category_id = 0//菜单类别ID
-    var comb_num = 0
+    var comb_num = 0//选择拼菜的多少，当
     var is_tax = ""//是否有税
     var popular = 0
     var restaurant_id = 0//餐厅的ID
     
     override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
         return ["cousineId":"id"]
+    }
+}
+
+
+class ExtraCategoryModel: AntModel {
+    var categoryId = 0
+    var name = ""
+    var name_zh = ""
+    var extras_num = 0
+    var status = ""
+    
+    override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
+        return ["categoryId":"id"]
     }
 }
 

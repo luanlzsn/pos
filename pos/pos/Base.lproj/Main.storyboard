@@ -1450,7 +1450,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLL-jg-mif">
-                                                                        <rect key="frame" x="88" y="6.5" width="38" height="17"/>
+                                                                        <rect key="frame" x="108" y="6.5" width="38" height="17"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -1459,7 +1459,7 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="leadingMargin" secondItem="qhv-aq-Gu2" secondAttribute="leading" id="0YP-Cl-AmG"/>
                                                                     <constraint firstItem="sLL-jg-mif" firstAttribute="centerY" secondItem="1xF-lq-de6" secondAttribute="centerY" id="HsA-G9-k67"/>
-                                                                    <constraint firstItem="sLL-jg-mif" firstAttribute="leading" secondItem="1xF-lq-de6" secondAttribute="leadingMargin" constant="80" id="KlG-6O-qU8"/>
+                                                                    <constraint firstItem="sLL-jg-mif" firstAttribute="leading" secondItem="1xF-lq-de6" secondAttribute="leadingMargin" constant="100" id="KlG-6O-qU8"/>
                                                                     <constraint firstItem="qhv-aq-Gu2" firstAttribute="centerY" secondItem="1xF-lq-de6" secondAttribute="centerY" id="hyl-0b-adj"/>
                                                                 </constraints>
                                                             </tableViewCellContentView>

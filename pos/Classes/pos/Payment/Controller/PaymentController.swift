@@ -313,7 +313,12 @@ class PaymentController: AntController,UITableViewDelegate,UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PaymentOrderCell = tableView.dequeueReusableCell(withIdentifier: "PaymentOrderCell", for: indexPath) as! PaymentOrderCell
         let model = orderItemArray[indexPath.row]
-        cell.nameLabel.text = model.name_en + "\n" + model.name_xh
+        
+        if model.is_takeout == "Y" {
+            cell.nameLabel.text = "(Take Out)" + model.name_en + "\n" + "(\(NSLocalizedString("外卖", comment: "")))\(model.name_xh)"
+        } else {
+            cell.nameLabel.text = model.name_en + "\n" + model.name_xh
+        }
         var extrasStr = ""
         if model.selected_extras.count > 0 {
             for extras in model.selected_extras {

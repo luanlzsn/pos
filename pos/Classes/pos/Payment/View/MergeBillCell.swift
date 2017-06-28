@@ -150,7 +150,7 @@ class MergeBillCell: UITableViewCell,UITableViewDelegate,UITableViewDataSource {
             cell.moneyLabel.text = "$ " + String(format: "%.2f", orderModel.total)
         } else if indexPath.row == 1 {
             cell.titleLabel.text = NSLocalizedString("折扣", comment: "")
-            cell.moneyLabel.text = "$ " + String(format: "%.2f", orderModel.tax_amount)
+            cell.moneyLabel.text = "$ " + String(format: "%.2f", orderModel.discount_value)
         } else if indexPath.row == 2 {
             cell.titleLabel.text = NSLocalizedString("折后价", comment: "")
             cell.moneyLabel.text = "$ " + String(format: "%.2f", orderModel.after_discount)

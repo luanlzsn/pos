@@ -351,7 +351,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             foodArray += cousinesDic[selectMenu.categoryId]!
         } else {
             for model in cousinesDic[selectMenu.categoryId]! {
-                if model.zh.contains(searchView.text!) || model.en.contains(searchView.text!) {
+                if model.zh.contains(searchView.text!) || model.en.lowercased().contains(searchView.text!.lowercased()) {
                     foodArray.append(model)
                 }
             }
@@ -473,9 +473,9 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
     }
     
     // MARK: 批量加口味、换口味
-    func addExtras(extraIdList: [Int], special: String) {
+    func addExtras(extraIdList: [Int], special: String, type: Int) {
         weak var weakSelf = self
-        if selectFoodArray.count == 1 {
+        if type == 1 {
             AntManage.postRequest(path: "orderHandler/addExtras", params: ["item_id":selectFoodArray.first!.orderItemId, "extra_id_list":extraIdList, "type":tableType, "table":tableNo, "special":special, "cashier_id":AntManage.userModel!.cashier_id, "access_token":AntManage.userModel!.token], successResult: { (_) in
                 weakSelf?.getOrderInfo()
             }, failureResult: {})
@@ -506,7 +506,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             }
             weak var weakSelf = self
             taste.selectTaste = {(selectTaste) in
-                weakSelf?.addExtras(extraIdList: (selectTaste as! [String : Any])["ExtraIdList"] as! [Int], special: (selectTaste as! [String : Any])["Special"] as! String)
+                weakSelf?.addExtras(extraIdList: (selectTaste as! [String : Any])["ExtraIdList"] as! [Int], special: (selectTaste as! [String : Any])["Special"] as! String, type: sender as! Int)
             }
         } else if segue.identifier == "Payment" {
             let payment: PaymentController = segue.destination as! PaymentController
@@ -690,11 +690,6 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
         if collectionView == menuCollection {
             return categoryArray.count
         } else {
-//            if cousinesDic.keys.contains(selectMenu.categoryId) {
-//                return (cousinesDic[selectMenu.categoryId]?.count)!
-//            } else {
-//                return 0
-//            }
             return foodArray.count
         }
     }
@@ -709,7 +704,6 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             return cell
         } else {
             let cell: OrderFoodCell = collectionView.dequeueReusableCell(withReuseIdentifier: "OrderFoodCell", for: indexPath) as! OrderFoodCell
-//            let model = cousinesDic[selectMenu.categoryId]![indexPath.row]
             let model = foodArray[indexPath.row]
             cell.name.text = model.en
             cell.nameZh.text = model.zh
@@ -724,7 +718,7 @@ class OrderController: AntController,UITableViewDelegate,UITableViewDataSource,U
             collectionView.reloadData()
             getCousinesByCategoryId()
         } else {
-            let model = cousinesDic[selectMenu.categoryId]![indexPath.row]
+            let model = foodArray[indexPath.row]
             weak var weakSelf = self
             AntManage.postRequest(path: "orderHandler/addItem", params: ["item_id":model.cousineId, "table":tableNo, "type":tableType, "cashier_id":AntManage.userModel!.cashier_id, "access_token":AntManage.userModel!.token], successResult: { (response) in
                 if model.comb_num != 0 {
