@@ -1,29 +1,31 @@
 //
-//  HomeController.swift
+//  ForgetController.swift
 //  pos
 //
-//  Created by luan on 2017/6/5.
+//  Created by luan on 2017/8/24.
 //  Copyright © 2017年 luan. All rights reserved.
 //
 
 import UIKit
 
-class HomeController: AntController {
+class ForgetController: AntController {
 
+    @IBOutlet weak var emailField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if !AntManage.isLogin {
-            let loginNav = UIStoryboard(name: "Login", bundle: Bundle.main).instantiateInitialViewController()
-            present(loginNav!, animated: true, completion: nil)
-        }
-    }
 
+    @IBAction func resetClick(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func backLoginClick(_ sender: UIButton) {
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

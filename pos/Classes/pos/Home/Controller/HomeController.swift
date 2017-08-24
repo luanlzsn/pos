@@ -20,18 +20,23 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
     var takeoutNum = 0//外卖餐桌数量
     var deliveryNum = 0//送餐餐桌数量
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.isNavigationBarHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(requestAddressUpdate), name: NSNotification.Name("RequestAddressUpdate"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(homeClick), name: NSNotification.Name(rawValue: "ChangeTableSuccsee"), object: nil)
         collection.register(UINib(nibName: "HomeCell", bundle: Bundle.main), forCellWithReuseIdentifier: "HomeCell")
         takeoutCollection.register(UINib(nibName: "HomeCell", bundle: Bundle.main), forCellWithReuseIdentifier: "HomeCell")
         deliveryCollection.register(UINib(nibName: "HomeCell", bundle: Bundle.main), forCellWithReuseIdentifier: "HomeCell")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         if !AntManage.isLogin {
             let login = UIStoryboard(name: "Login", bundle: Bundle.main).instantiateInitialViewController()!
             present(login, animated: true, completion: nil)
@@ -116,6 +121,15 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
         UserDefaults.standard.synchronize()
         let login = UIStoryboard(name: "Login", bundle: Bundle.main).instantiateInitialViewController()!
         present(login, animated: true, completion: nil)
+    }
+    
+    // MARK: - 服务器地址更改
+    func requestAddressUpdate() {
+        if AntManage.isLogin {
+            AntManage.showDelayToast(message: NSLocalizedString("服务器地址变更，请重新登录！", comment: ""))
+            navigationController?.popToRootViewController(animated: false)
+            logoutClick()
+        }
     }
     
     // MARK: 获取餐桌数量

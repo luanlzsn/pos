@@ -236,8 +236,8 @@ extension UITextField {
         }
         set {
             let imgView = UIImageView(image: newValue)
-            imgView.contentMode = .right
-            imgView.frame = CGRect(x: 0, y: 0, width: newValue.size.width + 8, height: height)
+            imgView.contentMode = .center
+            imgView.frame = CGRect(x: 0, y: 0, width: newValue.size.width + 20, height: height)
             leftView = imgView
             leftViewMode = .always
         }

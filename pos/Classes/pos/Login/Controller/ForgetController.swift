@@ -10,6 +10,7 @@ import UIKit
 
 class ForgetController: AntController {
 
+    @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var email: UITextField!
     
     override func viewDidLoad() {

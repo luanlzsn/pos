@@ -10,6 +10,7 @@ import UIKit
 
 class LoginController: AntController {
 
+    @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var passWord: UITextField!
     

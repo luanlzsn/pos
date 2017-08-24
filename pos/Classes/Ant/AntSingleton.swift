@@ -17,7 +17,7 @@ class AntSingleton: NSObject {
     
     static let sharedInstance = AntSingleton()
     var manager = AFHTTPSessionManager()
-    var requestBaseUrl = "http://pos.auroraeducationonline.info/api/"
+    var requestBaseUrl = (UIDevice.current.userInterfaceIdiom == .pad) ? "http://pos.auroraeducationonline.info/api/" : "http://yourdomain.com/api/rest/"
     var progress : MBProgressHUD?
     var progressCount = 0//转圈数量
     var isLogin = false//是否登录
@@ -120,7 +120,7 @@ class AntSingleton: NSObject {
     }
     
     // MARK: - 校验默认请求地址
-    func checkBaseRequestAddress() {
+    func checkBaseRequestAddress(isStartUp: Bool) {
         let baseRequestAddress = UserDefaults.standard.object(forKey: "BaseRequestAddress")
         AntLog(message: baseRequestAddress)
         let beforeUrl = requestBaseUrl
@@ -133,12 +133,8 @@ class AntSingleton: NSObject {
                 }
             }
         }
-        if beforeUrl != requestBaseUrl {
-            userModel = nil
-            UserDefaults.standard.removeObject(forKey: kUserName)
-            UserDefaults.standard.removeObject(forKey: kPassWord)
-            UserDefaults.standard.synchronize()
-            showDelayToast(message: NSLocalizedString("服务器地址变更，请重新登录！", comment: ""))
+        if beforeUrl != requestBaseUrl, !isStartUp {
+            NotificationCenter.default.post(name: NSNotification.Name("RequestAddressUpdate"), object: nil)
         }
     }
     

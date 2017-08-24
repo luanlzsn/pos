@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  pos
+
+  Created by luan on 2017/8/24.
+  Copyright © 2017年 luan. All rights reserved.
+*/
+
+"邮箱不能为空" = "邮箱不能为空";
+"密码不能为空" = "密码不能为空";
