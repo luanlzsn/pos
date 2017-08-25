@@ -29,6 +29,11 @@ class RegisterController: AntController {
             AntManage.showDelayToast(message: NSLocalizedString("密码不能为空", comment: ""))
             return
         }
+        weak var weakSelf = self
+        AntManage.iphonePostRequest(path: "route=rest/register/register", params: ["email":emailField.text!, "password":passwordField.text!, "firstname":"1", "lastname":"2", "confirm":passwordField.text!, "telephone":"18900000000", "city":"123", "address_1":"123", "country_id":"123", "zone_id":"1"], successResult: { (response) in
+            AntManage.showDelayToast(message: NSLocalizedString("注册成功", comment: ""))
+            weakSelf?.navigationController?.popViewController(animated: true)
+        }, failureResult: {})
     }
     
     @IBAction func backLoginClick(_ sender: UIButton) {

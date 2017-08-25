@@ -17,13 +17,17 @@ class AntSingleton: NSObject {
     
     static let sharedInstance = AntSingleton()
     var manager = AFHTTPSessionManager()
-    var requestBaseUrl = (UIDevice.current.userInterfaceIdiom == .pad) ? "http://pos.auroraeducationonline.info/api/" : "http://yourdomain.com/api/rest/"
+    var requestBaseUrl = (UIDevice.current.userInterfaceIdiom == .pad) ? "http://pos.auroraeducationonline.info/api/" : "http://posonline.auroraeducationonline.info/index.php?"
     var progress : MBProgressHUD?
     var progressCount = 0//转圈数量
     var isLogin = false//是否登录
     var userModel: UserModel?
+    var token = ""
     
     private override init () {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            manager.requestSerializer = AFJSONRequestSerializer()
+        }
         manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "application/json","text/json","text/javascript","text/html")
         manager.requestSerializer.timeoutInterval = kRequestTimeOut
     }
@@ -87,6 +91,58 @@ class AntSingleton: NSObject {
             failureResult()
         }
     }
+    
+    //MARK: - post请求
+    func iphonePostRequest(path:String, params:[String : Any]?, successResult:@escaping ([String : Any]) -> Void, failureResult:@escaping () -> Void) {
+        AntLog(message: "请求接口：\(path),请求参数：\(String(describing: params))")
+        showMessage(message: "")
+        weak var weakSelf = self
+
+        if token.isEmpty {
+            manager.requestSerializer.setValue("Basic cG9zb25saW5lOlBvTCMxMjA5", forHTTPHeaderField: "Authorization")
+        } else {
+            manager.requestSerializer.setValue("BEARER \(token)", forHTTPHeaderField: "Authorization")
+        }
+        manager.requestSerializer.setValue((LanguageManager.currentLanguageString() == "en") ? "en" : "zh", forHTTPHeaderField: "Accept-Language")
+        manager.requestSerializer.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        manager.requestSerializer.httpShouldHandleCookies = false
+        manager.post(requestBaseUrl + path, parameters: params, progress: nil, success: { (task, response) in
+            weakSelf?.iphoneRequestSuccess(response: response, successResult: successResult, failureResult: failureResult)
+        }) { (task, error) in
+            weakSelf?.hideMessage()
+            weakSelf?.showDelayToast(message: "未知错误，请重试！")
+            failureResult()
+        }
+    }
+    
+    //MARK: - 请求成功回调
+    func iphoneRequestSuccess(response: Any?, successResult:@escaping ([String : Any]) -> Void, failureResult:@escaping () -> Void) {
+        AntLog(message: "接口返回数据：\(String(describing: response))")
+        hideMessage()
+        if let data = response as? [String : Any] {
+            if let success = data["success"] as? Bool {
+                if success {
+                    successResult(data)
+                } else {
+                    failureResult()
+                    if let error = data["error"] as? [String : Any] {
+                        for value in error.values {
+                            if let message = value as? String {
+                                showDelayToast(message: message)
+                            }
+                        }
+                    } else if let error = data["error"] as? String {
+                        showDelayToast(message: error)
+                    }
+                }
+            } else {
+                successResult(data)
+            }
+        } else {
+            failureResult()
+        }
+    }
+    
     
     // MARK: - 显示提示
     func showMessage(message : String) {

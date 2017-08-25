@@ -17,6 +17,11 @@ class LoginController: AntController {
         super.viewDidLoad()
 
         createPasswordRightView(passwordField)
+        AntManage.iphonePostRequest(path: "route=feed/rest_api/gettoken&grant_type=client_credentials", params: nil, successResult: { (response) in
+            if let accseeToken = response["access_token"] as? String {
+                AntManage.token = accseeToken
+            }
+        }, failureResult: {})
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +39,9 @@ class LoginController: AntController {
             AntManage.showDelayToast(message: NSLocalizedString("密码不能为空", comment: ""))
             return
         }
+        AntManage.iphonePostRequest(path: "route=rest/login/login", params: ["email":emailField.text!, "password":passwordField.text!], successResult: { (response) in
+            
+        }, failureResult: {})
     }
     
     func checkPassword(_ button: UIButton) {
