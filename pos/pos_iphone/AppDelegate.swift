@@ -27,7 +27,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         LanguageManager.setupCurrentLanguage()
         
+        AntManage.iphonePostRequest(path: "route=feed/rest_api/gettoken&grant_type=client_credentials", params: nil, successResult: { (response) in
+            if let accseeToken = response["access_token"] as? String {
+                AntManage.iphoneToken = accseeToken
+            }
+        }, failureResult: {})
+        
+        Thread.detachNewThreadSelector(#selector(runOnNewThread), toTarget: self, with: nil)
+        while AntManage.iphoneToken.isEmpty {
+            RunLoop.current.run(mode: .defaultRunLoopMode, before: Date.distantFuture)
+        }
+        
         return true
+    }
+    
+    func runOnNewThread() {
+        sleep(1)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -32,7 +32,12 @@ class RegisterController: AntController {
         weak var weakSelf = self
         AntManage.iphonePostRequest(path: "route=rest/register/register", params: ["email":emailField.text!, "password":passwordField.text!, "firstname":"1", "lastname":"2", "confirm":passwordField.text!, "telephone":"18900000000", "city":"123", "address_1":"123", "country_id":"123", "zone_id":"1"], successResult: { (response) in
             AntManage.showDelayToast(message: NSLocalizedString("注册成功", comment: ""))
-            weakSelf?.navigationController?.popViewController(animated: true)
+            AntManage.userModel = UserModel.mj_object(withKeyValues: response["data"])
+            AntManage.isLogin = true
+            UserDefaults.standard.set(weakSelf!.emailField.text!, forKey: kUserName)
+            UserDefaults.standard.set(weakSelf!.passwordField.text!, forKey: kPassWord)
+            UserDefaults.standard.synchronize()
+            weakSelf?.dismiss(animated: true, completion: nil)
         }, failureResult: {})
     }
     

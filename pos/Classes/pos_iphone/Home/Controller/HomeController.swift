@@ -8,12 +8,14 @@
 
 import UIKit
 
-class HomeController: AntController {
+class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 
+    @IBOutlet weak var collection: UICollectionView!
+    var shopArray = [HomeShopModel]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -21,7 +23,35 @@ class HomeController: AntController {
         if !AntManage.isLogin {
             let loginNav = UIStoryboard(name: "Login", bundle: Bundle.main).instantiateInitialViewController()
             present(loginNav!, animated: true, completion: nil)
+        } else if shopArray.count == 0 {
+            weak var weakSelf = self
+            AntManage.iphoneGetRequest(path: "route=feed/rest_api/stores", params: nil, successResult: { (response) in
+                weakSelf?.shopArray = HomeShopModel.mj_objectArray(withKeyValuesArray: response["data"]) as! [HomeShopModel]
+                weakSelf?.collection.reloadData()
+            }, failureResult: {})
         }
+    }
+    
+    // MARK: - UICollectionViewDelegateFlowLayout
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = (kScreenWidth - 30) / 2.0
+        return CGSize(width: cellWidth, height: cellWidth + 40)
+    }
+    
+    // MARK: - UICollectionViewDelegate,UICollectionViewDataSource
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return shopArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: HomeShopCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeShopCell", for: indexPath) as! HomeShopCell
+        let model = shopArray[indexPath.row]
+        cell.shopName.text = model.name
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
     }
 
     override func didReceiveMemoryWarning() {

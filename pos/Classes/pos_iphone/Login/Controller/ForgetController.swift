@@ -19,7 +19,16 @@ class ForgetController: AntController {
     }
 
     @IBAction func resetClick(_ sender: UIButton) {
-        
+        kWindow?.endEditing(true)
+        if emailField.text!.isEmpty {
+            AntManage.showDelayToast(message: NSLocalizedString("邮箱不能为空", comment: ""))
+            return
+        }
+        weak var weakSelf = self
+        AntManage.iphonePostRequest(path: "route=rest/forgotten/forgotten", params: ["email":emailField.text!], successResult: { (_) in
+            AntManage.showDelayToast(message: NSLocalizedString("密码已发至邮箱，请查收！", comment: ""))
+            weakSelf?.navigationController?.popViewController(animated: true)
+        }, failureResult: {})
     }
     
     @IBAction func backLoginClick(_ sender: UIButton) {

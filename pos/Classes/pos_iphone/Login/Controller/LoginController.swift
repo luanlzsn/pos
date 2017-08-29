@@ -17,11 +17,11 @@ class LoginController: AntController {
         super.viewDidLoad()
 
         createPasswordRightView(passwordField)
-        AntManage.iphonePostRequest(path: "route=feed/rest_api/gettoken&grant_type=client_credentials", params: nil, successResult: { (response) in
-            if let accseeToken = response["access_token"] as? String {
-                AntManage.token = accseeToken
-            }
-        }, failureResult: {})
+        if UserDefaults.standard.object(forKey: kUserName) != nil {
+            emailField.text = UserDefaults.standard.object(forKey: kUserName) as? String
+            passwordField.text = UserDefaults.standard.object(forKey: kPassWord) as? String
+            loginClick()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,7 +29,7 @@ class LoginController: AntController {
         navigationController?.isNavigationBarHidden = true
     }
 
-    @IBAction func loginClick(_ sender: UIButton) {
+    @IBAction func loginClick() {
         kWindow?.endEditing(true)
         if emailField.text!.isEmpty {
             AntManage.showDelayToast(message: NSLocalizedString("邮箱不能为空", comment: ""))
@@ -39,8 +39,15 @@ class LoginController: AntController {
             AntManage.showDelayToast(message: NSLocalizedString("密码不能为空", comment: ""))
             return
         }
+        weak var weakSelf = self
         AntManage.iphonePostRequest(path: "route=rest/login/login", params: ["email":emailField.text!, "password":passwordField.text!], successResult: { (response) in
-            
+            AntManage.showDelayToast(message: NSLocalizedString("登录成功", comment: ""))
+            AntManage.userModel = UserModel.mj_object(withKeyValues: response["data"])
+            AntManage.isLogin = true
+            UserDefaults.standard.set(weakSelf!.emailField.text!, forKey: kUserName)
+            UserDefaults.standard.set(weakSelf!.passwordField.text!, forKey: kPassWord)
+            UserDefaults.standard.synchronize()
+            weakSelf?.dismiss(animated: true, completion: nil)
         }, failureResult: {})
     }
     

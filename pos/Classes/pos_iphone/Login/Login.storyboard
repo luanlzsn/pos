@@ -91,7 +91,7 @@
                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
                                 <state key="normal" title="登录" backgroundImage="btn_bg"/>
                                 <connections>
-                                    <action selector="loginClick:" destination="cg2-hv-pcs" eventType="touchUpInside" id="Ria-OT-F5O"/>
+                                    <action selector="loginClick" destination="cg2-hv-pcs" eventType="touchUpInside" id="mGY-t5-kqu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5RM-hb-Zan">

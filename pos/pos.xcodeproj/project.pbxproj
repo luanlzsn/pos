@@ -10,6 +10,7 @@
 		0F08FFF91EE1473A005C2C78 /* MergeBillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FFF81EE1473A005C2C78 /* MergeBillCell.swift */; };
 		0F08FFFB1EE14757005C2C78 /* MergeBillDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FFFA1EE14757005C2C78 /* MergeBillDetailCell.swift */; };
 		0F0BA3811EDD839500D9873C /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0BA3801EDD839400D9873C /* HistoryController.swift */; };
+		0F1187071F550BE700F8F3CF /* HomeShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1187051F5509D500F8F3CF /* HomeShopCell.swift */; };
 		0F2386A91F4D772200D121C2 /* AntSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9540EA1EC820C800CCFF95 /* AntSingleton.swift */; };
 		0F26FDC01EDEE79F005A424F /* HistoryDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F26FDBF1EDEE79F005A424F /* HistoryDetailController.swift */; };
 		0F26FDC81EDF05F1005A424F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0F26FDCA1EDF05F1005A424F /* Localizable.strings */; };
@@ -96,6 +97,7 @@
 		0F08FFF81EE1473A005C2C78 /* MergeBillCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeBillCell.swift; sourceTree = "<group>"; };
 		0F08FFFA1EE14757005C2C78 /* MergeBillDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeBillDetailCell.swift; sourceTree = "<group>"; };
 		0F0BA3801EDD839400D9873C /* HistoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
+		0F1187051F5509D500F8F3CF /* HomeShopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeShopCell.swift; sourceTree = "<group>"; };
 		0F26FDBF1EDEE79F005A424F /* HistoryDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryDetailController.swift; sourceTree = "<group>"; };
 		0F26FDC21EDEFA24005A424F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		0F26FDC41EDF010E005A424F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 		0FE591D41EE55BE300E6FAB4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0F1187051F5509D500F8F3CF /* HomeShopCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -796,6 +799,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F1187071F550BE700F8F3CF /* HomeShopCell.swift in Sources */,
 				6B95412A1EC8217200CCFF95 /* NSBundle+Language.m in Sources */,
 				6B9541131EC820E300CCFF95 /* AppDelegate.swift in Sources */,
 				0FE591DC1EE55C7900E6FAB4 /* HomeController.swift in Sources */,

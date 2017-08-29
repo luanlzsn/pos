@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="u8u-Tw-bFx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="u8u-Tw-bFx">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,9 +21,81 @@
                     <view key="view" contentMode="scaleToFill" id="XfW-VO-YPz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fHo-fS-xRk">
+                                <rect key="frame" x="-0.5" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZsK-aY-mef">
+                                    <size key="itemSize" width="160" height="190"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeShopCell" id="qin-kN-WkQ" customClass="HomeShopCell" customModule="pos_iphone" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="10" width="160" height="190"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="160" height="190"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_image" translatesAutoresizingMaskIntoConstraints="NO" id="6Vb-sz-Dfj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="6Vb-sz-Dfj" secondAttribute="height" id="l40-sl-1hm"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZi-bL-pRU">
+                                                    <rect key="frame" x="10" y="160" width="140" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="tZi-bL-pRU" firstAttribute="top" secondItem="6Vb-sz-Dfj" secondAttribute="bottom" id="ARa-mO-aKF"/>
+                                            <constraint firstItem="tZi-bL-pRU" firstAttribute="width" secondItem="qin-kN-WkQ" secondAttribute="width" constant="-20" id="cM0-a5-kPC"/>
+                                            <constraint firstItem="6Vb-sz-Dfj" firstAttribute="top" secondItem="qin-kN-WkQ" secondAttribute="topMargin" constant="-8" id="eMd-Zb-9fw"/>
+                                            <constraint firstItem="tZi-bL-pRU" firstAttribute="centerX" secondItem="qin-kN-WkQ" secondAttribute="centerX" id="mJA-SD-y4X"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="tZi-bL-pRU" secondAttribute="bottom" constant="-8" id="meV-hF-Thn"/>
+                                            <constraint firstItem="6Vb-sz-Dfj" firstAttribute="width" secondItem="qin-kN-WkQ" secondAttribute="width" id="pH4-Qx-S2O"/>
+                                            <constraint firstItem="6Vb-sz-Dfj" firstAttribute="centerX" secondItem="qin-kN-WkQ" secondAttribute="centerX" id="ygK-Oc-ITh"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="shopImage" destination="6Vb-sz-Dfj" id="yne-FS-fX7"/>
+                                            <outlet property="shopName" destination="tZi-bL-pRU" id="ZG5-Jj-6LM"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="IKW-ED-eR5" id="8PS-SY-dcA"/>
+                                    <outlet property="delegate" destination="IKW-ED-eR5" id="RJb-cr-bKq"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fHo-fS-xRk" firstAttribute="height" secondItem="XfW-VO-YPz" secondAttribute="height" id="0Cy-si-AET"/>
+                            <constraint firstItem="fHo-fS-xRk" firstAttribute="centerX" secondItem="XfW-VO-YPz" secondAttribute="centerX" id="fjG-0c-Csy"/>
+                            <constraint firstItem="fHo-fS-xRk" firstAttribute="centerY" secondItem="XfW-VO-YPz" secondAttribute="centerY" id="io3-Ht-KC2"/>
+                            <constraint firstItem="fHo-fS-xRk" firstAttribute="width" secondItem="XfW-VO-YPz" secondAttribute="width" id="zJu-FH-Pqq"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="首页" id="fj6-WS-t7C"/>
+                    <navigationItem key="navigationItem" title="首页" id="fj6-WS-t7C">
+                        <barButtonItem key="leftBarButtonItem" image="nav_menu" id="xam-GO-kEj"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collection" destination="fHo-fS-xRk" id="mlX-1d-Rda"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YvN-B9-vJe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -49,7 +123,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="default_image" width="150" height="150"/>
         <image name="home_icon" width="21" height="20"/>
         <image name="home_icon_select" width="21" height="20"/>
+        <image name="nav_menu" width="23" height="17"/>
     </resources>
 </document>

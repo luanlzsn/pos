@@ -22,7 +22,7 @@ class AntSingleton: NSObject {
     var progressCount = 0//转圈数量
     var isLogin = false//是否登录
     var userModel: UserModel?
-    var token = ""
+    var iphoneToken = ""
     
     private override init () {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -98,15 +98,38 @@ class AntSingleton: NSObject {
         showMessage(message: "")
         weak var weakSelf = self
 
-        if token.isEmpty {
+        if iphoneToken.isEmpty {
             manager.requestSerializer.setValue("Basic cG9zb25saW5lOlBvTCMxMjA5", forHTTPHeaderField: "Authorization")
         } else {
-            manager.requestSerializer.setValue("BEARER \(token)", forHTTPHeaderField: "Authorization")
+            manager.requestSerializer.setValue("BEARER \(iphoneToken)", forHTTPHeaderField: "Authorization")
         }
         manager.requestSerializer.setValue((LanguageManager.currentLanguageString() == "en") ? "en" : "zh", forHTTPHeaderField: "Accept-Language")
         manager.requestSerializer.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         manager.requestSerializer.httpShouldHandleCookies = false
         manager.post(requestBaseUrl + path, parameters: params, progress: nil, success: { (task, response) in
+            weakSelf?.iphoneRequestSuccess(response: response, successResult: successResult, failureResult: failureResult)
+        }) { (task, error) in
+            weakSelf?.hideMessage()
+            weakSelf?.showDelayToast(message: "未知错误，请重试！")
+            failureResult()
+        }
+    }
+    
+    //MARK: - post请求
+    func iphoneGetRequest(path:String, params:[String : Any]?, successResult:@escaping ([String : Any]) -> Void, failureResult:@escaping () -> Void) {
+        AntLog(message: "请求接口：\(path),请求参数：\(String(describing: params))")
+        showMessage(message: "")
+        weak var weakSelf = self
+        
+        if iphoneToken.isEmpty {
+            manager.requestSerializer.setValue("Basic cG9zb25saW5lOlBvTCMxMjA5", forHTTPHeaderField: "Authorization")
+        } else {
+            manager.requestSerializer.setValue("BEARER \(iphoneToken)", forHTTPHeaderField: "Authorization")
+        }
+        manager.requestSerializer.setValue((LanguageManager.currentLanguageString() == "en") ? "en" : "zh", forHTTPHeaderField: "Accept-Language")
+        manager.requestSerializer.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        manager.requestSerializer.httpShouldHandleCookies = false
+        manager.get(requestBaseUrl + path, parameters: params, progress: nil, success: { (task, response) in
             weakSelf?.iphoneRequestSuccess(response: response, successResult: successResult, failureResult: failureResult)
         }) { (task, error) in
             weakSelf?.hideMessage()
@@ -146,6 +169,9 @@ class AntSingleton: NSObject {
     
     // MARK: - 显示提示
     func showMessage(message : String) {
+        if kWindow == nil {
+            return
+        }
         if progress == nil {
             progressCount = 0
             progress = MBProgressHUD.showAdded(to: kWindow!, animated: true)
@@ -169,6 +195,9 @@ class AntSingleton: NSObject {
     
     // MARK: - 显示固定时间的提示
     func showDelayToast(message : String) {
+        if kWindow == nil {
+            return
+        }
         let hud = MBProgressHUD.showAdded(to: kWindow!, animated: true)
         hud.detailsLabel.text = message
         hud.mode = .text
