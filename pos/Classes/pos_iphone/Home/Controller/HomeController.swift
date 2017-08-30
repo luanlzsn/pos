@@ -32,6 +32,14 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
         }
     }
     
+    // MARK: - 跳转
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ProductList" {
+            let product = segue.destination as! ProductListController
+            product.shopModel = sender as? HomeShopModel
+        }
+    }
+    
     // MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = (kScreenWidth - 30) / 2.0
@@ -51,7 +59,7 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        performSegue(withIdentifier: "ProductList", sender: shopArray[indexPath.row])
     }
 
     override func didReceiveMemoryWarning() {

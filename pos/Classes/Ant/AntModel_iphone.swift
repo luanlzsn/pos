@@ -41,3 +41,59 @@ class HomeShopModel: AntModel_iphone {
     var name = ""
     var store_id = -1
 }
+
+class CategoriesModel: AntModel_iphone {
+    var categories = ""
+    var category_id = 0
+    var filters = [String : Any]()
+    var image = ""
+    var name = ""
+    var original_image = ""
+    var parent_id = -1
+}
+
+class OptionItemModel: AntModel_iphone {
+    var name = ""
+    var image = ""
+    var option_value_id = 0
+    var price = 0
+    var price_excluding_tax = "0.00"
+    var price_formated = "$0.00"
+    var price_prefix = "0.00"
+    var product_option_value_id = 0
+    var quantity = 0
+    
+}
+
+class OptionModel: AntModel_iphone {
+    var name = ""
+    var option_id = 0
+    var product_option_id = 0
+    var required = false
+    var type = ""
+    var value = ""
+    var option_value = [OptionItemModel]()
+}
+
+class ProductModel: AntModel_iphone {
+    var desc = ""
+    var discounts = [Any]()
+    var name = ""
+    var price = "0.00"
+    var price_excluding_tax = "0.00"
+    var price_formated = "$0.00"
+    var product_id = 0
+    var rating = 0
+    var special = 0
+    var special_excluding_tax = "0.00"
+    var special_formated = "0.00"
+    var thumb = ""
+    var image = ""
+    var quantity = 0
+    var options = [OptionModel]()
+    
+    override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
+        return ["desc":"description"]
+    }
+    
+}

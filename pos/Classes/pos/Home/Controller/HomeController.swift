@@ -11,7 +11,6 @@ import UIKit
 class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var collection: UICollectionView!
-    @IBOutlet weak var collection: UICollectionView!
     @IBOutlet weak var takeoutCollection: UICollectionView!
     @IBOutlet weak var deliveryCollection: UICollectionView!
     var dineDic = [Int : OrderModel]()//堂食字典,key为餐桌号,value为餐桌信息
