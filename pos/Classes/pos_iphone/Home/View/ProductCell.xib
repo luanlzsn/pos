@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductCell" id="1qt-Us-Rv9" customClass="ProductCell" customModule="pos_iphone">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="250"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="160" height="250"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_image" translatesAutoresizingMaskIntoConstraints="NO" id="Xyd-5D-g9F">
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Xyd-5D-g9F" secondAttribute="height" id="8fG-XH-F30"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5h2-WZ-2yE">
+                        <rect key="frame" x="5" y="165" width="150" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OtQ-y5-Kml">
+                        <rect key="frame" x="5" y="187" width="150" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tl4-lT-dcs">
+                        <rect key="frame" x="5" y="211" width="33.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFQ-5h-hYN">
+                        <rect key="frame" x="48.5" y="211" width="33.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.63137254899999995" green="0.64313725489999995" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ex Tax:$0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8J-HR-eM4">
+                        <rect key="frame" x="5" y="230.5" width="73.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.63137254899999995" green="0.64313725489999995" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yrk-af-VHp">
+                        <rect key="frame" x="133" y="223" width="22" height="22"/>
+                        <state key="normal" image="shopcart_icon_select"/>
+                        <connections>
+                            <action selector="shopCartClick:" destination="1qt-Us-Rv9" eventType="touchUpInside" id="FHI-uX-3BD"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="5h2-WZ-2yE" firstAttribute="centerX" secondItem="1qt-Us-Rv9" secondAttribute="centerX" id="0qe-cO-YHB"/>
+                <constraint firstItem="Xyd-5D-g9F" firstAttribute="top" secondItem="1qt-Us-Rv9" secondAttribute="topMargin" constant="-8" id="1pT-cL-1Sk"/>
+                <constraint firstItem="Tl4-lT-dcs" firstAttribute="leading" secondItem="5h2-WZ-2yE" secondAttribute="leading" id="2QZ-YP-7xn"/>
+                <constraint firstAttribute="bottom" secondItem="Yrk-af-VHp" secondAttribute="bottom" constant="5" id="4kX-49-Bvs"/>
+                <constraint firstItem="5h2-WZ-2yE" firstAttribute="top" secondItem="Xyd-5D-g9F" secondAttribute="bottom" constant="5" id="5iH-s8-a8M"/>
+                <constraint firstItem="Yrk-af-VHp" firstAttribute="bottom" secondItem="j8J-HR-eM4" secondAttribute="bottom" id="6EO-B2-9WD"/>
+                <constraint firstItem="QFQ-5h-hYN" firstAttribute="centerY" secondItem="Tl4-lT-dcs" secondAttribute="centerY" id="79o-tJ-Knl"/>
+                <constraint firstItem="Xyd-5D-g9F" firstAttribute="width" secondItem="1qt-Us-Rv9" secondAttribute="width" id="7SF-wW-clA"/>
+                <constraint firstItem="OtQ-y5-Kml" firstAttribute="width" secondItem="5h2-WZ-2yE" secondAttribute="width" id="BuH-dF-ivl"/>
+                <constraint firstItem="j8J-HR-eM4" firstAttribute="leading" secondItem="5h2-WZ-2yE" secondAttribute="leading" id="GK7-Xn-aEP"/>
+                <constraint firstItem="QFQ-5h-hYN" firstAttribute="leading" secondItem="Tl4-lT-dcs" secondAttribute="trailing" constant="10" id="NT1-DB-qwg"/>
+                <constraint firstItem="OtQ-y5-Kml" firstAttribute="top" secondItem="5h2-WZ-2yE" secondAttribute="bottom" constant="5" id="QCI-s6-J53"/>
+                <constraint firstItem="OtQ-y5-Kml" firstAttribute="centerX" secondItem="1qt-Us-Rv9" secondAttribute="centerX" id="g6o-Sl-ulw"/>
+                <constraint firstItem="j8J-HR-eM4" firstAttribute="top" secondItem="Tl4-lT-dcs" secondAttribute="bottom" constant="5" id="gCM-eK-q6h"/>
+                <constraint firstItem="5h2-WZ-2yE" firstAttribute="width" secondItem="1qt-Us-Rv9" secondAttribute="width" constant="-10" id="lmV-JF-igf"/>
+                <constraint firstItem="Xyd-5D-g9F" firstAttribute="centerX" secondItem="1qt-Us-Rv9" secondAttribute="centerX" id="q9d-uh-LTe"/>
+                <constraint firstItem="Yrk-af-VHp" firstAttribute="trailing" secondItem="5h2-WZ-2yE" secondAttribute="trailing" id="ycL-Eh-t67"/>
+            </constraints>
+            <size key="customSize" width="160" height="254"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                    <real key="value" value="0.5"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                    <color key="value" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="exTax" destination="j8J-HR-eM4" id="9uB-zX-J1d"/>
+                <outlet property="originalPrice" destination="QFQ-5h-hYN" id="sd6-l7-qRL"/>
+                <outlet property="price" destination="Tl4-lT-dcs" id="45R-F7-PVI"/>
+                <outlet property="productDesc" destination="OtQ-y5-Kml" id="XmU-fA-ptv"/>
+                <outlet property="productImage" destination="Xyd-5D-g9F" id="S2a-VN-L0o"/>
+                <outlet property="productName" destination="5h2-WZ-2yE" id="OLS-ys-WL9"/>
+            </connections>
+            <point key="canvasLocation" x="35" y="81"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="default_image" width="150" height="150"/>
+        <image name="shopcart_icon_select" width="22" height="18"/>
+    </resources>
+</document>

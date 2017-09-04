@@ -84,7 +84,7 @@ class ProductModel: AntModel_iphone {
     var price_formated = "$0.00"
     var product_id = 0
     var rating = 0
-    var special = 0
+    var special = 0.0
     var special_excluding_tax = "0.00"
     var special_formated = "0.00"
     var thumb = ""

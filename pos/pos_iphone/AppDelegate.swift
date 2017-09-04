@@ -28,8 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LanguageManager.setupCurrentLanguage()
         
         AntManage.iphonePostRequest(path: "route=feed/rest_api/gettoken&grant_type=client_credentials", params: nil, successResult: { (response) in
-            if let accseeToken = response["access_token"] as? String {
-                AntManage.iphoneToken = accseeToken
+            if let data = response["data"] as? [String : Any] {
+                if let accseeToken = data["access_token"] as? String {
+                    AntManage.iphoneToken = accseeToken
+                }
             }
         }, failureResult: {})
         

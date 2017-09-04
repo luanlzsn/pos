@@ -36,7 +36,7 @@ class ProductCategoriesCell: UICollectionViewCell,UICollectionViewDelegate,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        viewController()!.performSegue(withIdentifier: "ProductList", sender: categoriesArray[indexPath.row])
     }
     
 }

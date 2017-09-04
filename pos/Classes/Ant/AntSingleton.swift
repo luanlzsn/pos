@@ -95,7 +95,10 @@ class AntSingleton: NSObject {
     //MARK: - post请求
     func iphonePostRequest(path:String, params:[String : Any]?, successResult:@escaping ([String : Any]) -> Void, failureResult:@escaping () -> Void) {
         AntLog(message: "请求接口：\(path),请求参数：\(String(describing: params))")
-        showMessage(message: "")
+        if path != "route=feed/rest_api/gettoken&grant_type=client_credentials" {
+            showMessage(message: "")
+        }
+        
         weak var weakSelf = self
 
         if iphoneToken.isEmpty {
@@ -169,9 +172,6 @@ class AntSingleton: NSObject {
     
     // MARK: - 显示提示
     func showMessage(message : String) {
-        if kWindow == nil {
-            return
-        }
         if progress == nil {
             progressCount = 0
             progress = MBProgressHUD.showAdded(to: kWindow!, animated: true)
@@ -195,9 +195,6 @@ class AntSingleton: NSObject {
     
     // MARK: - 显示固定时间的提示
     func showDelayToast(message : String) {
-        if kWindow == nil {
-            return
-        }
         let hud = MBProgressHUD.showAdded(to: kWindow!, animated: true)
         hud.detailsLabel.text = message
         hud.mode = .text

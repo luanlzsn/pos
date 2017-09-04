@@ -38,6 +38,8 @@
 		0FE591D11EE5569800E6FAB4 /* ShopCartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE591CF1EE5569800E6FAB4 /* ShopCartController.swift */; };
 		0FE591D21EE5569800E6FAB4 /* ShopCart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FE591D01EE5569800E6FAB4 /* ShopCart.storyboard */; };
 		0FE591DC1EE55C7900E6FAB4 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE591DB1EE55C7900E6FAB4 /* HomeController.swift */; };
+		0FFAD6BA1F5D5C1900DB46F9 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FFAD6B81F5D543B00DB46F9 /* ProductCell.xib */; };
+		0FFAD6BD1F5D605600DB46F9 /* ShopDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFAD6BB1F5D5F5A00DB46F9 /* ShopDetailController.swift */; };
 		6B2EDB221EBCA7380051C1A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2EDB211EBCA7380051C1A7 /* AppDelegate.swift */; };
 		6B2EDB271EBCA7380051C1A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B2EDB251EBCA7380051C1A7 /* Main.storyboard */; };
 		6B2EDB291EBCA7380051C1A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B2EDB281EBCA7380051C1A7 /* Assets.xcassets */; };
@@ -137,6 +139,8 @@
 		0FE591CF1EE5569800E6FAB4 /* ShopCartController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopCartController.swift; sourceTree = "<group>"; };
 		0FE591D01EE5569800E6FAB4 /* ShopCart.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShopCart.storyboard; sourceTree = "<group>"; };
 		0FE591DB1EE55C7900E6FAB4 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		0FFAD6B81F5D543B00DB46F9 /* ProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
+		0FFAD6BB1F5D5F5A00DB46F9 /* ShopDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailController.swift; sourceTree = "<group>"; };
 		6B2EDB1E1EBCA7380051C1A7 /* pos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B2EDB211EBCA7380051C1A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6B2EDB261EBCA7380051C1A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -281,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				0FE591DB1EE55C7900E6FAB4 /* HomeController.swift */,
+				0FFAD6BB1F5D5F5A00DB46F9 /* ShopDetailController.swift */,
 				0F1187081F551AD100F8F3CF /* ProductListController.swift */,
 				0F66FD5E1F5650F600A15869 /* ProductDetailController.swift */,
 			);
@@ -295,6 +300,7 @@
 				0F2DA1A81F555A7200CB2FB7 /* ProductCategoriesCell.swift */,
 				0F2DA1AA1F555A8D00CB2FB7 /* ProductCategoriesItemCell.swift */,
 				0F2DA1AC1F555A9E00CB2FB7 /* ProductCell.swift */,
+				0FFAD6B81F5D543B00DB46F9 /* ProductCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -706,6 +712,7 @@
 				6B9541561EC827C400CCFF95 /* Mine.storyboard in Resources */,
 				6B9541541EC827BE00CCFF95 /* Search.storyboard in Resources */,
 				0F5408D71F4EC50C00C05161 /* Localizable.strings in Resources */,
+				0FFAD6BA1F5D5C1900DB46F9 /* ProductCell.xib in Resources */,
 				6B95411A1EC820E300CCFF95 /* Main.storyboard in Resources */,
 				0FE591D21EE5569800E6FAB4 /* ShopCart.storyboard in Resources */,
 				6B9541591EC827CE00CCFF95 /* Home.storyboard in Resources */,
@@ -820,6 +827,7 @@
 				0F1187071F550BE700F8F3CF /* HomeShopCell.swift in Sources */,
 				0F2DA1AD1F555A9E00CB2FB7 /* ProductCell.swift in Sources */,
 				6B95412A1EC8217200CCFF95 /* NSBundle+Language.m in Sources */,
+				0FFAD6BD1F5D605600DB46F9 /* ShopDetailController.swift in Sources */,
 				6B9541131EC820E300CCFF95 /* AppDelegate.swift in Sources */,
 				0F11870A1F551BF500F8F3CF /* ProductListController.swift in Sources */,
 				0FE591DC1EE55C7900E6FAB4 /* HomeController.swift in Sources */,

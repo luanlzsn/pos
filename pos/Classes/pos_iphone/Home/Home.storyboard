@@ -95,17 +95,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collection" destination="fHo-fS-xRk" id="mlX-1d-Rda"/>
-                        <segue destination="hau-j4-VsQ" kind="show" identifier="ProductList" id="MjA-uL-WUl"/>
+                        <segue destination="hau-j4-VsQ" kind="show" identifier="ShopDetail" id="MjA-uL-WUl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YvN-B9-vJe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1144.8" y="114.69265367316342"/>
         </scene>
-        <!--Product List Controller-->
+        <!--Shop Detail Controller-->
         <scene sceneID="Lch-46-v1g">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="hau-j4-VsQ" customClass="ProductListController" customModule="pos_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="hau-j4-VsQ" customClass="ShopDetailController" customModule="pos_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D60-RL-MOr"/>
                         <viewControllerLayoutGuide type="bottom" id="JNx-je-RET"/>
@@ -235,61 +235,6 @@
                                             <outlet property="collection" destination="fg8-8e-Wpa" id="ofD-yf-sym"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductCell" id="BWK-2K-PEl" customClass="ProductCell" customModule="pos_iphone" customModuleProvider="target">
-                                        <rect key="frame" x="107.5" y="120" width="160" height="200"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="160" height="200"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_image" translatesAutoresizingMaskIntoConstraints="NO" id="5Xf-63-CIG">
-                                                    <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="5Xf-63-CIG" secondAttribute="height" id="fqD-cg-J2E"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pf2-2x-IhV">
-                                                    <rect key="frame" x="5" y="160" width="150" height="20"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9F-nz-fh5">
-                                                    <rect key="frame" x="5" y="180" width="150" height="20"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="pf2-2x-IhV" firstAttribute="top" secondItem="5Xf-63-CIG" secondAttribute="bottom" id="KvP-OS-8rT"/>
-                                            <constraint firstItem="5Xf-63-CIG" firstAttribute="top" secondItem="BWK-2K-PEl" secondAttribute="topMargin" constant="-8" id="MEy-7F-ikb"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="p9F-nz-fh5" secondAttribute="bottom" constant="-8" id="MZz-Fi-cnG"/>
-                                            <constraint firstItem="5Xf-63-CIG" firstAttribute="centerX" secondItem="BWK-2K-PEl" secondAttribute="centerX" id="OdR-uW-9TH"/>
-                                            <constraint firstItem="5Xf-63-CIG" firstAttribute="width" secondItem="BWK-2K-PEl" secondAttribute="width" id="dJg-R9-ojk"/>
-                                            <constraint firstItem="p9F-nz-fh5" firstAttribute="width" secondItem="pf2-2x-IhV" secondAttribute="width" id="e5c-P3-OTc"/>
-                                            <constraint firstItem="p9F-nz-fh5" firstAttribute="height" secondItem="pf2-2x-IhV" secondAttribute="height" id="ewS-5d-39p"/>
-                                            <constraint firstItem="pf2-2x-IhV" firstAttribute="width" secondItem="BWK-2K-PEl" secondAttribute="width" constant="-10" id="jDE-JV-swU"/>
-                                            <constraint firstItem="p9F-nz-fh5" firstAttribute="top" secondItem="pf2-2x-IhV" secondAttribute="bottom" id="rJS-Xy-6Th"/>
-                                            <constraint firstItem="pf2-2x-IhV" firstAttribute="centerX" secondItem="BWK-2K-PEl" secondAttribute="centerX" id="rxH-8z-FFX"/>
-                                            <constraint firstItem="p9F-nz-fh5" firstAttribute="centerX" secondItem="BWK-2K-PEl" secondAttribute="centerX" id="ySr-Co-i8X"/>
-                                        </constraints>
-                                        <size key="customSize" width="160" height="200"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="0.5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outlet property="productDesc" destination="p9F-nz-fh5" id="hfW-38-UIK"/>
-                                            <outlet property="productImage" destination="5Xf-63-CIG" id="fLO-Vs-BCq"/>
-                                            <outlet property="productName" destination="pf2-2x-IhV" id="1co-75-Kbj"/>
-                                        </connections>
-                                    </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="hau-j4-VsQ" id="if7-YC-LDZ"/>
@@ -308,11 +253,56 @@
                     <connections>
                         <outlet property="collection" destination="cCc-MU-fkg" id="84T-hF-kqj"/>
                         <segue destination="doM-4N-HCn" kind="show" identifier="ProductDetail" id="jKa-JE-VEZ"/>
+                        <segue destination="Klh-Dm-UFF" kind="show" identifier="ProductList" id="EOS-Xe-umf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="csd-Aa-ndF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2156" y="114.69265367316342"/>
+        </scene>
+        <!--Product List Controller-->
+        <scene sceneID="liN-Cz-ure">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="Klh-Dm-UFF" customClass="ProductListController" customModule="pos_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rg9-sK-M76"/>
+                        <viewControllerLayoutGuide type="bottom" id="ggv-ut-TzG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GLn-fF-yxQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tz0-SD-B9I">
+                                <rect key="frame" x="-0.5" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8zf-dk-LzE">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Klh-Dm-UFF" id="dOu-hf-fW2"/>
+                                    <outlet property="delegate" destination="Klh-Dm-UFF" id="4aj-mD-aPR"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tz0-SD-B9I" firstAttribute="centerY" secondItem="GLn-fF-yxQ" secondAttribute="centerY" id="ZAO-Ae-C41"/>
+                            <constraint firstItem="tz0-SD-B9I" firstAttribute="width" secondItem="GLn-fF-yxQ" secondAttribute="width" id="a1y-WW-Ky6"/>
+                            <constraint firstItem="tz0-SD-B9I" firstAttribute="height" secondItem="GLn-fF-yxQ" secondAttribute="height" id="fsf-pH-pqD"/>
+                            <constraint firstItem="tz0-SD-B9I" firstAttribute="centerX" secondItem="GLn-fF-yxQ" secondAttribute="centerX" id="zVQ-eK-cfz"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collection" destination="tz0-SD-B9I" id="2TY-Ek-All"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qhq-zj-l7D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3225" y="115"/>
         </scene>
         <!--Product Detail Controller-->
         <scene sceneID="gDL-7M-PcL">

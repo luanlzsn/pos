@@ -13,5 +13,12 @@ class ProductCell: UICollectionViewCell {
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productDesc: UILabel!
+    @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var originalPrice: UILabel!
+    @IBOutlet weak var exTax: UILabel!
+    
+    @IBAction func shopCartClick(_ sender: UIButton) {
+        
+    }
     
 }

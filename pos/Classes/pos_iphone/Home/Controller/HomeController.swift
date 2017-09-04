@@ -34,9 +34,9 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
     
     // MARK: - 跳转
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ProductList" {
-            let product = segue.destination as! ProductListController
-            product.shopModel = sender as? HomeShopModel
+        if segue.identifier == "ShopDetail" {
+            let shopDetail = segue.destination as! ShopDetailController
+            shopDetail.shopModel = sender as? HomeShopModel
         }
     }
     
@@ -59,7 +59,7 @@ class HomeController: AntController,UICollectionViewDelegate,UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ProductList", sender: shopArray[indexPath.row])
+        performSegue(withIdentifier: "ShopDetail", sender: shopArray[indexPath.row])
     }
 
     override func didReceiveMemoryWarning() {
