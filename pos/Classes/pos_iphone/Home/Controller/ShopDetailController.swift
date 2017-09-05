@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShopDetailController: AntController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+class ShopDetailController: AntController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ProductCell_Delegate {
 
     @IBOutlet weak var collection: UICollectionView!
     var shopModel: HomeShopModel?
@@ -63,6 +63,14 @@ class ShopDetailController: AntController,UICollectionViewDelegate,UICollectionV
         }
     }
     
+    // MARK: - ProductCell_Delegate
+    func addShopCart(_ row: Int) {
+        let model = featuredArray[row]
+        AntManage.iphonePostRequest(path: "route=rest/cart/cart", params: ["product_id":model.product_id, "quantity":1], successResult: { (_) in
+            AntManage.showDelayToast(message: NSLocalizedString("成功: 添加 ", comment: "") + model.name + NSLocalizedString(" 到您的 购物车 ！", comment: ""))
+        }, failureResult: {})
+    }
+    
     // MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section % 2 == 0 {
@@ -100,6 +108,7 @@ class ShopDetailController: AntController,UICollectionViewDelegate,UICollectionV
         } else if indexPath.section == sectionTitleArray.count * 2 - 1 {
             let cell: ProductCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath) as! ProductCell
             let model = featuredArray[indexPath.row]
+            cell.delegate = self
             cell.productImage.sd_setImage(with: URL(string: model.image), placeholderImage: UIImage(named: "default_image"))
             cell.productName.text = model.name
             cell.productDesc.text = model.desc

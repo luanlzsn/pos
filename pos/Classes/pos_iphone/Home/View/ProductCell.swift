@@ -8,6 +8,10 @@
 
 import UIKit
 
+@objc protocol ProductCell_Delegate {
+    func addShopCart(_ row: Int)
+}
+
 class ProductCell: UICollectionViewCell {
     
     @IBOutlet weak var productImage: UIImageView!
@@ -16,9 +20,10 @@ class ProductCell: UICollectionViewCell {
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var originalPrice: UILabel!
     @IBOutlet weak var exTax: UILabel!
+    weak var delegate: ProductCell_Delegate?
     
     @IBAction func shopCartClick(_ sender: UIButton) {
-        
+        delegate?.addShopCart(tag)
     }
     
 }
