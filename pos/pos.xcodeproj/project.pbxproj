@@ -28,6 +28,7 @@
 		0F66FD601F5650FB00A15869 /* ProductDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F66FD5E1F5650F600A15869 /* ProductDetailController.swift */; };
 		0F66FD651F568E4100A15869 /* ProductSectionTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F66FD631F568DF900A15869 /* ProductSectionTitleCell.swift */; };
 		0F7590961EDED1EC00B180D1 /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7590951EDED1EC00B180D1 /* HistoryCell.swift */; };
+		0F85C6311F5E55FC00677DB8 /* ShopCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F85C62F1F5E55E900677DB8 /* ShopCartCell.swift */; };
 		0F8AD2AA1EDD46F700438AFD /* ChangeTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AD2A91EDD46F700438AFD /* ChangeTableController.swift */; };
 		0F8AD2AC1EDD578000438AFD /* MergeBillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AD2AB1EDD578000438AFD /* MergeBillController.swift */; };
 		0FB0E8FF1EE182A80051C0DF /* AutoGenStrings.py in Resources */ = {isa = PBXBuildFile; fileRef = 0FB0E8FE1EE182A80051C0DF /* AutoGenStrings.py */; };
@@ -127,6 +128,7 @@
 		0F66FD5E1F5650F600A15869 /* ProductDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailController.swift; sourceTree = "<group>"; };
 		0F66FD631F568DF900A15869 /* ProductSectionTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductSectionTitleCell.swift; sourceTree = "<group>"; };
 		0F7590951EDED1EC00B180D1 /* HistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		0F85C62F1F5E55E900677DB8 /* ShopCartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopCartCell.swift; sourceTree = "<group>"; };
 		0F8AD2A91EDD46F700438AFD /* ChangeTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTableController.swift; sourceTree = "<group>"; };
 		0F8AD2AB1EDD578000438AFD /* MergeBillController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeBillController.swift; sourceTree = "<group>"; };
 		0FB0E8FE1EE182A80051C0DF /* AutoGenStrings.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = AutoGenStrings.py; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 		0FE591D51EE55BE900E6FAB4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0F85C62F1F5E55E900677DB8 /* ShopCartCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -833,6 +836,7 @@
 				0FE591DC1EE55C7900E6FAB4 /* HomeController.swift in Sources */,
 				0FE591D11EE5569800E6FAB4 /* ShopCartController.swift in Sources */,
 				0F2DA1AB1F555A8D00CB2FB7 /* ProductCategoriesItemCell.swift in Sources */,
+				0F85C6311F5E55FC00677DB8 /* ShopCartCell.swift in Sources */,
 				0F5408D01F4EAB5C00C05161 /* LoginController.swift in Sources */,
 				6B9541391EC8230900CCFF95 /* AntModel_iphone.swift in Sources */,
 				6B95412B1EC8217E00CCFF95 /* SpinnerButton.swift in Sources */,

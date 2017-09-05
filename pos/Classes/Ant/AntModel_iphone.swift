@@ -73,6 +73,10 @@ class OptionModel: AntModel_iphone {
     var type = ""
     var value = ""
     var option_value = [OptionItemModel]()
+    
+    override static func mj_objectClassInArray() -> [AnyHashable : Any]! {
+        return ["option_value":OptionItemModel.classForCoder()]
+    }
 }
 
 class ProductModel: AntModel_iphone {
@@ -91,9 +95,39 @@ class ProductModel: AntModel_iphone {
     var image = ""
     var quantity = 0
     var options = [OptionModel]()
+    var key = 0
+    var model = ""
+    var total = ""
     
     override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
         return ["desc":"description"]
+    }
+    
+    override static func mj_objectClassInArray() -> [AnyHashable : Any]! {
+        return ["options":OptionModel.classForCoder()]
+    }
+    
+}
+
+class TotalModel: AntModel_iphone {
+    var text = ""
+    var title = ""
+    var value = ""
+}
+
+class ShopCartModel: AntModel_iphone {
+    var products = [ProductModel]()
+    var reward = ""
+    var reward_status = 0
+    var total = ""
+    var total_product_count = 0
+    var total_raw = ""
+    var voucher = ""
+    var voucher_status = 0
+    var totals = [TotalModel]()
+    
+    override static func mj_objectClassInArray() -> [AnyHashable : Any]! {
+        return ["products":ProductModel.classForCoder(), "totals":TotalModel.classForCoder()]
     }
     
 }
