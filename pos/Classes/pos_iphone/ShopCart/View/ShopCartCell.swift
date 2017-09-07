@@ -8,6 +8,10 @@
 
 import UIKit
 
+@objc protocol ShopCartCell_Delegate {
+    func deleteShopCart(_ row: Int)
+}
+
 class ShopCartCell: UITableViewCell {
 
     @IBOutlet weak var productImage: UIImageView!
@@ -15,6 +19,7 @@ class ShopCartCell: UITableViewCell {
     @IBOutlet weak var number: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var total: UILabel!
+    weak var delegate: ShopCartCell_Delegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,7 +27,7 @@ class ShopCartCell: UITableViewCell {
     }
     
     @IBAction func deleteClick(_ sender: UIButton) {
-        
+        delegate?.deleteShopCart(tag)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

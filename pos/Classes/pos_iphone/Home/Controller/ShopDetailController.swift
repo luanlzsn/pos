@@ -32,7 +32,7 @@ class ShopDetailController: AntController,UICollectionViewDelegate,UICollectionV
     
     func getCategories() {
         weak var weakSelf = self
-        AntManage.manager.requestSerializer.setValue("\(shopModel!.store_id)", forHTTPHeaderField: "Store-Id")
+        AntManage.manager.requestSerializer.setValue("\(shopModel!.store_id)", forHTTPHeaderField: "Store_Id")
         AntManage.iphoneGetRequest(path: "route=feed/rest_api/categories", params: nil, successResult: { (response) in
             weakSelf?.categoriesArray = CategoriesModel.mj_objectArray(withKeyValuesArray: response["data"]) as! [CategoriesModel]
             weakSelf?.collection.reloadData()
@@ -41,11 +41,11 @@ class ShopDetailController: AntController,UICollectionViewDelegate,UICollectionV
     
     func getFeaturedProduct() {
         weak var weakSelf = self
-        AntManage.manager.requestSerializer.setValue("\(shopModel!.store_id)", forHTTPHeaderField: "Store-Id")
+        AntManage.manager.requestSerializer.setValue("\(shopModel!.store_id)", forHTTPHeaderField: "Store_Id")
         AntManage.iphoneGetRequest(path: "route=feed/rest_api/featured", params: nil, successResult: { (response) in
             if let data = response["data"] as? [[String : Any]] {
-                if let products = data.first {
-                    weakSelf?.featuredArray = ProductModel.mj_objectArray(withKeyValuesArray: products["products"]) as! [ProductModel]
+                if let products = data.first?["products"] {
+                    weakSelf?.featuredArray = ProductModel.mj_objectArray(withKeyValuesArray: products) as! [ProductModel]
                     weakSelf?.collection.reloadData()
                 }
             }
@@ -68,6 +68,7 @@ class ShopDetailController: AntController,UICollectionViewDelegate,UICollectionV
         let model = featuredArray[row]
         AntManage.iphonePostRequest(path: "route=rest/cart/cart", params: ["product_id":model.product_id, "quantity":1], successResult: { (_) in
             AntManage.showDelayToast(message: NSLocalizedString("成功: 添加 ", comment: "") + model.name + NSLocalizedString(" 到您的 购物车 ！", comment: ""))
+            NotificationCenter.default.post(name: NSNotification.Name("kAddShopCartSuccess"), object: nil)
         }, failureResult: {})
     }
     
@@ -109,16 +110,17 @@ class ShopDetailController: AntController,UICollectionViewDelegate,UICollectionV
             let cell: ProductCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath) as! ProductCell
             let model = featuredArray[indexPath.row]
             cell.delegate = self
+            cell.tag = indexPath.row
             cell.productImage.sd_setImage(with: URL(string: model.image), placeholderImage: UIImage(named: "default_image"))
             cell.productName.text = model.name
             cell.productDesc.text = model.desc
             if model.special == 0 {
                 cell.price.text = model.price_formated
-                cell.exTax.text = "Ex Tax: $\(model.price_excluding_tax)"
+                cell.exTax.text = NSLocalizedString("不含税", comment: "") + ": $\(model.price_excluding_tax)"
                 cell.originalPrice.isHidden = true
             } else {
                 cell.price.text = model.special_formated
-                cell.exTax.text = "Ex Tax: $\(model.special_excluding_tax)"
+                cell.exTax.text = NSLocalizedString("不含税", comment: "") + ": $\(model.special_excluding_tax)"
                 cell.originalPrice.isHidden = false
                 cell.originalPrice.attributedText = NSAttributedString(string: model.price_formated, attributes: [NSStrikethroughStyleAttributeName : NSUnderlineStyle.styleSingle.rawValue])
             }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShopCartController: AntController,UITableViewDelegate,UITableViewDataSource {
+class ShopCartController: AntController,UITableViewDelegate,UITableViewDataSource,ShopCartCell_Delegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var productPriceTitle: UILabel!
@@ -19,9 +19,14 @@ class ShopCartController: AntController,UITableViewDelegate,UITableViewDataSourc
     @IBOutlet weak var orderPrice: UILabel!
     var shopCartModel: ShopCartModel?
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(self, selector: #selector(getShopCartInfo), name: NSNotification.Name(kAddShopCartSuccess), object: nil)
         getShopCartInfo()
     }
     
@@ -35,7 +40,7 @@ class ShopCartController: AntController,UITableViewDelegate,UITableViewDataSourc
     }
     
     func refreshPrice() {
-        if (shopCartModel?.totals.count)! >= 3 {
+        if shopCartModel != nil, shopCartModel!.totals.count >= 3 {
             if let productPriceInfo = shopCartModel?.totals.first {
                 productPriceTitle.text = productPriceInfo.title
                 productPrice.text = productPriceInfo.text
@@ -55,6 +60,15 @@ class ShopCartController: AntController,UITableViewDelegate,UITableViewDataSourc
         
     }
     
+    // MARK: - ShopCartCell_Delegate
+    func deleteShopCart(_ row: Int) {
+        let product = shopCartModel!.products[row]
+        weak var weakSelf = self
+        AntManage.iphoneDeleteRequest(path: "route=rest/cart/cart", params: ["key":product.key], successResult: { (_) in
+            weakSelf?.getShopCartInfo()
+        }, failureResult: {})
+    }
+    
     // MARK: - UITableViewDelegate,UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shopCartModel?.products.count ?? 0
@@ -71,6 +85,8 @@ class ShopCartController: AntController,UITableViewDelegate,UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ShopCartCell = tableView.dequeueReusableCell(withIdentifier: "ShopCartCell", for: indexPath) as! ShopCartCell
         let product = shopCartModel!.products[indexPath.row]
+        cell.delegate = self
+        cell.tag = indexPath.row
         cell.productName.text = product.name
         cell.productImage?.sd_setImage(with: URL(string: product.image), placeholderImage: UIImage(named: "default_image"))
         cell.number.text = "Qty: \(product.quantity)"

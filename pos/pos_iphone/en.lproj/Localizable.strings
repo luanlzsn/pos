@@ -16,11 +16,21 @@
 // MARK: - 商品
 "分类" = "Categories";
 "特色商品" = "Featured";
+"不含税" = "Ex Tax";
 "没有店铺信息！" = "没有店铺信息！";
 "没有商品信息！" = "没有商品信息！";
 "成功: 添加了 " = "Success: You have added ";
 "到您的 购物车 ！" = " to your shopping cart!";
+"有存货" = "In Stock";
+"无存货" = "No Stock";
+"数量" = "Qty";
 
 // MARK: - 购物车
 "单价：" = "Unit Price：";
 "总计：" = "Total：";
+
+
+
+// MARK: - Common
+"确定" = "Confirm";
+"取消" = "Cancel";

@@ -27,6 +27,7 @@ class AntSingleton: NSObject {
     private override init () {
         if UIDevice.current.userInterfaceIdiom == .phone {
             manager.requestSerializer = AFJSONRequestSerializer()
+            manager.requestSerializer.httpMethodsEncodingParametersInURI = Set.init(arrayLiteral: "GET", "HEAD")
         }
         manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "application/json","text/json","text/javascript","text/html")
         manager.requestSerializer.timeoutInterval = kRequestTimeOut
@@ -92,7 +93,7 @@ class AntSingleton: NSObject {
         }
     }
     
-    //MARK: - post请求
+    //MARK: - iphone post请求
     func iphonePostRequest(path:String, params:[String : Any]?, successResult:@escaping ([String : Any]) -> Void, failureResult:@escaping () -> Void) {
         AntLog(message: "请求接口：\(path),请求参数：\(String(describing: params))")
         if path != "route=feed/rest_api/gettoken&grant_type=client_credentials" {
@@ -113,12 +114,14 @@ class AntSingleton: NSObject {
             weakSelf?.iphoneRequestSuccess(response: response, successResult: successResult, failureResult: failureResult)
         }) { (task, error) in
             weakSelf?.hideMessage()
-            weakSelf?.showDelayToast(message: "未知错误，请重试！")
+            if path != "route=feed/rest_api/gettoken&grant_type=client_credentials" {
+                weakSelf?.showDelayToast(message: "未知错误，请重试！")
+            }
             failureResult()
         }
     }
     
-    //MARK: - post请求
+    //MARK: - iphone get请求
     func iphoneGetRequest(path:String, params:[String : Any]?, successResult:@escaping ([String : Any]) -> Void, failureResult:@escaping () -> Void) {
         AntLog(message: "请求接口：\(path),请求参数：\(String(describing: params))")
         showMessage(message: "")
@@ -133,6 +136,29 @@ class AntSingleton: NSObject {
         manager.requestSerializer.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         manager.requestSerializer.httpShouldHandleCookies = false
         manager.get(requestBaseUrl + path, parameters: params, progress: nil, success: { (task, response) in
+            weakSelf?.iphoneRequestSuccess(response: response, successResult: successResult, failureResult: failureResult)
+        }) { (task, error) in
+            weakSelf?.hideMessage()
+            weakSelf?.showDelayToast(message: "未知错误，请重试！")
+            failureResult()
+        }
+    }
+    
+    //MARK: - iphone get请求
+    func iphoneDeleteRequest(path:String, params:[String : Any]?, successResult:@escaping ([String : Any]) -> Void, failureResult:@escaping () -> Void) {
+        AntLog(message: "请求接口：\(path),请求参数：\(String(describing: params))")
+        showMessage(message: "")
+        weak var weakSelf = self
+        
+        if iphoneToken.isEmpty {
+            manager.requestSerializer.setValue("Basic cG9zb25saW5lOlBvTCMxMjA5", forHTTPHeaderField: "Authorization")
+        } else {
+            manager.requestSerializer.setValue("BEARER \(iphoneToken)", forHTTPHeaderField: "Authorization")
+        }
+        manager.requestSerializer.setValue((LanguageManager.currentLanguageString() == "en") ? "en" : "zh", forHTTPHeaderField: "Accept-Language")
+        manager.requestSerializer.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        manager.requestSerializer.httpShouldHandleCookies = false
+        manager.delete(requestBaseUrl + path, parameters: params, success: { (task, response) in
             weakSelf?.iphoneRequestSuccess(response: response, successResult: successResult, failureResult: failureResult)
         }) { (task, error) in
             weakSelf?.hideMessage()

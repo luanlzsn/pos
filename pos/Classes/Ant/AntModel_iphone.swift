@@ -87,6 +87,7 @@ class ProductModel: AntModel_iphone {
     var price_excluding_tax = "0.00"
     var price_formated = "$0.00"
     var product_id = 0
+    var productId = 0
     var rating = 0
     var special = 0.0
     var special_excluding_tax = "0.00"
@@ -100,7 +101,7 @@ class ProductModel: AntModel_iphone {
     var total = ""
     
     override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
-        return ["desc":"description"]
+        return ["desc":"description", "productId":"id"]
     }
     
     override static func mj_objectClassInArray() -> [AnyHashable : Any]! {

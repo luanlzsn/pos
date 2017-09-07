@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductListController: AntController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+class ProductListController: AntController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ProductCell_Delegate {
     
     @IBOutlet weak var collection: UICollectionView!
     var categoryModel: CategoriesModel!
@@ -38,6 +38,15 @@ class ProductListController: AntController,UICollectionViewDelegate,UICollection
         }
     }
     
+    // MARK: - ProductCell_Delegate
+    func addShopCart(_ row: Int) {
+        let model = productArray[row]
+        AntManage.iphonePostRequest(path: "route=rest/cart/cart", params: ["product_id":model.product_id, "quantity":1], successResult: { (_) in
+            AntManage.showDelayToast(message: NSLocalizedString("成功: 添加 ", comment: "") + model.name + NSLocalizedString(" 到您的 购物车 ！", comment: ""))
+            NotificationCenter.default.post(name: NSNotification.Name("kAddShopCartSuccess"), object: nil)
+        }, failureResult: {})
+    }
+    
     // MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = (kScreenWidth - 30) / 2.0
@@ -52,16 +61,18 @@ class ProductListController: AntController,UICollectionViewDelegate,UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ProductCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath) as! ProductCell
         let model = productArray[indexPath.row]
+        cell.delegate = self
+        cell.tag = indexPath.row
         cell.productImage.sd_setImage(with: URL(string: model.image), placeholderImage: UIImage(named: "default_image"))
         cell.productName.text = model.name
         cell.productDesc.text = model.desc
         if model.special == 0 {
             cell.price.text = model.price_formated
-            cell.exTax.text = "Ex Tax: $\(model.price_excluding_tax)"
+            cell.exTax.text = NSLocalizedString("不含税", comment: "") + ": $\(model.price_excluding_tax)"
             cell.originalPrice.isHidden = true
         } else {
             cell.price.text = model.special_formated
-            cell.exTax.text = "Ex Tax: $\(model.special_excluding_tax)"
+            cell.exTax.text = NSLocalizedString("不含税", comment: "") + ": $\(model.special_excluding_tax)"
             cell.originalPrice.isHidden = false
             cell.originalPrice.attributedText = NSAttributedString(string: model.price_formated, attributes: [NSStrikethroughStyleAttributeName : NSUnderlineStyle.styleSingle.rawValue])
         }
@@ -69,7 +80,7 @@ class ProductListController: AntController,UICollectionViewDelegate,UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        performSegue(withIdentifier: "ProductDetail", sender: productArray[indexPath.row])
     }
 
     override func didReceiveMemoryWarning() {
