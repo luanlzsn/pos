@@ -16,6 +16,10 @@ class ShopDetailController: AntController,UICollectionViewDelegate,UICollectionV
     var categoriesArray = [CategoriesModel]()
     var featuredArray = [ProductModel]()
     
+    deinit {
+        AntManage.manager.requestSerializer.setValue("", forHTTPHeaderField: "X-Oc-Store-Id")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,7 +36,7 @@ class ShopDetailController: AntController,UICollectionViewDelegate,UICollectionV
     
     func getCategories() {
         weak var weakSelf = self
-        AntManage.manager.requestSerializer.setValue("\(shopModel!.store_id)", forHTTPHeaderField: "Store_Id")
+        AntManage.manager.requestSerializer.setValue("\(shopModel!.store_id)", forHTTPHeaderField: "X-Oc-Store-Id")
         AntManage.iphoneGetRequest(path: "route=feed/rest_api/categories", params: nil, successResult: { (response) in
             weakSelf?.categoriesArray = CategoriesModel.mj_objectArray(withKeyValuesArray: response["data"]) as! [CategoriesModel]
             weakSelf?.collection.reloadData()
@@ -41,7 +45,7 @@ class ShopDetailController: AntController,UICollectionViewDelegate,UICollectionV
     
     func getFeaturedProduct() {
         weak var weakSelf = self
-        AntManage.manager.requestSerializer.setValue("\(shopModel!.store_id)", forHTTPHeaderField: "Store_Id")
+        AntManage.manager.requestSerializer.setValue("\(shopModel!.store_id)", forHTTPHeaderField: "X-Oc-Store-Id")
         AntManage.iphoneGetRequest(path: "route=feed/rest_api/featured", params: nil, successResult: { (response) in
             if let data = response["data"] as? [[String : Any]] {
                 if let products = data.first?["products"] {

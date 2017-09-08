@@ -7,6 +7,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -415,11 +416,11 @@
                                         <rect key="frame" x="0.0" y="0.5" width="187.5" height="45"/>
                                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="可以的选项">
+                                        <state key="normal" title="可用的选项">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="availableOptionsClick:" destination="doM-4N-HCn" eventType="touchUpInside" id="GQi-Cy-yt6"/>
+                                            <segue destination="Isk-CT-ZS9" kind="presentation" identifier="AvailableOptions" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="dv6-oS-qrI"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05Z-Pz-xuD">
@@ -471,6 +472,86 @@
             </objects>
             <point key="canvasLocation" x="2156" y="855"/>
         </scene>
+        <!--Available Options Controller-->
+        <scene sceneID="WTs-lJ-EQs">
+            <objects>
+                <viewController id="Isk-CT-ZS9" customClass="AvailableOptionsController" customModule="pos_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="s15-6N-pud"/>
+                        <viewControllerLayoutGuide type="bottom" id="NRu-Hw-SOK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="c0c-k3-Bhd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="dWT-c7-xr3">
+                                <rect key="frame" x="0.0" y="333.5" width="375" height="333.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AvailableOptionsCell" id="YCK-vy-q54" customClass="AvailableOptionsCell" customModule="pos_iphone" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YCK-vy-q54" id="gHS-TR-myq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pog-hm-fcY">
+                                                    <rect key="frame" x="20" y="11" width="19" height="22"/>
+                                                    <state key="normal" image="unselect_icon"/>
+                                                    <state key="selected" image="select_icon"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6z-CT-6qd">
+                                                    <rect key="frame" x="48" y="13.5" width="35.5" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="u6z-CT-6qd" firstAttribute="leading" secondItem="gHS-TR-myq" secondAttribute="leadingMargin" constant="40" id="Qic-TM-HxG"/>
+                                                <constraint firstItem="Pog-hm-fcY" firstAttribute="centerY" secondItem="gHS-TR-myq" secondAttribute="centerY" id="TFD-l3-3Jo"/>
+                                                <constraint firstItem="Pog-hm-fcY" firstAttribute="leading" secondItem="gHS-TR-myq" secondAttribute="leadingMargin" constant="12" id="hWk-z2-MeD"/>
+                                                <constraint firstItem="u6z-CT-6qd" firstAttribute="centerY" secondItem="gHS-TR-myq" secondAttribute="centerY" id="tSP-cQ-jhV"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="optionName" destination="u6z-CT-6qd" id="5IC-Ja-d7M"/>
+                                            <outlet property="selectBtn" destination="Pog-hm-fcY" id="2Du-NR-S0A"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Isk-CT-ZS9" id="Pvi-Ym-LSi"/>
+                                    <outlet property="delegate" destination="Isk-CT-ZS9" id="TML-OB-22a"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.30490757042253519" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="dWT-c7-xr3" firstAttribute="centerX" secondItem="c0c-k3-Bhd" secondAttribute="centerX" id="GqZ-9H-uRl"/>
+                            <constraint firstItem="dWT-c7-xr3" firstAttribute="height" secondItem="c0c-k3-Bhd" secondAttribute="height" multiplier="0.5" id="HnU-M0-lwl"/>
+                            <constraint firstItem="NRu-Hw-SOK" firstAttribute="top" secondItem="dWT-c7-xr3" secondAttribute="bottom" id="TcA-8V-D0u"/>
+                            <constraint firstItem="dWT-c7-xr3" firstAttribute="width" secondItem="c0c-k3-Bhd" secondAttribute="width" id="coe-aH-YOo"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Kk2-Zi-VD1" appends="YES" id="dg4-pe-28u"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="dWT-c7-xr3" id="kqL-lC-gt4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vuT-sd-BSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Kk2-Zi-VD1">
+                    <connections>
+                        <action selector="dismissClick:" destination="Isk-CT-ZS9" id="aY6-Dl-4QR"/>
+                        <outlet property="delegate" destination="Isk-CT-ZS9" id="MrQ-ho-nB1"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="3225" y="854"/>
+        </scene>
         <!--首页-->
         <scene sceneID="IaT-CJ-MjZ">
             <objects>
@@ -497,6 +578,8 @@
         <image name="home_icon" width="21" height="20"/>
         <image name="home_icon_select" width="21" height="20"/>
         <image name="nav_menu" width="23" height="17"/>
+        <image name="select_icon" width="19" height="19"/>
+        <image name="unselect_icon" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="BDM-pH-laP"/>

@@ -62,7 +62,7 @@ class OptionItemModel: AntModel_iphone {
     var price_prefix = "0.00"
     var product_option_value_id = 0
     var quantity = 0
-    
+    var isSelect = false
 }
 
 class OptionModel: AntModel_iphone {
@@ -73,6 +73,7 @@ class OptionModel: AntModel_iphone {
     var type = ""
     var value = ""
     var option_value = [OptionItemModel]()
+    var isSelect = false
     
     override static func mj_objectClassInArray() -> [AnyHashable : Any]! {
         return ["option_value":OptionItemModel.classForCoder()]

@@ -32,15 +32,26 @@ class ProductDetailController: AntController {
     }
     
     func getProductDetail() {
-        weak var weakSelf = self
-        AntManage.iphoneGetRequest(path: "route=feed/rest_api/products&id=\(productModel.product_id)", params: nil, successResult: { (response) in
-            if let data = response["data"] {
-                weakSelf?.productModel = ProductModel.mj_object(withKeyValues: data)
-                weakSelf?.refreshProductInfo()
-            }
-        }, failureResult: {
-            weakSelf?.navigationController?.popViewController(animated: true)
-        })
+        var productId = 0
+        if productModel.product_id != 0 {
+            productId = productModel.product_id
+        } else if productModel.productId != 0 {
+            productId = productModel.productId
+        }
+        if productId != 0 {
+            weak var weakSelf = self
+            AntManage.iphoneGetRequest(path: "route=feed/rest_api/products&id=\(productId)", params: nil, successResult: { (response) in
+                if let data = response["data"] {
+                    weakSelf?.productModel = ProductModel.mj_object(withKeyValues: data)
+                    weakSelf?.refreshProductInfo()
+                }
+            }, failureResult: {
+                weakSelf?.navigationController?.popViewController(animated: true)
+            })
+        } else {
+            AntManage.showDelayToast(message: NSLocalizedString("商品信息错误", comment: ""))
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     func refreshProductInfo() {
@@ -58,10 +69,6 @@ class ProductDetailController: AntController {
             originalPrice.isHidden = false
             originalPrice.attributedText = NSAttributedString(string: productModel.price_formated, attributes: [NSStrikethroughStyleAttributeName : NSUnderlineStyle.styleSingle.rawValue])
         }
-    }
-
-    @IBAction func availableOptionsClick(_ sender: UIButton) {
-        
     }
     
     @IBAction func addShopCartClick(_ sender: UIButton) {
@@ -84,11 +91,29 @@ class ProductDetailController: AntController {
     }
     
     func checkRequest(number: Int) {
-        weak var weakSelf = self
-        AntManage.iphonePostRequest(path: "route=rest/cart/cart", params: ["product_id":productModel.productId, "quantity":number], successResult: { (_) in
-            AntManage.showDelayToast(message: NSLocalizedString("成功: 添加 ", comment: "") + weakSelf!.productModel.name + NSLocalizedString(" 到您的 购物车 ！", comment: ""))
-            NotificationCenter.default.post(name: NSNotification.Name("kAddShopCartSuccess"), object: nil)
-        }, failureResult: {})
+        var productId = 0
+        if productModel.product_id != 0 {
+            productId = productModel.product_id
+        } else if productModel.productId != 0 {
+            productId = productModel.productId
+        }
+        if productId != 0 {
+            weak var weakSelf = self
+            AntManage.iphonePostRequest(path: "route=rest/cart/cart", params: ["product_id":productId, "quantity":number], successResult: { (_) in
+                AntManage.showDelayToast(message: NSLocalizedString("成功: 添加 ", comment: "") + weakSelf!.productModel.name + NSLocalizedString(" 到您的 购物车 ！", comment: ""))
+                NotificationCenter.default.post(name: NSNotification.Name("kAddShopCartSuccess"), object: nil)
+            }, failureResult: {})
+        } else {
+            AntManage.showDelayToast(message: NSLocalizedString("商品信息错误", comment: ""))
+        }
+    }
+    
+    // MARK: - 跳转
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AvailableOptions" {
+            let availableOptions = segue.destination as! AvailableOptionsController
+            availableOptions.optionArray = productModel.options
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -18,6 +18,8 @@
 		0F2DA1A91F555A7200CB2FB7 /* ProductCategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2DA1A81F555A7200CB2FB7 /* ProductCategoriesCell.swift */; };
 		0F2DA1AB1F555A8D00CB2FB7 /* ProductCategoriesItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2DA1AA1F555A8D00CB2FB7 /* ProductCategoriesItemCell.swift */; };
 		0F2DA1AD1F555A9E00CB2FB7 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2DA1AC1F555A9E00CB2FB7 /* ProductCell.swift */; };
+		0F37161B1F628B1E00905266 /* AvailableOptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3716191F628B0A00905266 /* AvailableOptionsController.swift */; };
+		0F37161E1F62958200905266 /* AvailableOptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F37161C1F62957A00905266 /* AvailableOptionsCell.swift */; };
 		0F45C4EA1EDBD45A006EC1CA /* TasteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F45C4E91EDBD45A006EC1CA /* TasteController.swift */; };
 		0F45C4EC1EDBD531006EC1CA /* TasteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F45C4EB1EDBD531006EC1CA /* TasteCell.swift */; };
 		0F5408CE1F4EAB2100C05161 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F5408CD1F4EAB2100C05161 /* Login.storyboard */; };
@@ -117,6 +119,8 @@
 		0F2DA1A81F555A7200CB2FB7 /* ProductCategoriesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCategoriesCell.swift; sourceTree = "<group>"; };
 		0F2DA1AA1F555A8D00CB2FB7 /* ProductCategoriesItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCategoriesItemCell.swift; sourceTree = "<group>"; };
 		0F2DA1AC1F555A9E00CB2FB7 /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		0F3716191F628B0A00905266 /* AvailableOptionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableOptionsController.swift; sourceTree = "<group>"; };
+		0F37161C1F62957A00905266 /* AvailableOptionsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableOptionsCell.swift; sourceTree = "<group>"; };
 		0F45C4E91EDBD45A006EC1CA /* TasteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasteController.swift; sourceTree = "<group>"; };
 		0F45C4EB1EDBD531006EC1CA /* TasteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasteCell.swift; sourceTree = "<group>"; };
 		0F5408CD1F4EAB2100C05161 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -290,6 +294,7 @@
 				0FFAD6BB1F5D5F5A00DB46F9 /* ShopDetailController.swift */,
 				0F1187081F551AD100F8F3CF /* ProductListController.swift */,
 				0F66FD5E1F5650F600A15869 /* ProductDetailController.swift */,
+				0F3716191F628B0A00905266 /* AvailableOptionsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -303,6 +308,7 @@
 				0F2DA1AA1F555A8D00CB2FB7 /* ProductCategoriesItemCell.swift */,
 				0F2DA1AC1F555A9E00CB2FB7 /* ProductCell.swift */,
 				0FFAD6B81F5D543B00DB46F9 /* ProductCell.xib */,
+				0F37161C1F62957A00905266 /* AvailableOptionsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -836,10 +842,12 @@
 				0FE591DC1EE55C7900E6FAB4 /* HomeController.swift in Sources */,
 				0FE591D11EE5569800E6FAB4 /* ShopCartController.swift in Sources */,
 				0F2DA1AB1F555A8D00CB2FB7 /* ProductCategoriesItemCell.swift in Sources */,
+				0F37161B1F628B1E00905266 /* AvailableOptionsController.swift in Sources */,
 				0F85C6311F5E55FC00677DB8 /* ShopCartCell.swift in Sources */,
 				0F5408D01F4EAB5C00C05161 /* LoginController.swift in Sources */,
 				6B9541391EC8230900CCFF95 /* AntModel_iphone.swift in Sources */,
 				6B95412B1EC8217E00CCFF95 /* SpinnerButton.swift in Sources */,
+				0F37161E1F62958200905266 /* AvailableOptionsCell.swift in Sources */,
 				0F2DA1A91F555A7200CB2FB7 /* ProductCategoriesCell.swift in Sources */,
 				6B9541291EC8215A00CCFF95 /* LanguageManager.swift in Sources */,
 				0F2386A91F4D772200D121C2 /* AntSingleton.swift in Sources */,
