@@ -98,8 +98,24 @@ class ProductDetailController: AntController {
             productId = productModel.productId
         }
         if productId != 0 {
+            var selectOption = [String : [String]]()
+            for optionModel in productModel.options {
+                var optionValueArray = [String]()
+                for option_value in optionModel.option_value {
+                    if option_value.isSelect {
+                        optionValueArray.append("\(option_value.product_option_value_id)")
+                    }
+                }
+                if optionValueArray.count > 0 {
+                    selectOption["\(optionModel.product_option_id)"] = optionValueArray
+                } else if optionModel.required {
+                    AntManage.showDelayToast(message: NSLocalizedString("必须输入\(optionModel.name)!", comment: ""))
+                    performSegue(withIdentifier: "AvailableOptions", sender: nil)
+                    return
+                }
+            }
             weak var weakSelf = self
-            AntManage.iphonePostRequest(path: "route=rest/cart/cart", params: ["product_id":productId, "quantity":number], successResult: { (_) in
+            AntManage.iphonePostRequest(path: "route=rest/cart/cart", params: ["product_id":productId, "quantity":number, "option":selectOption], successResult: { (_) in
                 AntManage.showDelayToast(message: NSLocalizedString("成功: 添加 ", comment: "") + weakSelf!.productModel.name + NSLocalizedString(" 到您的 购物车 ！", comment: ""))
                 NotificationCenter.default.post(name: NSNotification.Name("kAddShopCartSuccess"), object: nil)
             }, failureResult: {})

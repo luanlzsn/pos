@@ -56,7 +56,7 @@ class AvailableOptionsController: AntController,UITableViewDelegate,UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.01
+        return 0.5
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -72,7 +72,13 @@ class AvailableOptionsController: AntController,UITableViewDelegate,UITableViewD
         
         headerView.addSubview(button)
         let optionModel = optionArray[section]
-        button.setTitle(optionModel.name, for: .normal)
+        if optionModel.required {
+            let attr = NSMutableAttributedString(string: "* \(optionModel.name)")
+            attr.addAttributes([NSForegroundColorAttributeName:UIColor.red], range: NSMakeRange(0, 1))
+            button.setAttributedTitle(attr, for: .normal)
+        } else {
+            button.setTitle(optionModel.name, for: .normal)
+        }
         
         let arrow = UIImageView(image: UIImage(named: "right_arrow"))
         arrow.transform = CGAffineTransform.init(rotationAngle: CGFloat(optionModel.isSelect ? Float.pi / 2 : -Float.pi / 2))
@@ -81,6 +87,12 @@ class AvailableOptionsController: AntController,UITableViewDelegate,UITableViewD
         headerView.addSubview(arrow)
         
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: 0.5))
+        footerView.backgroundColor = UIColor(rgb: 0xeeeeee)
+        return footerView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
