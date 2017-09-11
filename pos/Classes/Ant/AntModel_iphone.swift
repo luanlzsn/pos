@@ -97,6 +97,7 @@ class ProductModel: AntModel_iphone {
     var image = ""
     var quantity = 0
     var options = [OptionModel]()
+    var option = [OptionModel]()
     var key = 0
     var model = ""
     var total = ""
@@ -106,7 +107,7 @@ class ProductModel: AntModel_iphone {
     }
     
     override static func mj_objectClassInArray() -> [AnyHashable : Any]! {
-        return ["options":OptionModel.classForCoder()]
+        return ["options":OptionModel.classForCoder(), "option":OptionModel.classForCoder()]
     }
     
 }

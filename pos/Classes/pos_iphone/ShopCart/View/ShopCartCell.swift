@@ -16,6 +16,7 @@ class ShopCartCell: UITableViewCell {
 
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productName: UILabel!
+    @IBOutlet weak var taste: UILabel!
     @IBOutlet weak var number: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var total: UILabel!

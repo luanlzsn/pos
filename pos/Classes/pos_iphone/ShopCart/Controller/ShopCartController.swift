@@ -27,6 +27,9 @@ class ShopCartController: AntController,UITableViewDelegate,UITableViewDataSourc
         super.viewDidLoad()
 
         NotificationCenter.default.addObserver(self, selector: #selector(getShopCartInfo), name: NSNotification.Name(kAddShopCartSuccess), object: nil)
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 110
+        tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(getShopCartInfo))
         getShopCartInfo()
     }
     
@@ -34,6 +37,7 @@ class ShopCartController: AntController,UITableViewDelegate,UITableViewDataSourc
         weak var weakSelf = self
         AntManage.iphoneGetRequest(path: "route=rest/cart/cart", params: nil, successResult: { (response) in
             weakSelf?.shopCartModel = ShopCartModel.mj_object(withKeyValues: response["data"])
+            weakSelf?.tableView.mj_header.endRefreshing()
             weakSelf?.tableView.reloadData()
             weakSelf?.refreshPrice()
         }, failureResult: {})
@@ -89,6 +93,32 @@ class ShopCartController: AntController,UITableViewDelegate,UITableViewDataSourc
         cell.tag = indexPath.row
         cell.productName.text = product.name
         cell.productImage?.sd_setImage(with: URL(string: product.image), placeholderImage: UIImage(named: "default_image"))
+        var optionDic = [String : [String]]()
+        for option in product.option {
+            if optionDic.keys.contains(option.name) {
+                optionDic[option.name]?.append(option.value)
+            } else {
+                optionDic[option.name] = [String]()
+                optionDic[option.name]?.append(option.value)
+            }
+        }
+        if optionDic.count > 0 {
+            cell.taste.isHidden = false
+            var tasteStr = ""
+            for (tasteName, tasteValue) in optionDic {
+                tasteStr.append("\(tasteName):")
+                for str in tasteValue {
+                    tasteStr.append("\(str),")
+                }
+                tasteStr.remove(at: tasteStr.index(before: tasteStr.endIndex))
+                tasteStr += "\n"
+            }
+            tasteStr.remove(at: tasteStr.index(before: tasteStr.endIndex))
+            cell.taste.text = tasteStr
+        } else {
+            cell.taste.isHidden = true
+            cell.taste.text = ""
+        }
         cell.number.text = "Qty: \(product.quantity)"
         cell.price.text = NSLocalizedString("单价：", comment: "") + product.price
         cell.total.text = NSLocalizedString("总计：", comment: "") + product.total
