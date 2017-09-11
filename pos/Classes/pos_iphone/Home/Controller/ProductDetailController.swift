@@ -40,7 +40,7 @@ class ProductDetailController: AntController {
         }
         if productId != 0 {
             weak var weakSelf = self
-            AntManage.iphoneGetRequest(path: "route=feed/rest_api/products&id=\(productId)", params: nil, successResult: { (response) in
+            AntManage.iphoneGetRequest(path: "route=feed/rest_api/products", params: ["id":productId], successResult: { (response) in
                 if let data = response["data"] {
                     weakSelf?.productModel = ProductModel.mj_object(withKeyValues: data)
                     weakSelf?.refreshProductInfo()

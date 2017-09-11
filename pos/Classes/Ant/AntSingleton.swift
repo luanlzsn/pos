@@ -113,11 +113,9 @@ class AntSingleton: NSObject {
         manager.post(requestBaseUrl + path, parameters: params, progress: nil, success: { (task, response) in
             weakSelf?.iphoneRequestSuccess(response: response, successResult: successResult, failureResult: failureResult)
         }) { (task, error) in
-            weakSelf?.hideMessage()
             if path != "route=feed/rest_api/gettoken&grant_type=client_credentials" {
-                weakSelf?.showDelayToast(message: "未知错误，请重试！")
+                weakSelf?.iphoneRequestFail(error: error, failureResult: failureResult)
             }
-            failureResult()
         }
     }
     
@@ -138,9 +136,7 @@ class AntSingleton: NSObject {
         manager.get(requestBaseUrl + path, parameters: params, progress: nil, success: { (task, response) in
             weakSelf?.iphoneRequestSuccess(response: response, successResult: successResult, failureResult: failureResult)
         }) { (task, error) in
-            weakSelf?.hideMessage()
-            weakSelf?.showDelayToast(message: "未知错误，请重试！")
-            failureResult()
+            weakSelf?.iphoneRequestFail(error: error, failureResult: failureResult)
         }
     }
     
@@ -161,9 +157,7 @@ class AntSingleton: NSObject {
         manager.delete(requestBaseUrl + path, parameters: params, success: { (task, response) in
             weakSelf?.iphoneRequestSuccess(response: response, successResult: successResult, failureResult: failureResult)
         }) { (task, error) in
-            weakSelf?.hideMessage()
-            weakSelf?.showDelayToast(message: "未知错误，请重试！")
-            failureResult()
+            weakSelf?.iphoneRequestFail(error: error, failureResult: failureResult)
         }
     }
     
@@ -195,6 +189,22 @@ class AntSingleton: NSObject {
         }
     }
     
+    // MARK: - iPhone请求错误回调
+    func iphoneRequestFail(error: Error, failureResult:@escaping () -> Void) {
+        hideMessage()
+        failureResult()
+        if let responseData = (error as NSError).userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as? Data {
+            if let responseDict = try! JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as? [String : Any] {
+                if let errorArray = responseDict["error"] as? [String] {
+                    if let errorStr = errorArray.first {
+                        showDelayToast(message: errorStr)
+                        return
+                    }
+                }
+            }
+        }
+        AntManage.showDelayToast(message: NSLocalizedString("未知错误，请重试！", comment: ""))
+    }
     
     // MARK: - 显示提示
     func showMessage(message : String) {

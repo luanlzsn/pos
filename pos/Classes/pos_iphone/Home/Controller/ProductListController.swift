@@ -24,7 +24,7 @@ class ProductListController: AntController,UICollectionViewDelegate,UICollection
     
     func getProductArray() {
         weak var weakSelf = self
-        AntManage.iphoneGetRequest(path: "route=feed/rest_api/products&category=\(categoryModel.category_id)", params: nil, successResult: { (response) in
+        AntManage.iphoneGetRequest(path: "route=feed/rest_api/products", params: ["category":categoryModel.category_id], successResult: { (response) in
             weakSelf?.productArray = ProductModel.mj_objectArray(withKeyValuesArray: response["data"]) as! [ProductModel]
             weakSelf?.collection.reloadData()
         }, failureResult: {})
@@ -41,6 +41,12 @@ class ProductListController: AntController,UICollectionViewDelegate,UICollection
     // MARK: - ProductCell_Delegate
     func addShopCart(_ row: Int) {
         let model = productArray[row]
+        for optionModel in model.options {
+            if optionModel.required {
+                performSegue(withIdentifier: "ProductDetail", sender: model)
+                return
+            }
+        }
         AntManage.iphonePostRequest(path: "route=rest/cart/cart", params: ["product_id":model.product_id, "quantity":1], successResult: { (_) in
             AntManage.showDelayToast(message: NSLocalizedString("成功: 添加 ", comment: "") + model.name + NSLocalizedString(" 到您的 购物车 ！", comment: ""))
             NotificationCenter.default.post(name: NSNotification.Name("kAddShopCartSuccess"), object: nil)

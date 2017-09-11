@@ -309,7 +309,7 @@
         <!--Product Detail Controller-->
         <scene sceneID="gDL-7M-PcL">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="doM-4N-HCn" customClass="ProductDetailController" customModule="pos_iphone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProductDetail" hidesBottomBarWhenPushed="YES" id="doM-4N-HCn" customClass="ProductDetailController" customModule="pos_iphone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="737-h7-Drm"/>
                         <viewControllerLayoutGuide type="bottom" id="y5Y-UC-U10"/>
